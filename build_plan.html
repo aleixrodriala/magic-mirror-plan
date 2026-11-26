@@ -425,7 +425,11 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   }
   .mbtn[data-led="warm"].active { color: var(--amber-ink); background: var(--amber-soft); }
-  .mbtn[data-led="think"].active { color: var(--cyan); background: var(--cyan-soft); }
+  .mbtn[data-led="think"].active {
+    color: #ffffff;
+    background: linear-gradient(110deg, #4285f4 0%, #8b5cf6 52%, #d946ef 100%);
+    box-shadow: 0 2px 10px rgba(99, 102, 241, 0.30);
+  }
   .photo-cap {
     font-size: 12.5px;
     color: var(--muted);
@@ -1317,7 +1321,7 @@
         </div>
         <div class="segmented" role="group" aria-label="LED halo preview mode">
           <button class="mbtn active" type="button" data-img="oak_halo_warm.jpg" data-led="warm">☀ Warm 3000K Idle</button>
-          <button class="mbtn" type="button" data-img="oak_halo_think.jpg" data-led="think">✦ Cyan Thinking</button>
+          <button class="mbtn" type="button" data-img="oak_halo_think.jpg" data-led="think">✦ AI Thinking</button>
           <button class="mbtn" type="button" data-img="oak_land_bot_center.jpg" data-led="off">○ LEDs Off</button>
         </div>
         <div class="photo-cap">Mounted +22 cm above piano (frame 124.5–217.5 cm · screen 135.9–169.5 cm). Switching LED modes updates both the room preview and the live 3D model.</div>
@@ -1632,8 +1636,8 @@
       <pre class="code-block" id="curlBlock"># Warm 3000K idle halo (35%):
 curl -X POST http://mirror-led.local/json/state -d &#x27;{&quot;on&quot;:true,&quot;bri&quot;:90,&quot;seg&quot;:[{&quot;fx&quot;:0,&quot;col&quot;:[[0,0,0,255]]}]}&#x27;
 
-# Cyan &quot;listening / thinking&quot; wave:
-curl -X POST http://mirror-led.local/json/state -d &#x27;{&quot;on&quot;:true,&quot;bri&quot;:160,&quot;seg&quot;:[{&quot;fx&quot;:2,&quot;sx&quot;:140,&quot;col&quot;:[[40,210,255,0]]}]}&#x27;
+# Gemini-style multicolor &quot;AI thinking&quot; flowing aura (WLED Colorwaves + custom Blue/Violet/Rose palette):
+curl -X POST http://mirror-led.local/json/state -d &#x27;{&quot;on&quot;:true,&quot;bri&quot;:165,&quot;seg&quot;:[{&quot;fx&quot;:67,&quot;pal&quot;:6,&quot;sx&quot;:135,&quot;ix&quot;:160,&quot;col&quot;:[[66,133,244,0],[155,114,203,0],[217,101,112,0]]}]}&#x27;
 
 # Smooth fade off (room empty):
 curl -X POST http://mirror-led.local/json/state -d &#x27;{&quot;on&quot;:false,&quot;transition&quot;:15}&#x27;</pre>
@@ -2266,7 +2270,7 @@ curl -X POST http://mirror-led.local/json/state -d &#x27;{&quot;on&quot;:false,&
                 <h4>Hang safely on drywall (pladur) &amp; pair Bluetooth bar</h4>
                 <div class="step-badges"><span class='sbadge sbadge-danger'>Drywall: ≥2 studs + toggles</span><span class='sbadge sbadge-sage'>Zero 230V in frame</span></div>
               </div>
-              <ul class="step-bullets"><li>Find vertical metal/wood pladur studs (montantes) with a magnet/stud finder; level the 900 mm wall cleat so the frame lands +22 cm above the 102.5 cm piano (124.5–217.5 cm).</li><li>Anchor the cleat into ≥2 studs with stud screws plus 4× Fischer DuoTec 10 or metal Molly M6 toggles (≥25 kg each).</li><li>Lift mirror onto cleat with 2 people; route the 3 thin low-voltage DC cables down the painted 16 × 8 mm white channel to the 3 power bricks behind the piano.</li><li>Pair Pi 5 Bluetooth to your soundbar beside the piano and test your WLED Warm / Cyan / Off API triggers!</li></ul>
+              <ul class="step-bullets"><li>Find vertical metal/wood pladur studs (montantes) with a magnet/stud finder; level the 900 mm wall cleat so the frame lands +22 cm above the 102.5 cm piano (124.5–217.5 cm).</li><li>Anchor the cleat into ≥2 studs with stud screws plus 4× Fischer DuoTec 10 or metal Molly M6 toggles (≥25 kg each).</li><li>Lift mirror onto cleat with 2 people; route the 3 thin low-voltage DC cables down the painted 16 × 8 mm white channel to the 3 power bricks behind the piano.</li><li>Pair Pi 5 Bluetooth to your soundbar beside the piano and test your WLED Warm / Multicolor AI / Off API triggers!</li></ul>
             </div>
           </article></div>
       </div>
@@ -2583,7 +2587,45 @@ try {
     return tex;
   }
   const warmHaloTex = createHaloTexture("rgba(255, 160, 36, 1.0)", "rgba(255, 184, 72, 0.92)");
-  const cyanHaloTex = createHaloTexture("rgba(32, 200, 255, 1.0)", "rgba(86, 224, 255, 0.90)");
+
+  // Animated Gemini-style multicolor orbiting halo canvas texture (Blue -> Cyan -> Violet -> Magenta-Rose)
+  const geminiCanvas = document.createElement("canvas");
+  geminiCanvas.width = 512;
+  geminiCanvas.height = 400;
+  const geminiCtx = geminiCanvas.getContext("2d");
+  const geminiHaloTex = new THREE.CanvasTexture(geminiCanvas);
+  geminiHaloTex.colorSpace = THREE.SRGBColorSpace;
+
+  function drawGeminiHalo(phase) {
+    const w = geminiCanvas.width, h = geminiCanvas.height;
+    const cx = w / 2, cy = h / 2, padX = 58, padY = 52;
+    geminiCtx.clearRect(0, 0, w, h);
+    let grad;
+    if (typeof geminiCtx.createConicGradient === "function") {
+      grad = geminiCtx.createConicGradient(phase, cx, cy);
+    } else {
+      const dx = Math.cos(phase) * w * 0.5, dy = Math.sin(phase) * h * 0.5;
+      grad = geminiCtx.createLinearGradient(cx - dx, cy - dy, cx + dx, cy + dy);
+    }
+    grad.addColorStop(0.00, "rgba(66, 133, 244, 0.98)");   // Gemini Blue
+    grad.addColorStop(0.24, "rgba(42, 205, 250, 0.95)");   // Cyan
+    grad.addColorStop(0.50, "rgba(155, 114, 215, 0.98)");  // Violet
+    grad.addColorStop(0.76, "rgba(224, 96, 156, 0.95)");   // Magenta-Rose
+    grad.addColorStop(1.00, "rgba(66, 133, 244, 0.98)");   // Wrap Blue
+
+    geminiCtx.save();
+    geminiCtx.filter = "blur(24px)";
+    geminiCtx.strokeStyle = grad;
+    geminiCtx.lineWidth = 42;
+    geminiCtx.strokeRect(padX, padY, w - padX * 2, h - padY * 2);
+    geminiCtx.filter = "blur(8px)";
+    geminiCtx.lineWidth = 18;
+    geminiCtx.strokeRect(padX, padY, w - padX * 2, h - padY * 2);
+    geminiCtx.restore();
+    geminiHaloTex.needsUpdate = true;
+  }
+  drawGeminiHalo(0);
+
   const haloGlowMat = new THREE.MeshBasicMaterial({
     map: warmHaloTex,
     transparent: true,
@@ -2714,12 +2756,13 @@ try {
       haloGlowMat.opacity = 0.92;
       haloGlowMat.needsUpdate = true;
     } else if (mode === "think") {
-      ledMat.emissive.setHex(0x28c8ff);
+      drawGeminiHalo(clock * 0.75);
+      ledMat.emissive.setHex(0x6b7cff);
       ledMat.emissiveIntensity = 2.5;
-      haloLight.color.setHex(0x38bdf8);
-      haloLight.intensity = 1.8;
-      haloGlowMat.map = cyanHaloTex;
-      haloGlowMat.opacity = 0.95;
+      haloLight.color.setHex(0x7c8cff);
+      haloLight.intensity = 1.9;
+      haloGlowMat.map = geminiHaloTex;
+      haloGlowMat.opacity = 0.96;
       haloGlowMat.needsUpdate = true;
     } else {
       ledMat.emissiveIntensity = 0.0;
@@ -2858,14 +2901,30 @@ try {
   window.addEventListener("resize", handleResize);
 
   let clock = 0;
+  let frameTick = 0;
+  const geminiPalette = [
+    new THREE.Color(0x4285f4),
+    new THREE.Color(0x2acdfa),
+    new THREE.Color(0x9b72d7),
+    new THREE.Color(0xe0609c),
+  ];
+  const tmpColor = new THREE.Color();
   function loop() {
     requestAnimationFrame(loop);
     clock += 0.04;
+    frameTick += 1;
     if (pulseMode === "think") {
-      const s = Math.sin(clock * 2.2);
-      ledMat.emissiveIntensity = 1.6 + 1.0 * s;
-      haloLight.intensity = 1.0 + 0.8 * s;
-      haloGlowMat.opacity = 0.62 + 0.35 * s;
+      if (frameTick % 2 === 0) drawGeminiHalo(clock * 0.75);
+      const t = (clock * 0.35) % geminiPalette.length;
+      const i0 = Math.floor(t);
+      const i1 = (i0 + 1) % geminiPalette.length;
+      tmpColor.lerpColors(geminiPalette[i0], geminiPalette[i1], t - i0);
+      ledMat.emissive.copy(tmpColor);
+      haloLight.color.copy(tmpColor);
+      const s = Math.sin(clock * 1.8);
+      ledMat.emissiveIntensity = 1.9 + 0.7 * s;
+      haloLight.intensity = 1.3 + 0.55 * s;
+      haloGlowMat.opacity = 0.84 + 0.14 * s;
     }
     if (anim) {
       anim.k = Math.min(1, anim.k + 0.06);
