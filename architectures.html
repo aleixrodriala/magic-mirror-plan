@@ -24,6 +24,8 @@
     padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 550;
   }
   .nav a.active { background: var(--accent); color: #111; border-color: var(--accent); }
+  .nav a.final { border-color: var(--green); color: #7ae0ae; }
+  .nav a.final:hover { background: var(--green); color: #08150e; }
   .nav a:hover:not(.active) { border-color: var(--accent); }
 
   main { max-width: 1520px; margin: 0 auto; padding: 20px 26px 64px; display: grid; gap: 28px; }
@@ -123,10 +125,10 @@
     <h1>3D DIY Wood Architectures — Matched to Your 2×3 cm Oak Frame</h1>
     <div class="sub">Exact wood tone sampled from your Disney print · 120×90×6 mm Glass · Philips 27″ · Drywall (Pladur) Ready</div>
   </div>
-  <nav class="nav">
-    <a href="compare.html">1. Screen Placement</a>
-    <a href="architectures.html" class="active">2. 3D Wood Architectures</a>
-    <a href="build_plan.html">3. Final Build Plan</a>
+  <nav class="nav" aria-label="Site navigation">
+    <a href="compare.html">1. Placement</a>
+    <a href="architectures.html" class="active">2. 3D Compare</a>
+    <a href="build_plan.html" class="final">3. Final Build Plan →</a>
   </nav>
 </header>
 

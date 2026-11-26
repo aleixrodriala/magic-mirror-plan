@@ -16,6 +16,15 @@
   h1 { margin: 0; font-size: 21px; font-weight: 650; letter-spacing: -0.01em; }
   .sub { color: var(--muted); font-size: 13px; }
   main { max-width: 1520px; margin: 0 auto; padding: 22px 28px 64px; display: grid; gap: 36px; }
+  .page-nav { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+  .page-nav a {
+    text-decoration: none; color: var(--ink); background: var(--panel); border: 1px solid var(--line);
+    padding: 7px 12px; border-radius: 8px; font-size: 12.5px; font-weight: 600; transition: border-color .15s;
+  }
+  .page-nav a:hover:not(.active) { border-color: var(--accent); }
+  .page-nav a.active { background: var(--accent); color: #111; border-color: var(--accent); }
+  .page-nav a.final { border-color: #45c486; color: #7ae0ae; }
+  .page-nav a.final:hover { background: #45c486; color: #08150e; }
   .tabs { display: flex; flex-wrap: wrap; gap: 7px; }
   .tab {
     background: var(--panel); color: var(--ink); border: 1px solid var(--line);
@@ -118,7 +127,14 @@
     <h1>Magic Mirror — Real-Scale Placement Explorer</h1>
     <div class="sub">Calibrated 1:1 · Your 120 × 90 cm glass · Philips 27″ (59.8 × 33.6 cm) · Piano 148.5 × 102.5 cm</div>
   </div>
-  <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;"><a href="architectures.html" style="text-decoration:none;background:#45c486;color:#0a1510;padding:8px 14px;border-radius:8px;font-size:13px;font-weight:700;">Open 3D Wood Architectures →</a><div class="tabs" id="tabs"></div></div>
+  <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:flex-end;">
+    <nav class="page-nav" aria-label="Site navigation">
+      <a href="compare.html" class="active">1. Placement</a>
+      <a href="architectures.html">2. 3D Compare</a>
+      <a href="build_plan.html" class="final">3. Final Build Plan →</a>
+    </nav>
+    <div class="tabs" id="tabs"></div>
+  </div>
 </header>
 
 <main>
