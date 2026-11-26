@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Magic Mirror — 3D DIY Wood Architectures (Matching 2×3 cm Oak)</title>
+<style>
+  :root {
+    --bg: #0e1014; --panel: #161921; --panel2: #1e232e; --ink: #eef1f6;
+    --muted: #98a2b3; --line: #2a3140; --accent: #e5a94c; --blue: #5b9bff; --green: #45c486;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 400 14.5px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  header {
+    padding: 16px 26px; border-bottom: 1px solid var(--line);
+    display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between;
+  }
+  .brand h1 { margin: 0; font-size: 20px; font-weight: 650; }
+  .brand .sub { color: var(--muted); font-size: 13px; }
+  .nav { display: flex; gap: 8px; }
+  .nav a {
+    text-decoration: none; color: var(--ink); background: var(--panel); border: 1px solid var(--line);
+    padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 550;
+  }
+  .nav a.active { background: var(--accent); color: #111; border-color: var(--accent); }
+  .nav a:hover:not(.active) { border-color: var(--accent); }
+
+  main { max-width: 1520px; margin: 0 auto; padding: 20px 26px 64px; display: grid; gap: 28px; }
+
+  .arch-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+  .atab {
+    background: var(--panel); color: var(--ink); border: 1px solid var(--line);
+    padding: 10px 14px; border-radius: 9px; cursor: pointer; font-size: 13px; font-weight: 550;
+    transition: all .15s;
+  }
+  .atab:hover { border-color: var(--accent); }
+  .atab.active { background: var(--accent); color: #111; border-color: var(--accent); font-weight: 650; }
+  .atab.rec { border-color: var(--green); }
+  .atab.rec.active { background: var(--green); color: #09150e; border-color: var(--green); }
+  .atab.old { border-style: dashed; color: var(--muted); }
+  .atab.old.active { background: #6b7280; color: #fff; border-color: #6b7280; }
+
+  .workspace { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(330px, 0.72fr); gap: 20px; align-items: start; }
+
+  .viewport-card {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    overflow: hidden; position: relative;
+  }
+  #canvas3d { width: 100%; height: 640px; display: block; cursor: grab; }
+  #canvas3d:active { cursor: grabbing; }
+  .vp-overlay-top {
+    position: absolute; top: 12px; left: 12px; right: 12px;
+    display: flex; justify-content: space-between; align-items: center; pointer-events: none; gap: 8px; flex-wrap: wrap;
+  }
+  .cam-btns { display: flex; gap: 6px; pointer-events: auto; flex-wrap: wrap; }
+  .cbtn {
+    background: rgba(18, 22, 30, 0.86); color: var(--ink); border: 1px solid rgba(255,255,255,0.16);
+    padding: 6px 10px; border-radius: 7px; cursor: pointer; font-size: 12px; font-weight: 550; backdrop-filter: blur(6px);
+  }
+  .cbtn:hover { border-color: var(--accent); color: var(--accent); }
+  .cbtn.on { background: rgba(91, 155, 255, 0.25); border-color: var(--blue); color: #cfe2ff; }
+  .vp-hint {
+    background: rgba(18, 22, 30, 0.78); color: var(--muted); font-size: 12px;
+    padding: 5px 10px; border-radius: 7px; backdrop-filter: blur(6px);
+  }
+  .vp-bar {
+    padding: 12px 16px; border-top: 1px solid var(--line); background: var(--panel2);
+    display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between;
+  }
+  .slider-group { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 240px; }
+  .slider-group label { font-size: 13px; font-weight: 600; white-space: nowrap; }
+  .slider-group input[type=range] { flex: 1; accent-color: var(--accent); cursor: pointer; }
+  .swatches { display: flex; align-items: center; gap: 7px; }
+  .sw {
+    width: 24px; height: 24px; border-radius: 50%; border: 2px solid transparent; cursor: pointer;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2);
+  }
+  .sw.active { border-color: var(--accent); transform: scale(1.12); }
+
+  .side-panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 20px; display: grid; gap: 15px; }
+  .side-panel h2 { margin: 0; font-size: 19px; }
+  .badge { display: inline-block; background: var(--panel2); color: var(--green); border: 1px solid var(--line); padding: 3px 9px; border-radius: 99px; font-size: 11.5px; font-weight: 650; width: fit-content; }
+  .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .metric { background: var(--panel2); border-radius: 8px; padding: 9px 11px; }
+  .metric dt { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+  .metric dd { margin: 2px 0 0; font-size: 14px; font-weight: 650; }
+  .pros { margin: 0; padding-left: 18px; display: grid; gap: 6px; color: #d5dce6; font-size: 13.5px; }
+  .room-thumb { border-radius: 9px; overflow: hidden; border: 1px solid var(--line); cursor: zoom-in; }
+  .room-thumb img { width: 100%; height: auto; display: block; }
+  .room-thumb-cap { padding: 7px 10px; background: var(--panel2); font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; }
+
+  h2.sec { margin: 0 0 12px; font-size: 16px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+  .cards4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .rcard { background: var(--panel); border: 2px solid var(--line); border-radius: 10px; overflow: hidden; cursor: zoom-in; transition: border-color .15s; }
+  .rcard:hover { border-color: var(--accent); }
+  .rcard img { width: 100%; height: auto; display: block; }
+  .rcard .cap { padding: 10px 12px; }
+  .rcard .cap strong { display: block; font-size: 13.5px; margin-bottom: 2px; }
+  .rcard .cap span { font-size: 12px; color: var(--muted); }
+
+  .drywall-box {
+    background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--green);
+    border-radius: 10px; padding: 18px 22px; display: grid; gap: 10px;
+  }
+  .drywall-box h3 { margin: 0; font-size: 16px; color: var(--green); }
+  .drywall-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .ditem { background: var(--panel2); padding: 12px 14px; border-radius: 8px; font-size: 13.5px; }
+  .ditem strong { display: block; margin-bottom: 4px; color: var(--ink); }
+  .ditem span { color: var(--muted); }
+
+  .lightbox { position: fixed; inset: 0; background: rgba(5,7,10,.94); display: none; justify-content: center; align-items: center; z-index: 99; padding: 20px; cursor: zoom-out; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-height: 95vh; max-width: 95vw; border-radius: 8px; }
+  @media (max-width: 1120px) { .cards4 { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 1020px) { .workspace, .drywall-grid { grid-template-columns: 1fr; } #canvas3d { height: 480px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <h1>3D DIY Wood Architectures — Matched to Your 2×3 cm Oak Frame</h1>
+    <div class="sub">Exact wood tone sampled from your Disney print · 120×90×6 mm Glass · Philips 27″ · Drywall (Pladur) Ready</div>
+  </div>
+  <nav class="nav">
+    <a href="compare.html">1. Screen Placement</a>
+    <a href="architectures.html" class="active">2. 3D Wood Architectures</a>
+    <a href="build_plan.html">3. Final Build Plan</a>
+  </nav>
+</header>
+
+<main>
+  <div class="arch-tabs" id="archTabs">
+    <button class="atab rec active" data-arch="OAK_SHADOW">★ Matching Oak 2×3 cm + Shadow-Box (Recommended)</button>
+    <button class="atab" data-arch="OAK_FLUSH">Matching Oak 2×5.5 cm Flush Box</button>
+    <button class="atab" data-arch="A">Matte Black Shadow-Box (1.5 cm rim)</button>
+    <button class="atab" data-arch="C">Frameless Hidden Ply Box (0 mm rim)</button>
+    <button class="atab old" data-arch="OLD">Compare: Old Blender Pine Box (3.8×7.3 cm)</button>
+  </div>
+
+  <section class="workspace">
+    <div class="viewport-card">
+      <div class="vp-overlay-top">
+        <div class="cam-btns">
+          <button class="cbtn" data-cam="hero">3/4 Front</button>
+          <button class="cbtn" data-cam="side">Side Profile (3 cm look!)</button>
+          <button class="cbtn" data-cam="back">Back / Drywall Cleat</button>
+          <button class="cbtn" data-cam="front">Straight Front</button>
+          <button class="cbtn on" id="btnWall">Drywall + Studs</button>
+          <button class="cbtn" id="btnOrient">Rotate 90° (Portrait)</button>
+        </div>
+        <div class="vp-hint">Drag to orbit · Scroll to zoom · Hit "Side Profile" to compare depth!</div>
+      </div>
+
+      <div id="canvas3d"></div>
+
+      <div class="vp-bar">
+        <div class="slider-group">
+          <label for="explode">Explode Parts: <span id="expVal">0%</span></label>
+          <input type="range" id="explode" min="0" max="100" value="0">
+        </div>
+        <div class="swatches" title="Wood finish">
+          <span style="font-size:12px;color:var(--muted);margin-right:4px;">Wood Finish:</span>
+          <button class="sw active" data-fin="disney_oak" style="background:#a1856f;" title="Exact Disney Frame Natural Oak"></button>
+          <button class="sw" data-fin="walnut" style="background:#4b2e1e;" title="Dark Walnut"></button>
+          <button class="sw" data-fin="black" style="background:#1e1f22;" title="Matte Black"></button>
+          <button class="sw" data-fin="mahogany" style="background:#5a241c;" title="Mahogany Stain"></button>
+        </div>
+      </div>
+    </div>
+
+    <aside class="side-panel">
+      <span class="badge" id="aBadge"></span>
+      <h2 id="aTitle"></h2>
+      <p id="aDesc" style="margin:0;color:#d2d8e2;font-size:13.8px;"></p>
+      <dl class="metrics">
+        <div class="metric"><dt>Visible Front Rim</dt><dd id="mRim"></dd></div>
+        <div class="metric"><dt>Visible Oak Depth</dt><dd id="mEdge"></dd></div>
+        <div class="metric"><dt>Total Wall Depth</dt><dd id="mDepth"></dd></div>
+        <div class="metric"><dt>Est. Total Weight</dt><dd id="mWeight"></dd></div>
+      </dl>
+      <ul class="pros" id="aPros"></ul>
+      <div class="room-thumb" id="roomThumbWrap" title="Click to enlarge">
+        <img id="roomThumb" src="oak_land_center.jpg" alt="Room preview">
+        <div class="room-thumb-cap"><span id="roomThumbCap">Exact 2×3 cm Oak on your wall</span><span>Click to zoom</span></div>
+      </div>
+    </aside>
+  </section>
+
+  <section>
+    <h2 class="sec">Your Exact 2×3 cm Natural Oak Frame on the Real Piano Wall (Click Any to Zoom)</h2>
+    <div class="cards4" id="oakGallery">
+      <div class="rcard" data-zoom="oak_land_center.jpg">
+        <img src="oak_land_center.jpg" alt="Oak Landscape Center-Center">
+        <div class="cap"><strong>Oak 2×3 cm · Landscape Center-Center</strong><span>Dead symmetric · Reads as gallery art, NOT a 2nd TV!</span></div>
+      </div>
+      <div class="rcard" data-zoom="oak_land_port_left.jpg">
+        <img src="oak_land_port_left.jpg" alt="Oak Landscape Portrait Left">
+        <div class="cap"><strong>Oak 2×3 cm · Landscape Portrait Left</strong><span>78 cm pure clear mirror + vertical dashboard</span></div>
+      </div>
+      <div class="rcard" data-zoom="oak_land_top_center.jpg">
+        <img src="oak_land_top_center.jpg" alt="Oak Landscape Top-Center">
+        <div class="cap"><strong>Oak 2×3 cm · Landscape Top-Center</strong><span>Floating HUD above eye level, pure mirror below</span></div>
+      </div>
+      <div class="rcard" data-zoom="oak_port_center.jpg">
+        <img src="oak_port_center.jpg" alt="Oak Portrait Center-Center">
+        <div class="cap"><strong>Oak 2×3 cm · Portrait 90×120 Center</strong><span>Rotates glass 90° · Hides the white wall junction box!</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="drywall-box">
+    <h3>Why 2×3 cm Oak + Recessed Black Shadow-Box Wins on Drywall (Pladur)</h3>
+    <div class="drywall-grid">
+      <div class="ditem">
+        <strong>1. Identical 2×3 cm Oak Visual Profile</strong>
+        <span>The outer natural European oak rim is literally <strong>20 mm wide × 30 mm deep</strong> — matching your Disney frame on the exact same wall. Behind it, a matte-black plywood sub-box inset 35–40 mm hides the extra 26 mm depth for the Philips monitor + plugs in deep shadow.</span>
+      </div>
+      <div class="ditem">
+        <strong>2. Doesn't Fight the Black TV Next Door</strong>
+        <span>Because your black TV sits right to the left of the piano, warm natural oak ties the mirror to your framed art instead of looking like a second black TV, while softening the transition to the mahogany piano and rustic beam.</span>
+      </div>
+      <div class="ditem">
+        <strong>3. Safe ~24.5 kg Drywall French Cleat</strong>
+        <span>A recessed 90 cm 45° birch-ply French cleat sits flush inside the shadow-box (0 mm extra wall gap), anchored into <strong>≥2 vertical pladur studs (montantes)</strong> + <strong>Fischer DuoTec 10 / metal Molly toggles</strong>, with hidden top/bottom airflow (zero drilled side holes).</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="lightbox" id="lightbox"><img id="lbImg" src="" alt="Preview"></div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://esm.sh/three@0.169.0",
+    "three/addons/": "https://esm.sh/three@0.169.0/examples/jsm/"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
+const INFO = {
+  OAK_SHADOW: {
+    badge: "★ Top Recommendation · Matches Your Disney Frame!",
+    title: "Matching 2×3 cm Natural Oak + Recessed Shadow-Box",
+    desc: "Outer mitered European Oak rim is literally 20 mm wide × 30 mm deep — matching your Disney frame on the exact same wall! A matte-black 15 mm plywood chassis inset 38 mm behind it adds the 26 mm needed for the Philips monitor, right-angle plugs, Pi 5, and recessed French cleat — vanishing into shadow from normal viewing angles.",
+    rim: "20 mm (exact match!)", edge: "30 mm oak (exact match!)", depth: "56 mm total (26 mm hidden)", weight: "≈ 24.5 kg (glass 16.2)",
+    thumb: "oak_land_center.jpg",
+    pros: [
+      "Looks 100% cohesive with your 2×3 cm Disney print on the same wall — reads as framed art, not a second TV.",
+      "Hit 'Side Profile' above to see the trick: you see a crisp 3 cm oak frame floating cleanly off the wall, while the black rear box disappears in shadow!",
+      "Zero side vent holes needed — invisible convection airflow around the recessed shadow-box perimeter."
+    ]
+  },
+  OAK_FLUSH: {
+    badge: "Simpler Single-Box Build · Slightly Deeper Side",
+    title: "Matching 2×5.5 cm Natural Oak Flush Gallery Box",
+    desc: "Same 20 mm mitered natural oak face as your Disney print, but the oak sides run the full 55 mm depth straight back to the wall (instead of stepping inward at 30 mm). Slightly simpler to build, though visually deeper from the side than your 3 cm print.",
+    rim: "20 mm (exact match!)", edge: "55 mm solid oak side", depth: "55 mm flush (0 mm cleat)", weight: "≈ 25.5 kg (glass 16.2)",
+    thumb: "oak_land_center.jpg",
+    pros: [
+      "Only one perimeter wood box to cut and miter — very clean and sturdy.",
+      "Recessed French cleat sits flush inside the 55 mm box (still 0 mm extra wall gap).",
+      "Compare 'Side Profile' vs the Shadow-Box option to decide if 5.5 cm oak depth feels fine to you or if the floating 3 cm oak rim looks cleaner!"
+    ]
+  },
+  A: {
+    badge: "Alternative · Ultra-Slim Matte Black",
+    title: "Matte Black Floating Shadow-Box (15 mm rim)",
+    desc: "Same stepped shadow-box architecture as the recommended oak build, but finished in sleek matte black with a 15 mm front rim (matching the TV bezel).",
+    rim: "15 mm matte black", edge: "22 mm floating rim", depth: "56 mm total (0 mm cleat)", weight: "≈ 24.5 kg",
+    thumb: "arch_a_room.jpg",
+    pros: [
+      "Ultra-modern high-contrast look matching the TV to the left.",
+      "Easy DIY paint finish (matte black spray/roller over birch ply + hardwood strip).",
+      "Does not match the warm oak of your Disney frame — more tech/minimal vibe."
+    ]
+  },
+  C: {
+    badge: "Lightest for Drywall · Easiest DIY Carpentry",
+    title: "Frameless Overhanging Glass (Hidden Ply Box)",
+    desc: "Zero visible wood from the front — the 120×90 cm glass overhangs a hidden matte-black plywood box by 30 mm all around, held safely by 4 discreet black anodized J-clips.",
+    rim: "0 mm (pure glass edge)", edge: "6 mm glass floating", depth: "52 mm total (0 mm cleat)", weight: "≈ 23.0 kg (lightest!)",
+    thumb: "arch_c_room.jpg",
+    pros: [
+      "Easiest carpentry: no miter joints or visible wood finish required.",
+      "Lightest weight (~23 kg) on drywall.",
+      "Pure frameless look (doesn't echo the oak Disney frame)."
+    ]
+  },
+  OLD: {
+    badge: "Previous Blender Design (For Comparison)",
+    title: "Old Plan: Chunky 38×73 mm Raw Pine Box",
+    desc: "Original plan: 18 mm pine boards + 20 mm inner lip (= 38 mm thick face, almost DOUBLE your 2 cm oak frame!), 63 mm deep + 10 mm external hanger (= 73 mm off wall), drilled side holes.",
+    rim: "38 mm chunky pine", edge: "63 mm solid slab", depth: "73 mm off wall", weight: "≈ 28.0 kg (heaviest)",
+    thumb: "scale_diagram.png",
+    pros: [
+      "Switch between 'Matching Oak 2×3 cm' and this tab in 'Side Profile' view — night and day difference!"
+    ]
+  }
+};
+
+const FINISHES = {
+  disney_oak: { texUrl: "oak_disney_tex.jpg", rough: 0.50 },
+  walnut:     { base: "#4d2f1f", grain: "#2c180e", rough: 0.45 },
+  black:      { base: "#222428", grain: "#17181b", rough: 0.42 },
+  mahogany:   { base: "#5b241d", grain: "#38120d", rough: 0.35 },
+};
+
+let state = { arch: "OAK_SHADOW", finish: "disney_oak", explode: 0, portrait: false, showWall: true };
+
+// ---- Three.js Setup ----
+const container = document.getElementById("canvas3d");
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x13161d);
+
+const camera = new THREE.PerspectiveCamera(36, container.clientWidth / container.clientHeight, 0.05, 25);
+camera.position.set(1.22, 0.30, 1.75);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.18;
+container.appendChild(renderer.domElement);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.06;
+controls.target.set(0, 0, -0.02);
+
+scene.add(new THREE.HemisphereLight(0xf8f9ff, 0x2a2d36, 0.92));
+const key = new THREE.DirectionalLight(0xfff7ee, 1.55);
+key.position.set(2.2, 2.4, 2.6);
+key.castShadow = true;
+key.shadow.mapSize.set(2048, 2048);
+key.shadow.camera.near = 0.5; key.shadow.camera.far = 10;
+key.shadow.camera.left = -1.5; key.shadow.camera.right = 1.5;
+key.shadow.camera.top = 1.5; key.shadow.camera.bottom = -1.5;
+key.shadow.bias = -0.0005;
+scene.add(key);
+
+const rimLight = new THREE.DirectionalLight(0xb8d4ff, 0.72);
+rimLight.position.set(-2.4, 1.0, -2.0);
+scene.add(rimLight);
+const backFill = new THREE.DirectionalLight(0xffe9d2, 0.58);
+backFill.position.set(1.2, 0.6, -2.5);
+scene.add(backFill);
+
+const texLoader = new THREE.TextureLoader();
+const disneyOakTex = texLoader.load("oak_disney_tex.jpg");
+disneyOakTex.colorSpace = THREE.SRGBColorSpace;
+disneyOakTex.wrapS = disneyOakTex.wrapT = THREE.RepeatWrapping;
+
+function makeWoodTex(baseHex, grainHex) {
+  const c = document.createElement("canvas");
+  c.width = 512; c.height = 512;
+  const ctx = c.getContext("2d");
+  ctx.fillStyle = baseHex;
+  ctx.fillRect(0, 0, 512, 512);
+  ctx.strokeStyle = grainHex;
+  for (let i = 0; i < 140; i++) {
+    ctx.globalAlpha = 0.14 + Math.random() * 0.18;
+    ctx.lineWidth = 1 + Math.random() * 3.5;
+    ctx.beginPath();
+    const y = (i / 140) * 512;
+    ctx.moveTo(0, y);
+    ctx.bezierCurveTo(170, y + (Math.random()-0.5)*14, 340, y + (Math.random()-0.5)*14, 512, y + (Math.random()-0.5)*6);
+    ctx.stroke();
+  }
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+  return tex;
+}
+
+function makeMirrorTex() {
+  const c = document.createElement("canvas");
+  c.width = 1024; c.height = 768;
+  const ctx = c.getContext("2d");
+  const g = ctx.createLinearGradient(0, 0, 1024, 768);
+  g.addColorStop(0, "#383e47"); g.addColorStop(0.45, "#262b32"); g.addColorStop(1, "#1a1e24");
+  ctx.fillStyle = g; ctx.fillRect(0, 0, 1024, 768);
+  ctx.fillStyle = "rgba(255,255,255,0.065)";
+  ctx.beginPath(); ctx.moveTo(80, 0); ctx.lineTo(390, 0); ctx.lineTo(110, 768); ctx.lineTo(0, 768); ctx.fill();
+  ctx.fillStyle = "rgba(255,255,255,0.035)";
+  ctx.beginPath(); ctx.moveTo(450, 0); ctx.lineTo(520, 0); ctx.lineTo(240, 768); ctx.lineTo(170, 768); ctx.fill();
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  return tex;
+}
+
+function makeUITex() {
+  const c = document.createElement("canvas");
+  c.width = 1024; c.height = 576;
+  const ctx = c.getContext("2d");
+  ctx.fillStyle = "#08090b"; ctx.fillRect(0, 0, 1024, 576);
+  ctx.fillStyle = "rgba(255,255,255,0.75)"; ctx.font = "300 28px system-ui, sans-serif"; ctx.fillText("dijous, 26 nov", 48, 76);
+  ctx.fillStyle = "#ffffff"; ctx.font = "200 132px system-ui, sans-serif"; ctx.fillText("21:47", 44, 212);
+  ctx.strokeStyle = "rgba(255,255,255,0.28)"; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(48, 242); ctx.lineTo(430, 242); ctx.stroke();
+  ctx.fillStyle = "rgba(240,244,250,0.88)"; ctx.font = "400 26px system-ui, sans-serif";
+  ctx.fillText("Dv   Sopar 21:00", 48, 290); ctx.fillText("Ds   Assaig piano", 48, 332); ctx.fillText("Dg   Dinar família", 48, 374);
+  ctx.textAlign = "right"; ctx.fillStyle = "#ffffff"; ctx.font = "200 116px system-ui, sans-serif"; ctx.fillText("14°", 976, 178);
+  ctx.fillStyle = "rgba(255,255,255,0.75)"; ctx.font = "400 28px system-ui, sans-serif"; ctx.fillText("Núvols", 976, 224);
+  ctx.font = "400 24px system-ui, sans-serif"; ctx.fillText("Dv  15° / 9°", 976, 276); ctx.fillText("Ds  17° / 10°", 976, 314);
+  ctx.textAlign = "center"; ctx.fillStyle = "rgba(255,255,255,0.92)"; ctx.font = "300 50px system-ui, sans-serif"; ctx.fillText("Bona nit!", 512, 516);
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  return tex;
+}
+
+const woodMat = new THREE.MeshStandardMaterial({ map: disneyOakTex, roughness: 0.50, metalness: 0.02 });
+const plyBlackMat = new THREE.MeshStandardMaterial({ color: 0x15171b, roughness: 0.82 });
+const plyNaturalMat = new THREE.MeshStandardMaterial({ map: makeWoodTex("#d6b587", "#b58f5e"), roughness: 0.6 });
+const glassMat = new THREE.MeshPhysicalMaterial({
+  map: makeMirrorTex(), color: 0x9aa4b2, metalness: 0.62, roughness: 0.08,
+  transparent: true, opacity: 0.84, clearcoat: 1.0, clearcoatRoughness: 0.04
+});
+const maskMat = new THREE.MeshStandardMaterial({ color: 0x0b0c0f, roughness: 0.92 });
+const monMat = new THREE.MeshStandardMaterial({ color: 0x181a1f, roughness: 0.45, metalness: 0.12 });
+const screenMat = new THREE.MeshBasicMaterial({ map: makeUITex(), transparent: true, opacity: 0.96 });
+const metalMat = new THREE.MeshStandardMaterial({ color: 0xc2c8d2, metalness: 0.85, roughness: 0.25 });
+const darkClipMat = new THREE.MeshStandardMaterial({ color: 0x15171b, metalness: 0.7, roughness: 0.3 });
+const piMat = new THREE.MeshStandardMaterial({ color: 0xb91c1c, roughness: 0.4 });
+const wallMat = new THREE.MeshStandardMaterial({ color: 0xe9e6e0, roughness: 0.92, transparent: true, opacity: 0.72 });
+const studMat = new THREE.MeshStandardMaterial({ color: 0x7c8ea6, metalness: 0.65, roughness: 0.38 });
+const cleatMat = new THREE.MeshStandardMaterial({ map: makeWoodTex("#d7b98c", "#b89566"), roughness: 0.55 });
+
+const root = new THREE.Group();
+scene.add(root);
+let layerEntries = [];
+
+function clearRoot() {
+  while (root.children.length) root.remove(root.children[0]);
+  layerEntries = [];
+}
+
+function addBox(w, h, d, x, y, z, mat, explodeZ = 0, parent = root) {
+  const mesh = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
+  mesh.position.set(x, y, z);
+  mesh.castShadow = true; mesh.receiveShadow = true;
+  parent.add(mesh);
+  layerEntries.push({ obj: mesh, baseZ: z, explodeOffset: explodeZ });
+  return mesh;
+}
+
+function addFrame4(outW, outH, rimW, depth, zCenter, mat, explodeZ) {
+  addBox(outW, rimW, depth, 0, outH/2 - rimW/2, zCenter, mat, explodeZ);
+  addBox(outW, rimW, depth, 0, -outH/2 + rimW/2, zCenter, mat, explodeZ);
+  addBox(rimW, outH - 2*rimW, depth, -outW/2 + rimW/2, 0, zCenter, mat, explodeZ);
+  addBox(rimW, outH - 2*rimW, depth, outW/2 - rimW/2, 0, zCenter, mat, explodeZ);
+}
+
+function buildScene() {
+  clearRoot();
+  const GW = state.portrait ? 0.90 : 1.20;
+  const GH = state.portrait ? 1.20 : 0.90;
+  const GT = 0.006;
+  const MW = 0.614, MH = 0.363, AW = 0.598, AH = 0.336;
+
+  let wallZ = -0.056;
+  if (state.arch === "OAK_FLUSH") wallZ = -0.055;
+  if (state.arch === "C") wallZ = -0.052;
+  if (state.arch === "OLD") wallZ = -0.073;
+
+  // Glass & UI
+  addBox(GW, GH, GT, 0, 0, -GT/2, glassMat, 0.22);
+  const uiMesh = new THREE.Mesh(new THREE.PlaneGeometry(AW, AH), screenMat);
+  uiMesh.position.set(0, 0, -GT - 0.0005);
+  root.add(uiMesh);
+  layerEntries.push({ obj: uiMesh, baseZ: -GT - 0.0005, explodeOffset: 0.06 });
+
+  // Black mask
+  const maskZ = -GT - 0.003;
+  const topH = (GH - AH) / 2, sideW = (GW - AW) / 2;
+  addBox(GW - 0.02, topH, 0.004, 0, AH/2 + topH/2, maskZ, maskMat, 0.14);
+  addBox(GW - 0.02, topH, 0.004, 0, -AH/2 - topH/2, maskZ, maskMat, 0.14);
+  addBox(sideW - 0.01, AH, 0.004, -AW/2 - (sideW-0.01)/2, 0, maskZ, maskMat, 0.14);
+  addBox(sideW - 0.01, AH, 0.004, AW/2 + (sideW-0.01)/2, 0, maskZ, maskMat, 0.14);
+
+  // Philips 27" monitor + right-angle plugs
+  const monFront = -GT - 0.001;
+  addBox(MW, MH - 0.115, 0.028, 0, -0.115/2, monFront - 0.014, monMat, -0.02);
+  addBox(MW, 0.115, 0.010, 0, MH/2 - 0.0575, monFront - 0.005, monMat, -0.02);
+  addBox(0.156, 0.100, 0.005, 0, -MH/2 + 0.050, monFront - 0.028 - 0.0025, monMat, -0.02);
+  addBox(0.022, 0.016, 0.009, -0.055, -MH/2 + 0.066, monFront - 0.032 - 0.0045, darkClipMat, -0.02);
+  addBox(0.018, 0.014, 0.009,  0.052, -MH/2 + 0.066, monFront - 0.032 - 0.0045, darkClipMat, -0.02);
+  addBox(0.095, 0.065, 0.024, GW/2 - 0.16, GH/2 - 0.22, wallZ + 0.028, piMat, -0.16);
+
+  if (state.arch === "OAK_SHADOW") {
+    // EXACT 20 mm face x 30 mm deep European Oak mitered frame + 26 mm matte-black recessed shadow-box inset 38 mm!
+    const rimW = 0.020, rimD = 0.030;
+    const outW = GW + 2 * (rimW - 0.006), outH = GH + 2 * (rimW - 0.006); // 6mm rabbet overlap -> exact 20mm front face!
+    addFrame4(outW, outH, rimW, 0.006, 0.003, woodMat, 0.30);              // front 6mm rabbet lip
+    addFrame4(outW, outH, 0.014, rimD, 0.006 - rimD/2, woodMat, 0.28);     // crisp 30mm deep oak side wall!
+    // Recessed matte-black ply back-box (inset 38mm inward from outer oak edge, 26mm deep -> Z = -0.024 to -0.056)
+    const subW = outW - 0.076, subH = outH - 0.076, subD = 0.032;
+    addFrame4(subW, subH, 0.018, subD, -0.024 - subD/2, plyBlackMat, -0.14);
+    addBox(subW, subH, 0.012, 0, 0, -0.041, plyBlackMat, -0.22);
+    addBox(0.030, MH + 0.10, 0.004, -0.05, 0, monFront - 0.031, metalMat, -0.08);
+    addBox(0.030, MH + 0.10, 0.004,  0.05, 0, monFront - 0.031, metalMat, -0.08);
+    const cleatW = Math.min(0.86, subW - 0.08);
+    addBox(cleatW, 0.055, 0.015, 0, subH/2 - 0.09, wallZ + 0.0075, cleatMat, -0.32);
+    addBox(cleatW, 0.055, 0.015, 0, subH/2 - 0.148, wallZ + 0.0075, cleatMat, -0.44);
+  }
+  else if (state.arch === "OAK_FLUSH") {
+    // 20 mm face x 55 mm FULL DEPTH natural oak flush box
+    const rimW = 0.020, rimD = 0.055;
+    const outW = GW + 2 * (rimW - 0.006), outH = GH + 2 * (rimW - 0.006);
+    addFrame4(outW, outH, rimW, 0.006, 0.003, woodMat, 0.30);
+    addFrame4(outW, outH, 0.014, rimD, 0.006 - rimD/2, woodMat, 0.26);
+    addBox(GW - 0.006, GH - 0.006, 0.012, 0, 0, -0.040, plyBlackMat, -0.22);
+    addBox(0.030, MH + 0.10, 0.004, -0.05, 0, monFront - 0.031, metalMat, -0.08);
+    addBox(0.030, MH + 0.10, 0.004,  0.05, 0, monFront - 0.031, metalMat, -0.08);
+    const cleatW = Math.min(0.86, GW - 0.12);
+    addBox(cleatW, 0.055, 0.014, 0, GH/2 - 0.08, wallZ + 0.007, cleatMat, -0.32);
+    addBox(cleatW, 0.055, 0.014, 0, GH/2 - 0.138, wallZ + 0.007, cleatMat, -0.44);
+  }
+  else if (state.arch === "A") {
+    const rimW = 0.015, rimD = 0.022;
+    const outW = GW + 2 * rimW, outH = GH + 2 * rimW;
+    addFrame4(outW, outH, rimW + 0.005, 0.006, 0.003, woodMat, 0.30);
+    addFrame4(outW, outH, rimW, rimD, 0.006 - rimD/2, woodMat, 0.28);
+    const subW = GW - 0.070, subH = GH - 0.070, subD = 0.040;
+    addFrame4(subW, subH, 0.018, subD, -0.016 - subD/2, plyBlackMat, -0.14);
+    addBox(subW, subH, 0.012, 0, 0, -0.041, plyBlackMat, -0.22);
+    addBox(0.030, MH + 0.10, 0.004, -0.05, 0, monFront - 0.031, metalMat, -0.08);
+    addBox(0.030, MH + 0.10, 0.004,  0.05, 0, monFront - 0.031, metalMat, -0.08);
+    const cleatW = Math.min(0.85, subW - 0.08);
+    addBox(cleatW, 0.055, 0.015, 0, subH/2 - 0.09, wallZ + 0.0075, cleatMat, -0.32);
+    addBox(cleatW, 0.055, 0.015, 0, subH/2 - 0.148, wallZ + 0.0075, cleatMat, -0.44);
+  }
+  else if (state.arch === "C") {
+    const subW = GW - 0.060, subH = GH - 0.060, subD = 0.044;
+    addFrame4(subW, subH, 0.018, subD, -GT - subD/2, plyBlackMat, -0.14);
+    addBox(subW, subH, 0.012, 0, 0, -0.040, plyBlackMat, -0.22);
+    const clipX = GW * 0.28;
+    for (const sx of [-clipX, clipX]) {
+      addBox(0.038, 0.007, 0.003, sx, -GH/2 + 0.002, 0.0015, darkClipMat, 0.26);
+      addBox(0.038, 0.004, 0.036, sx, -GH/2 - 0.002, -0.016, darkClipMat, 0.26);
+      addBox(0.038, 0.007, 0.003, sx, GH/2 - 0.002, 0.0015, darkClipMat, 0.26);
+      addBox(0.038, 0.004, 0.036, sx, GH/2 + 0.002, -0.016, darkClipMat, 0.26);
+    }
+    addBox(0.030, MH + 0.10, 0.004, -0.05, 0, monFront - 0.031, metalMat, -0.08);
+    addBox(0.030, MH + 0.10, 0.004,  0.05, 0, monFront - 0.031, metalMat, -0.08);
+    const cleatW = Math.min(0.82, subW - 0.08);
+    addBox(cleatW, 0.055, 0.014, 0, subH/2 - 0.08, wallZ + 0.007, cleatMat, -0.32);
+    addBox(cleatW, 0.055, 0.014, 0, subH/2 - 0.138, wallZ + 0.007, cleatMat, -0.44);
+  }
+  else {
+    const outW = GW + 0.042, outH = GH + 0.042;
+    addFrame4(outW, outH, 0.018, 0.060, 0.012 - 0.030, plyNaturalMat, 0.28);
+    addFrame4(outW - 0.036, outH - 0.036, 0.020, 0.010, 0.007, plyNaturalMat, 0.28);
+    addBox(GW, 0.112, 0.018, 0, -GH/2 + 0.056, -0.016, plyNaturalMat, -0.08);
+    addBox(GW, 0.045, 0.018, 0, MH/2 + 0.025, -0.020, plyNaturalMat, -0.08);
+    addBox(GW, 0.070, 0.018, 0, GH/2 - 0.035, -0.039, plyNaturalMat, -0.14);
+    addBox(0.030, 0.30, 0.003, -0.05, 0.03, monFront - 0.030, metalMat, -0.08);
+    addBox(0.030, 0.30, 0.003,  0.05, 0.03, monFront - 0.030, metalMat, -0.08);
+    addBox(outW, outH, 0.003, 0, 0, -0.050, plyBlackMat, -0.24);
+    addBox(0.80, 0.050, 0.010, 0, GH/2 - 0.035, -0.060, metalMat, -0.34);
+  }
+
+  if (state.showWall) {
+    const wg = new THREE.Group();
+    root.add(wg);
+    const wZ = wallZ - 0.006;
+    const panel = new THREE.Mesh(new THREE.BoxGeometry(1.75, 1.55, 0.013), wallMat);
+    panel.position.set(0, 0, wZ); panel.receiveShadow = true;
+    wg.add(panel);
+    for (const sx of [-0.30, 0.30, -0.78, 0.78]) {
+      const stud = new THREE.Mesh(new THREE.BoxGeometry(0.048, 1.55, 0.046), studMat);
+      stud.position.set(sx, 0, wZ - 0.030);
+      wg.add(stud);
+    }
+    layerEntries.push({ obj: wg, baseZ: 0, explodeOffset: -0.58 });
+  }
+  applyExplode();
+}
+
+function applyExplode() {
+  const t = state.explode / 100;
+  for (const e of layerEntries) e.obj.position.z = e.baseZ + e.explodeOffset * t;
+}
+
+function updateUI() {
+  const inf = INFO[state.arch];
+  document.getElementById("aBadge").textContent = inf.badge;
+  document.getElementById("aTitle").textContent = inf.title;
+  document.getElementById("aDesc").textContent = inf.desc;
+  document.getElementById("mRim").textContent = inf.rim;
+  document.getElementById("mEdge").textContent = inf.edge;
+  document.getElementById("mDepth").textContent = inf.depth;
+  document.getElementById("mWeight").textContent = inf.weight;
+  document.getElementById("aPros").innerHTML = inf.pros.map(p => `<li>${p}</li>`).join("");
+  document.getElementById("roomThumb").src = inf.thumb;
+  document.querySelectorAll(".atab").forEach(b => b.classList.toggle("active", b.dataset.arch === state.arch));
+}
+
+function setArch(a) {
+  state.arch = a;
+  if (a === "OAK_SHADOW" || a === "OAK_FLUSH") setFinish("disney_oak", false);
+  else if (a === "A" || a === "C") setFinish("black", false);
+  updateUI();
+  buildScene();
+}
+
+function setFinish(fin, rebuild = true) {
+  state.finish = fin;
+  const f = FINISHES[fin];
+  if (f.texUrl) {
+    woodMat.map = disneyOakTex;
+  } else {
+    woodMat.map = makeWoodTex(f.base, f.grain);
+  }
+  woodMat.roughness = f.rough;
+  woodMat.needsUpdate = true;
+  document.querySelectorAll(".sw").forEach(s => s.classList.toggle("active", s.dataset.fin === fin));
+  if (rebuild) buildScene();
+}
+
+let camAnim = null;
+function flyTo(pos, target) {
+  camAnim = { p0: camera.position.clone(), p1: new THREE.Vector3(...pos), t0: controls.target.clone(), t1: new THREE.Vector3(...target), k: 0 };
+}
+
+document.querySelectorAll(".atab").forEach(b => b.onclick = () => setArch(b.dataset.arch));
+document.querySelectorAll(".sw").forEach(s => s.onclick = () => setFinish(s.dataset.fin));
+document.querySelectorAll("[data-cam]").forEach(b => {
+  b.onclick = () => {
+    const c = b.dataset.cam;
+    if (c === "hero") flyTo([1.22, 0.30, 1.75], [0, 0, -0.02]);
+    else if (c === "side") flyTo([1.58, 0.08, 0.28], [0.28, 0, -0.03]);
+    else if (c === "back") flyTo([-1.15, 0.32, -1.75], [0, 0, -0.04]);
+    else if (c === "front") flyTo([0, 0, 2.05], [0, 0, 0]);
+  };
+});
+
+document.getElementById("explode").oninput = e => {
+  state.explode = parseInt(e.target.value, 10);
+  document.getElementById("expVal").textContent = state.explode + "%";
+  applyExplode();
+};
+document.getElementById("btnWall").onclick = e => { state.showWall = !state.showWall; e.target.classList.toggle("on", state.showWall); buildScene(); };
+document.getElementById("btnOrient").onclick = e => {
+  state.portrait = !state.portrait;
+  e.target.classList.toggle("on", state.portrait);
+  e.target.textContent = state.portrait ? "Rotate 90° (Landscape)" : "Rotate 90° (Portrait)";
+  buildScene();
+};
+
+const lb = document.getElementById("lightbox");
+const lbImg = document.getElementById("lbImg");
+document.getElementById("roomThumbWrap").onclick = () => { lbImg.src = document.getElementById("roomThumb").src; lb.classList.add("open"); };
+document.querySelectorAll(".rcard[data-zoom]").forEach(c => { c.onclick = () => { lbImg.src = c.dataset.zoom; lb.classList.add("open"); }; });
+lb.onclick = () => lb.classList.remove("open");
+
+window.addEventListener("resize", () => {
+  camera.aspect = container.clientWidth / container.clientHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(container.clientWidth, container.clientHeight);
+});
+
+updateUI();
+buildScene();
+
+function animate() {
+  requestAnimationFrame(animate);
+  if (camAnim) {
+    camAnim.k = Math.min(1, camAnim.k + 0.06);
+    const e = 1 - Math.pow(1 - camAnim.k, 3);
+    camera.position.lerpVectors(camAnim.p0, camAnim.p1, e);
+    controls.target.lerpVectors(camAnim.t0, camAnim.t1, e);
+    if (camAnim.k >= 1) camAnim = null;
+  }
+  controls.update();
+  renderer.render(scene, camera);
+}
+animate();
+</script>
+</body>
+</html>

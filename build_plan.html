@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Magic Mirror Build Plan — 22×60 mm Oak · Bottom-Center · Drywall</title>
+<style>
+  :root {
+    --bg: #0e1014; --panel: #161921; --panel2: #1e232e; --ink: #eef1f6;
+    --muted: #9aa4b5; --line: #2a3140; --accent: #e5a94c; --green: #45c486;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 400 15px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  header {
+    padding: 16px 26px; border-bottom: 1px solid var(--line);
+    display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between;
+  }
+  .brand h1 { margin: 0; font-size: 20px; font-weight: 650; }
+  .brand .sub { color: var(--muted); font-size: 13px; }
+  .nav { display: flex; gap: 8px; flex-wrap: wrap; }
+  .nav a, .nav button {
+    text-decoration: none; color: var(--ink); background: var(--panel); border: 1px solid var(--line);
+    padding: 8px 13px; border-radius: 8px; font-size: 13px; font-weight: 550; cursor: pointer; font-family: inherit;
+  }
+  .nav a.active { background: var(--green); color: #08150e; border-color: var(--green); font-weight: 700; }
+  .nav a:hover:not(.active), .nav button:hover { border-color: var(--accent); }
+
+  main { max-width: 1240px; margin: 0 auto; padding: 26px 24px 72px; display: grid; gap: 40px; }
+  h2 { margin: 0 0 14px; font-size: 20px; padding-bottom: 8px; border-bottom: 1px solid var(--line); display: flex; align-items: baseline; gap: 10px; }
+  h2 .ref { color: var(--accent); font-family: ui-monospace, monospace; font-size: 14px; }
+
+  .hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.15fr); gap: 22px; align-items: stretch; }
+  .hero-photo { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+  .hero-photo img { width: 100%; height: auto; border-radius: 8px; display: block; }
+  .hero-photo .cap { color: var(--muted); font-size: 13px; }
+  .hero-3d { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+  #canvas3d { width: 100%; flex: 1; min-height: 430px; display: block; cursor: grab; }
+  #canvas3d:active { cursor: grabbing; }
+  .bar3d { padding: 10px 14px; background: var(--panel2); border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; font-size: 13px; }
+  .bar3d input[type=range] { flex: 1; min-width: 130px; accent-color: var(--accent); }
+  .cbtn { background: var(--panel); color: var(--ink); border: 1px solid var(--line); padding: 5px 9px; border-radius: 6px; cursor: pointer; font-size: 12px; }
+  .cbtn:hover { border-color: var(--accent); }
+
+  .specs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+  .spec { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+  .spec dt { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  .spec dd { margin: 4px 0 0; font-size: 16px; font-weight: 700; font-family: ui-monospace, monospace; }
+
+  .drawings { display: grid; grid-template-columns: 1.15fr 1fr; gap: 18px; align-items: start; }
+  .plan { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: 10px; }
+
+  .tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { text-align: left; padding: 10px 13px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); background: var(--panel2); }
+  tr:last-child td { border-bottom: 0; }
+  td.n { font-family: ui-monospace, monospace; white-space: nowrap; color: var(--accent); }
+  .chk { width: 16px; height: 16px; accent-color: var(--green); cursor: pointer; }
+  .note { background: var(--panel); border-left: 3px solid var(--accent); padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 13.5px; color: #d5dce6; margin-top: 12px; }
+
+  ol.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+  ol.steps li { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px; display: grid; grid-template-columns: 42px 1fr; gap: 12px; align-items: start; }
+  .snum { font: 700 20px/1.2 ui-monospace, monospace; color: var(--green); }
+  ol.steps h3 { margin: 0 0 4px; font-size: 16px; }
+  ol.steps p { margin: 0; color: #cfd6e2; font-size: 14px; }
+
+  @media (max-width: 960px) { .hero, .drawings { grid-template-columns: 1fr; } .specs { grid-template-columns: repeat(2, 1fr); } }
+  @media print {
+    body { background: #fff; color: #111; }
+    .nav, .hero-3d { display: none; }
+    .spec, .tbl-wrap, ol.steps li { border-color: #ccc; background: #fff; color: #111; }
+    ol.steps p, .note { color: #222; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <h1>Magic Mirror Build Plan — 22 × 60 mm Flush Natural Oak</h1>
+    <div class="sub">Landscape 120 × 90 cm · Bottom-Center Philips 27″ · Recessed Drywall (Pladur) French Cleat</div>
+  </div>
+  <nav class="nav">
+    <a href="compare.html">1. Placement</a>
+    <a href="architectures.html">2. 3D Compare</a>
+    <a href="build_plan.html" class="active">3. Final Build Plan</a>
+    <button onclick="window.print()">Print / PDF</button>
+  </nav>
+</header>
+
+<main>
+  <dl class="specs">
+    <div class="spec"><dt>Outer Frame</dt><dd>1230 × 930 mm</dd></div>
+    <div class="spec"><dt>Depth (Flush)</dt><dd>60 mm (+0 cleat)</dd></div>
+    <div class="spec"><dt>Oak Front Rim</dt><dd>22 mm mitered</dd></div>
+    <div class="spec"><dt>Visible Mirror</dt><dd>1186 × 886 mm</dd></div>
+    <div class="spec"><dt>Total Weight</dt><dd>≈ 26.8 kg</dd></div>
+  </dl>
+
+  <section class="hero">
+    <div class="hero-photo">
+      <img src="oak_land_bot_center.jpg" alt="Final 22x60 mm natural oak magic mirror on your wall above the piano">
+      <div class="cap">Final look on your wall (+22 cm above piano: 124.5–217.5 cm · Screen 135.9–169.5 cm · 46 cm clear mirror above).</div>
+    </div>
+    <div class="hero-3d">
+      <div id="canvas3d"></div>
+      <div class="bar3d">
+        <label style="font-weight:600;">Explode: <span id="ev">0%</span></label>
+        <input type="range" id="exp" min="0" max="100" value="0">
+        <button class="cbtn" id="cFront">3/4 Front</button>
+        <button class="cbtn" id="cSide">Side</button>
+        <button class="cbtn" id="cBack">Back &amp; Cleat</button>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="ref">01</span>Technical Drawings (Exact Millimeters)</h2>
+    <div class="drawings">
+      <svg viewBox="0 0 750 576" class="plan" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="#161921" rx="8"/>
+  <!-- Outer oak frame -->
+  <rect x="70.0" y="55.0" width="590.4" height="446.4" fill="#a1856f" stroke="#6c5644" stroke-width="1.5"/>
+  <!-- Miter lines -->
+  <line x1="70.0" y1="55.0" x2="80.6" y2="65.6" stroke="#5c4635" stroke-width="1"/>
+  <line x1="660.4" y1="55.0" x2="649.8" y2="65.6" stroke="#5c4635" stroke-width="1"/>
+  <line x1="70.0" y1="501.4" x2="80.6" y2="490.8" stroke="#5c4635" stroke-width="1"/>
+  <line x1="660.4" y1="501.4" x2="649.8" y2="490.8" stroke="#5c4635" stroke-width="1"/>
+  <!-- Visible mirror glass -->
+  <rect x="80.6" y="65.6" width="569.3" height="425.3" fill="#242932" stroke="#111" stroke-width="1"/>
+  <!-- Hidden glass perimeter (dashed) -->
+  <rect x="77.2" y="62.2" width="576.0" height="432.0" fill="none" stroke="#6b7280" stroke-dasharray="4 4" stroke-width="1"/>
+  <!-- Bottom ply shelf / stiffener (behind glass) -->
+  <rect x="75.8" y="455.8" width="578.9" height="39.8" fill="#1b1f27" stroke="#475569" stroke-dasharray="3 3" stroke-width="1"/>
+  <!-- Button notch -->
+  <rect x="410.3" y="455.8" width="48.5" height="4" fill="#e5a94c"/>
+  <!-- Recessed French cleat (behind top) -->
+  <rect x="149.2" y="80.0" width="432.0" height="33.6" fill="none" stroke="#45c486" stroke-dasharray="6 4" stroke-width="1.5"/>
+  <text x="365.2" y="96.8" fill="#45c486" font-size="11" text-anchor="middle" font-family="ui-monospace,monospace">Recessed 45° French cleat · 900 mm (hits ≥2 pladur studs)</text>
+  <!-- Monitor outer body (dashed) -->
+  <rect x="217.8" y="281.6" width="294.7" height="174.2" fill="#12151b" stroke="#94a3b8" stroke-dasharray="5 3" stroke-width="1.2"/>
+  <!-- Active lit screen -->
+  <rect x="221.7" y="285.4" width="287.0" height="161.3" fill="#1d2430" stroke="#e5a94c" stroke-width="1.8"/>
+  <text x="365.2" y="360.0" fill="#f8fafc" font-size="13" font-weight="600" text-anchor="middle">Philips 27″ Screen (Bottom-Center)</text>
+  <text x="365.2" y="378.0" fill="#e5a94c" font-size="11" text-anchor="middle" font-family="ui-monospace,monospace">Lit 598 × 336 mm · Body 614 × 363 mm</text>
+  <!-- EPDM setting blocks at 1/4 points -->
+  <rect x="197.2" y="494.2" width="48.0" height="6" fill="#f97316"/>
+  <rect x="485.2" y="494.2" width="48.0" height="6" fill="#f97316"/>
+  <text x="221.2" y="514.2" fill="#fb923c" font-size="10" text-anchor="middle">EPDM block (¼)</text>
+  <text x="509.2" y="514.2" fill="#fb923c" font-size="10" text-anchor="middle">EPDM block (¾)</text>
+  <!-- Dimensions -->
+  <line x1="70.0" y1="26" x2="660.4" y2="26" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="365.2" y="20" fill="#eef1f6" font-size="12" text-anchor="middle" font-family="ui-monospace,monospace">Outer width 1230 mm (visible mirror 1186 mm · oak rim 22 mm)</text>
+  <line x1="684.4" y1="55.0" x2="684.4" y2="501.4" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="694.4" y="278.2" fill="#eef1f6" font-size="12" font-family="ui-monospace,monospace" transform="rotate(90 694.4 278.2)" text-anchor="middle">Outer height 930 mm</text>
+  <!-- Clear mirror above & sides callouts -->
+  <text x="365.2" y="175.5" fill="#94a3b8" font-size="12" text-anchor="middle">↑ 458 mm clear mirror above screen (head/shoulders) ↑</text>
+  <text x="151.1" y="366.0" fill="#94a3b8" font-size="11" text-anchor="middle">← 294 mm →</text>
+  <text x="579.3" y="366.0" fill="#94a3b8" font-size="11" text-anchor="middle">← 294 mm →</text>
+  <text x="365.2" y="560" fill="#94a3b8" font-size="11.5" text-anchor="middle">Mounted +22 cm above your 102.5 cm piano → Frame: 124.5–217.5 cm · Screen: 135.9–169.5 cm</text>
+</svg>
+      <svg viewBox="0 0 740 310" class="plan" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="#161921" rx="8"/>
+  <text x="20" y="24" fill="#98a2b3" font-size="12" font-weight="600">SIDE CROSS-SECTION (EXACT DEPTH STACK-UP · 0 → 60 mm FLUSH TO DRYWALL)</text>
+
+  <!-- Top half: Upper section (glass + mask + 9mm ply backplate + 15mm recessed French cleat) -->
+  <!-- Oak top rail (0..60 mm, rabbet lip 0..8 mm) -->
+  <path d="M 46.0 44 H 574.0 V 68 H 116.4 V 90 H 46.0 Z" fill="#a1856f" stroke="#5c4635" stroke-width="1.2"/>
+  <text x="345.20000000000005" y="60" fill="#18120d" font-size="11" font-weight="700" text-anchor="middle">Oak rail 22 × 60 mm</text>
+
+  <!-- EPDM tape 8..10 mm -->
+  <rect x="116.4" y="72" width="17.6" height="18" fill="#f97316"/>
+  <!-- 6 mm Glass 10..16 mm (runs full height) -->
+  <rect x="134.0" y="70" width="52.800000000000004" height="175" fill="#64748b" fill-opacity="0.65" stroke="#94a3b8" stroke-width="1"/>
+  <text x="160.4" y="158" fill="#f8fafc" font-size="10.5" font-weight="600" text-anchor="middle" transform="rotate(-90 160.4 158)">6 mm Glass</text>
+
+  <!-- Upper glass stop 17..32 mm -->
+  <rect x="195.60000000000002" y="68" width="132.0" height="24" fill="#c7a57a" stroke="#6c5644"/>
+  <text x="261.6" y="84" fill="#16120c" font-size="9.5" font-weight="600" text-anchor="middle">Stop 15×15</text>
+
+  <!-- Black mask 16..21 mm -->
+  <rect x="186.8" y="92" width="44.0" height="46" fill="#0b0c0f" stroke="#475569"/>
+  <!-- 9 mm Poplar Ply backplate 32..41 mm (above monitor cutout) -->
+  <rect x="327.6" y="68" width="79.2" height="74" fill="#334155" stroke="#94a3b8"/>
+  <text x="367.20000000000005" y="112" fill="#e2e8f0" font-size="9.5" text-anchor="middle" transform="rotate(-90 367.20000000000005 112)">9 mm Ply</text>
+
+  <!-- Recessed 15 mm 45° French cleat 41..56 mm (inside rear pocket -> 0 mm wall gap!) -->
+  <polygon points="406.8,76 538.8000000000001,76 538.8000000000001,116 406.8,104" fill="#45c486" stroke="#166534"/>
+  <polygon points="406.8,108 538.8000000000001,120 538.8000000000001,142 406.8,142" fill="#2ea86e" stroke="#166534"/>
+  <text x="472.8" y="96" fill="#071a10" font-size="9" font-weight="700" text-anchor="middle">45°</text>
+  <text x="472.8" y="135" fill="#071a10" font-size="8.5" font-weight="700" text-anchor="middle">Cleat</text>
+
+  <!-- Lower half: Monitor zone (17..45 mm shell, 45..49 mm stand box, 49..60 mm 11 mm plug clearance!) -->
+  <rect x="195.60000000000002" y="148" width="246.40000000000003" height="74" fill="#1e293b" stroke="#cbd5e1" stroke-width="1.2"/>
+  <rect x="442.00000000000006" y="182" width="35.2" height="40" fill="#0f172a" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="318.8" y="182" fill="#f8fafc" font-size="11" font-weight="600" text-anchor="middle">Philips 27″</text>
+  <text x="318.8" y="198" fill="#94a3b8" font-size="10" text-anchor="middle">28 mm shell / 32 mm box</text>
+  <!-- 90° plug in 11 mm clearance (49..58 mm) -->
+  <rect x="477.20000000000005" y="196" width="79.2" height="14" fill="#e5a94c" rx="2"/>
+  <text x="516.8" y="188" fill="#e5a94c" font-size="9.5" text-anchor="middle">11 mm</text>
+  <text x="516.8" y="224" fill="#e5a94c" font-size="9" text-anchor="middle">90° plug</text>
+
+  <!-- Bottom shelf 17..32 mm + bottom oak rail -->
+  <rect x="195.60000000000002" y="222" width="132.0" height="24" fill="#334155" stroke="#94a3b8"/>
+  <text x="261.6" y="238" fill="#e2e8f0" font-size="9" text-anchor="middle">Shelf</text>
+  <path d="M 46.0 264 H 574.0 V 246 H 116.4 V 228 H 46.0 Z" fill="#a1856f" stroke="#5c4635" stroke-width="1.2"/>
+
+  <!-- Drywall (Pladur) 60..73 mm + Steel Stud 73..88 mm -->
+  <rect x="574.0" y="36" width="114.4" height="242" fill="#e2e8f0" fill-opacity="0.22" stroke="#cbd5e1"/>
+  <text x="631.2" y="158" fill="#e2e8f0" font-size="11" font-weight="600" text-anchor="middle" transform="rotate(-90 631.2 158)">Drywall (Pladur 13 mm)</text>
+  <rect x="688.4000000000001" y="36" width="105.60000000000001" height="242" fill="#475569" fill-opacity="0.45" stroke="#94a3b8" stroke-dasharray="4 3"/>
+  <text x="741.2" y="158" fill="#cbd5e1" font-size="10" text-anchor="middle" transform="rotate(-90 741.2 158)">Pladur Stud</text>
+
+  <!-- Depth scale bar at bottom -->
+  <line x1="46.0" y1="286" x2="574.0" y2="286" stroke="#e5a94c" stroke-width="1.6"/>
+  <text x="310.0" y="302" fill="#e5a94c" font-size="12" font-weight="700" text-anchor="middle" font-family="ui-monospace,monospace">Total Depth = 60 mm FLUSH (0 mm extra hanger gap!)</text>
+</svg>
+    </div>
+    <div class="note">
+      <strong>Why 60 mm instead of 55 mm?</strong> Exact millimeter check: front oak lip (8) + EPDM tape (2) + glass (6) + felt (1) + Philips stand box (32) = <strong>49 mm</strong>. At <strong>60 mm</strong> total depth, right-angle HDMI &amp; DC plugs get a comfortable <strong>11 mm clearance</strong> off the drywall, and the 15 mm French cleat sits completely recessed flush inside the back pocket (<strong>0 mm wall gap</strong>).
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="ref">02</span>Wood &amp; Panel Cut List (Take to the Wood Shop)</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Part</th><th>Material</th><th>Qty</th><th>Exact Size</th></tr></thead>
+        <tbody><tr><td><strong>Oak outer frame — top &amp; bottom</strong></td><td>Solid European Oak 22 × 60 mm (rabbet 10 × 52 mm)*</td><td class='n'>2</td><td class='n'>1230 mm (45° mitered)</td></tr><tr><td><strong>Oak outer frame — left &amp; right</strong></td><td>Solid European Oak 22 × 60 mm (rabbet 10 × 52 mm)*</td><td class='n'>2</td><td class='n'>930 mm (45° mitered)</td></tr><tr><td><strong>Structural backplate (shear panel)</strong></td><td>Poplar plywood 9 mm (contrachapado de chopo)</td><td class='n'>1</td><td class='n'>1206 × 906 mm (cut 644×383 mm monitor window)</td></tr><tr><td><strong>Bottom shelf / stiffener</strong></td><td>Birch plywood 15 mm</td><td class='n'>1</td><td class='n'>1206 × 83 mm (notch 100×6 mm for buttons)</td></tr><tr><td><strong>Glass stops — top</strong></td><td>Pine/oak strip 15 × 15 mm</td><td class='n'>1</td><td class='n'>1206 mm</td></tr><tr><td><strong>Glass stops — sides</strong></td><td>Pine/oak strip 15 × 15 mm</td><td class='n'>2</td><td class='n'>808 mm</td></tr><tr><td><strong>French cleat (wall + frame halves)</strong></td><td>Birch plywood 15 mm (rip 145 mm strip at 45°)</td><td class='n'>1</td><td class='n'>900 × 145 mm → 2× ~70 mm cleats</td></tr><tr><td><strong>VESA hanging straps</strong></td><td>Aluminium flat bar 30 × 3 mm</td><td class='n'>2</td><td class='n'>323 mm</td></tr><tr><td><strong>Black light-block mask</strong></td><td>Black foam board 5 mm (cartón pluma negro)</td><td class='n'>1</td><td class='n'>1176 × 808 mm</td></tr><tr><td><strong>Crisp screen window overlay</strong></td><td>Matte black card (cartulina negra)</td><td class='n'>1</td><td class='n'>640 × 390 mm (cut 598 × 336 mm window)</td></tr></tbody>
+      </table>
+    </div>
+    <div class="note">
+      <strong>*Zero-router oak alternative:</strong> If you buy at Leroy Merlin instead of a local carpintería, get one <strong>18 mm tablero alistonado de roble</strong> ripped into <strong>60 mm</strong> strips and glue a thin <strong>8 × 8 mm oak strip</strong> flush inside the front edge as the lip (gives a clean 26 mm oak face with zero rabbet milling!).
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="ref">03</span>Shopping List (Check Off as You Buy)</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th></th><th>Item</th><th>Qty</th><th>Notes &amp; Drywall Specs</th></tr></thead>
+        <tbody><tr><td><input type='checkbox' class='chk'></td><td><strong>Solid European Oak frame rails*</strong></td><td class='n'>4.6 m linear</td><td>22 × 60 mm solid oak with 10 × 52 mm rabbet (at local carpintería/maderería). Zero-router alt: 1× 18 mm tablero alistonado de roble (2400×400) ripped to 60 mm + 8×8 mm oak lip strip.</td></tr><tr><td><input type='checkbox' class='chk'></td><td><strong>Poplar plywood 9 mm (contrachapado de chopo)</strong></td><td class='n'>1 sheet (1206×906 mm)</td><td>Lightweight structural shear backplate (~3.2 kg vs 7.2 kg birch!) — cut monitor window out.</td></tr><tr><td><input type='checkbox' class='chk'></td><td><strong>Birch plywood 15 mm (contrachapado abedul)</strong></td><td class='n'>1 offcut (~1210×250 mm)</td><td>Bottom 83 mm monitor shelf/stiffener + 900×145 mm strip ripped at 45° for the two French cleat halves.</td></tr><tr><td><input type='checkbox' class='chk'></td><td><strong>Pine or oak strip 15 × 15 mm (listón)</strong></td><td class='n'>2 × 2.4 m</td><td>Removable top &amp; side glass stops.</td></tr><tr><td><input type='checkbox' class='chk'></td><td><strong>Black foam board 5 mm (cartón pluma negro)</strong></td><td class='n'>1 sheet 100×140 cm</td><td>Light-blocking mask behind the mirror around the monitor (art shop).</td></tr><tr><td><input type='checkbox' class='chk'></td><td><strong>Matte black card (cartulina negra)</strong></td><td class='n'>1 sheet 70×50 cm</td><td>Razor-clean 598 × 336 mm window overlay behind the glass.</td></tr><tr><td><input type='checkbox' class='chk'></td><td><strong>Aluminium flat bar 30 × 3 mm (pletina)</strong></td><td class='n'>1 m</td><td>Cut into 2× VESA straps (390 mm each), bolted to monitor M4 holes + backplate.</td></tr><tr><td><input type='checkbox' class='chk'></td><td><strong>EPDM glazing tape (10 × 2 mm) + 1 mm black felt tape</strong></td><td class='n'>5 m each</td><td>EPDM cushions glass on front lip; felt lines stops, shelf, and monitor bezel.</td></tr><tr><td><input type='checkbox' class='chk'></td><td><strong>Hard rubber setting blocks (100 × 8 × 3 mm, 80–90 Shore A)</strong></td><td class='n'>2</td><td>Support the 16.2 kg glass bottom edge at the ¼ points (30 &amp; 90 cm).</td></tr><tr><td><input type='checkbox' class='chk'></td><td><strong>DRYWALL (Pladur) anchors: Fischer DuoTec 10 or metal Molly M6</strong></td><td class='n'>4–6 pcs</td><td>For the 900 mm wall French cleat! Hit ≥2 vertical pladur studs with stud screws + 4 DuoTec/Molly toggles (rated ≥25 kg each).</td></tr><tr><td><input type='checkbox' class='chk'></td><td><strong>Right-angle HDMI adapter + Right-angle DC power adapter</strong></td><td class='n'>1 each</td><td>Essential! Philips 27E2N1100L ports face straight back — keeps plugs within the 11 mm wall clearance.</td></tr><tr><td><input type='checkbox' class='chk'></td><td><strong>Screws, wood glue, matte black paint, clear matte oak oil</strong></td><td class='n'>1 set</td><td>4×40 / 3.5×30 / 3×20 screws, M4×10 VESA bolts + washers, matte black spray/paint for inside, Rubio/Osmo matte clear oil to match your Disney frame oak.</td></tr><tr><td><input type='checkbox' class='chk'></td><td><strong>Electronics (if not already bought)</strong></td><td class='n'>1 set</td><td>Raspberry Pi 5 + active cooler + 27 W USB-C PSU + micro-HDMI cable + optional mini PIR AM312.</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="ref">04</span>Step-by-Step Build &amp; Drywall Hanging Guide</h2>
+    <ol class="steps"><li><div class='snum'>01</div><div><h3>Test the Philips 27″ monitor first (before cutting!)</h3><p>Plug in your right-angle HDMI &amp; DC adapters and verify they project ≤ 10 mm past the rear stand box. Show a full-white image to confirm the 598 × 336 mm lit area, mark the 5 bottom buttons (122–203 mm from right) for the shelf notch, tape over the power LED, and check auto-power-on / ddcutil.</p></div></li><li><div class='snum'>02</div><div><h3>Get the wood cut &amp; mitered</h3><p>Have your local carpintería/maderería cut the four 22 × 60 mm European oak rails with the 10 × 52 mm rabbet and 45° mitered corners (or use the zero-router 18 mm oak + 8 × 8 mm glued lip alt). Have Leroy Merlin cut the 9 mm poplar backplate (1206 × 906 mm), the 15 mm bottom shelf, and rip the 900 × 145 mm French cleat lengthwise at 45°.</p></div></li><li><div class='snum'>03</div><div><h3>Glue the oak frame &amp; finish the wood</h3><p>Glue and clamp the 4 mitered oak corners squarely (check diagonals within 1–2 mm; reinforce inside corners with small hidden L-brackets or corner splines). Cut 2–3 discreet ventilation slots (120 × 12 mm) into the hidden top &amp; bottom edges. Apply clear matte oil/varnish to the oak outside (matching your Disney frame) and paint the inside, shelf, and 9 mm backplate matte black.</p></div></li><li><div class='snum'>04</div><div><h3>Cut monitor window &amp; dry-fit everything (NO glass yet!)</h3><p>Jigsaw the 644 × 383 mm window in the 9 mm poplar backplate (giving open access to monitor ports, buttons, and cooling). Screw the 15 mm bottom shelf (notched for buttons) into the bottom oak rail + backplate. Dry-fit the monitor on the shelf, drill the two 30 × 3 mm aluminium VESA straps to connect the monitor&#x27;s M4 VESA holes up to the backplate above the cutout, and test-fit the Pi 5 and right-angle cables.</p></div></li><li><div class='snum'>05</div><div><h3>Install the 1200 × 900 × 6 mm two-way glass</h3><p>Two people + clean gloves on a soft blanket, oak frame face-down. Stick EPDM glazing tape around the front lip. Check which side of the glass is coated (pen-tip reflection test: on the coated side the tip touches its reflection — face coating toward the room). Lower the glass gently onto the lip and slide the two EPDM setting blocks under the bottom edge at 30 cm &amp; 90 cm.</p></div></li><li><div class='snum'>06</div><div><h3>Lock the glass in &amp; add the black mask</h3><p>Apply 1 mm black felt to the stops and shelf. Screw the 15 × 15 mm top &amp; side stops snug (not tight!) against the glass, then screw in the notched bottom shelf (no glue so the glass can always be removed). Lay in the 5 mm black foam-board mask + matte-black card window overlay.</p></div></li><li><div class='snum'>07</div><div><h3>Mount the monitor, Pi 5, backplate &amp; frame cleat</h3><p>Stick 1 mm felt on the monitor bezel, set it on the bottom shelf, bolt the two aluminium VESA straps to the monitor (M4 × 10) and into the 9 mm poplar backplate. Screw the 9 mm backplate around the entire inner oak perimeter every 15 cm (this turns the frame into a zero-sag shear box!). Screw and glue the upper 45° French cleat half flat onto the backplate (recessed flush inside the 19 mm rear pocket!).</p></div></li><li><div class='snum'>08</div><div><h3>Hang safely on the drywall (pladur) above the piano</h3><p>Mark the wall cleat height so the frame bottom lands +22 cm above your 102.5 cm piano (frame: 124.5–217.5 cm, screen: 135.9–169.5 cm). Use a magnet/stud finder to locate the vertical pladur studs (montantes). Level and screw the 900 mm wall French cleat into ≥2 studs PLUS 4× Fischer DuoTec 10 or metal Molly toggles across the cleat. Two people lift the ~26 kg mirror straight onto the cleat (0 mm wall gap!), route the thin power cord down behind the piano (or up to the junction box), and add 1 small anti-lift screw at the bottom edge.</p></div></li></ol>
+  </section>
+</main>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://esm.sh/three@0.169.0",
+    "three/addons/": "https://esm.sh/three@0.169.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module">
+import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
+const container = document.getElementById("canvas3d");
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x13161d);
+const camera = new THREE.PerspectiveCamera(36, container.clientWidth / container.clientHeight, 0.05, 20);
+camera.position.set(1.15, 0.28, 1.72);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.15;
+container.appendChild(renderer.domElement);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.target.set(0, 0, -0.03);
+
+scene.add(new THREE.HemisphereLight(0xf8f9ff, 0x262932, 0.95));
+const key = new THREE.DirectionalLight(0xfff6eb, 1.5); key.position.set(2.2, 2.4, 2.5); scene.add(key);
+const backL = new THREE.DirectionalLight(0xd4e6ff, 0.75); backL.position.set(-2.0, 0.8, -2.2); scene.add(backL);
+
+const oakTex = new THREE.TextureLoader().load("oak_disney_tex.jpg");
+oakTex.colorSpace = THREE.SRGBColorSpace; oakTex.wrapS = oakTex.wrapT = THREE.RepeatWrapping;
+
+const oakMat = new THREE.MeshStandardMaterial({ map: oakTex, roughness: 0.48 });
+const plyBlackMat = new THREE.MeshStandardMaterial({ color: 0x1a1f28, roughness: 0.78 });
+const glassMat = new THREE.MeshPhysicalMaterial({ color: 0x7a8596, metalness: 0.65, roughness: 0.08, transparent: true, opacity: 0.82, clearcoat: 1.0 });
+const maskMat = new THREE.MeshStandardMaterial({ color: 0x0b0c0f, roughness: 0.92 });
+const monMat = new THREE.MeshStandardMaterial({ color: 0x161920, roughness: 0.45 });
+const aluMat = new THREE.MeshStandardMaterial({ color: 0xcbd5e1, metalness: 0.85, roughness: 0.25 });
+const cleatMat = new THREE.MeshStandardMaterial({ color: 0x45c486, roughness: 0.55 });
+const piMat = new THREE.MeshStandardMaterial({ color: 0xdc2626, roughness: 0.4 });
+const wallMat = new THREE.MeshStandardMaterial({ color: 0xe9e6e0, roughness: 0.92, transparent: true, opacity: 0.65 });
+const studMat = new THREE.MeshStandardMaterial({ color: 0x7c8ea6, metalness: 0.6, roughness: 0.4 });
+
+// Screen UI texture
+const uc = document.createElement("canvas"); uc.width = 512; uc.height = 288;
+const uctx = uc.getContext("2d"); uctx.fillStyle = "#08090b"; uctx.fillRect(0, 0, 512, 288);
+uctx.fillStyle = "#fff"; uctx.font = "200 68px system-ui"; uctx.fillText("21:47", 24, 106);
+uctx.textAlign = "right"; uctx.font = "200 60px system-ui"; uctx.fillText("14°", 488, 92);
+uctx.textAlign = "center"; uctx.font = "300 26px system-ui"; uctx.fillText("Bona nit!", 256, 256);
+const uiTex = new THREE.CanvasTexture(uc); uiTex.colorSpace = THREE.SRGBColorSpace;
+const scrMat = new THREE.MeshBasicMaterial({ map: uiTex });
+
+const entries = [];
+const MM = 0.001;
+const CX = 615.0, CZ = 465.0;
+
+function addPart(x0, x1, y0, y1, z0, z1, mat, expZ) {
+  const w = (x1 - x0)*MM, h = (z1 - z0)*MM, d = (y1 - y0)*MM;
+  const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
+  const bz = -((y0 + y1)/2)*MM;
+  m.position.set(((x0 + x1)/2 - CX)*MM, ((z0 + z1)/2 - CZ)*MM, bz);
+  scene.add(m);
+  entries.push({ m, bz, expZ });
+}
+
+// Exact geometry from design.py!
+const GEOM = {
+  oak: [(0, 12, 0, 60, 0, 930), (1218, 1230, 0, 60, 0, 930), (12, 1218, 0, 60, 918, 930), (12, 1218, 0, 60, 0, 12), (12, 1218, 0, 8, 908, 918), (12, 1218, 0, 8, 12, 22), (12, 22, 0, 8, 22, 908), (1208, 1218, 0, 8, 22, 908)],
+  glass: [(15, 1215, 10, 16, 15, 915)],
+  shelf: [(12, 709.0, 17, 32, 12, 95), (810.0, 1218, 17, 32, 12, 95), (709.0, 810.0, 17, 32, 12, 89)],
+  stops: [(12, 1218, 17, 32, 903, 918), (12, 27, 17, 32, 95, 903), (1203, 1218, 17, 32, 95, 903)],
+  mask: [(27, 1203, 16, 21, 460, 903), (27, 306.0, 16, 21, 95, 460), (924.0, 1203, 16, 21, 95, 460)],
+  backplate: [(12, 1218, 32, 41, 12, 90), (12, 1218, 32, 41, 473, 918), (12, 293.0, 32, 41, 90, 473), (937.0, 1218, 32, 41, 90, 473)],
+  monitor: [(308.0, 922.0, 17, 45, 95, 343), (308.0, 922.0, 17, 26, 343, 458), (537.0, 693.0, 45, 49, 95, 195)],
+  straps: [(550.0, 580.0, 45, 48, 195, 518), (650.0, 680.0, 45, 48, 195, 518)],
+  cleat: [(165.0, 1065.0, 41, 56, 808, 878)],
+  pi: [(1068, 1163, 22, 46, 650, 715)],
+};
+
+GEOM.oak.forEach(b => addPart(...b, oakMat, 0.28));
+GEOM.glass.forEach(b => addPart(...b, glassMat, 0.20));
+GEOM.mask.forEach(b => addPart(...b, maskMat, 0.12));
+GEOM.stops.forEach(b => addPart(...b, oakMat, 0.06));
+GEOM.shelf.forEach(b => addPart(...b, plyBlackMat, 0.02));
+GEOM.monitor.forEach(b => addPart(...b, monMat, -0.04));
+GEOM.straps.forEach(b => addPart(...b, aluMat, -0.10));
+GEOM.backplate.forEach(b => addPart(...b, plyBlackMat, -0.20));
+GEOM.pi.forEach(b => addPart(...b, piMat, -0.15));
+GEOM.cleat.forEach(b => addPart(...b, cleatMat, -0.32));
+
+// Lit screen plane
+const scr = new THREE.Mesh(new THREE.PlaneGeometry(598*MM, 336*MM), scrMat);
+const sbz = -16.6*MM;
+scr.position.set((615.0 - CX)*MM, (282.0 - CZ)*MM, sbz);
+scene.add(scr); entries.push({ m: scr, bz: sbz, expZ: 0.04 });
+
+// Wall half of cleat + Drywall + Studs
+addPart(165.0, 1065.0, 41, 56, 736, 806, cleatMat, -0.44);
+addPart(-200, 1430, 60, 73, -180, 1110, wallMat, -0.56);
+for (const sx of [215, 615, 1015]) addPart(sx-24, sx+24, 73, 118, -180, 1110, studMat, -0.56);
+
+const expInput = document.getElementById("exp");
+expInput.oninput = () => {
+  const t = expInput.value / 100;
+  document.getElementById("ev").textContent = expInput.value + "%";
+  entries.forEach(e => e.m.position.z = e.bz + e.expZ * t);
+};
+
+let anim = null;
+function fly(p, t) { anim = { p0: camera.position.clone(), p1: new THREE.Vector3(...p), t0: controls.target.clone(), t1: new THREE.Vector3(...t), k: 0 }; }
+document.getElementById("cFront").onclick = () => fly([1.15, 0.28, 1.72], [0, 0, -0.03]);
+document.getElementById("cSide").onclick  = () => fly([1.55, 0.08, 0.30], [0.22, 0, -0.03]);
+document.getElementById("cBack").onclick  = () => fly([-1.15, 0.25, -1.70], [0, 0, -0.04]);
+
+window.addEventListener("resize", () => {
+  camera.aspect = container.clientWidth / container.clientHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(container.clientWidth, container.clientHeight);
+});
+
+function loop() {
+  requestAnimationFrame(loop);
+  if (anim) {
+    anim.k = Math.min(1, anim.k + 0.06);
+    const e = 1 - Math.pow(1 - anim.k, 3);
+    camera.position.lerpVectors(anim.p0, anim.p1, e);
+    controls.target.lerpVectors(anim.t0, anim.t1, e);
+    if (anim.k >= 1) anim = null;
+  }
+  controls.update();
+  renderer.render(scene, camera);
+}
+loop();
+</script>
+</body>
+</html>
