@@ -662,6 +662,89 @@
   .plan { width: 100%; height: auto; display: block; border-radius: 8px; }
 
   .wiring-wrap { margin-top: 18px; }
+  .front-wrap .plan { max-width: 860px; margin: 0 auto; }
+  .joints-wrap { margin-top: 18px; }
+  .jd{--paper:#f3f5f6; --sheet:#ffffff; --ink:#18222b; --muted:#56646f; --rule:#c9d2d8;
+  --accent:#c2183f; --accent-ink:#ffffff;
+  --spruce:#ecd9ae; --spruce2:#dcc089; --ply:#b98f5c; --ply2:#cfa672; --ply3:#a67c4a;
+  --glass:#9fd0d6; --rubber:#3a434b; --felt:#20262c; --mask:#59636c; --foam:#8b96a0;
+  --steel:#8f9aa3; --alu:#b9c3ca; --mon:#3f4d5a; --wall:#dfe4e7; --void:#e9edef;
+  --fix:#1d6b4f; --fix-bg:#dff1e9; --des:#8a4b00; --des-bg:#fbe9cf;
+  --sans:inherit;
+  ;color:var(--ink);font-size:15px;line-height:1.5;display:flex;flex-direction:column;gap:22px}
+[data-theme="dark"] .jd{--paper:#12181d; --sheet:#1a2229; --ink:#e6ecf0; --muted:#9aa8b3; --rule:#33404a;
+  --accent:#ff6f8f; --accent-ink:#1a0a10;
+  --spruce:#a8925f; --spruce2:#8c7646; --ply:#6f5433; --ply2:#86683f; --ply3:#5c4429;
+  --glass:#3f7f88; --rubber:#0c1014; --felt:#05080a; --mask:#3a444d; --foam:#5a6670;
+  --steel:#6f7b85; --alu:#93a0aa; --mon:#2b3742; --wall:#28323a; --void:#141b21;
+  --fix:#7fd6b1; --fix-bg:#153a2c; --des:#f3bd6b; --des-bg:#3d2a0c;}
+.jd h3{font-size:17px;margin:0;font-weight:600} .jd p{margin:0;max-width:78ch} .jd .jlead{font-size:16px}
+.jd .rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:0;padding:0;list-style:none}
+.jd .rules li{border-top:1px solid var(--rule);padding-top:10px;min-width:0} .jd .rules strong{display:block}
+.jd .rear .sheet svg{max-width:1040px} .jd .rear .detail .sheet svg{max-width:820px}
+.jd .jsec{display:flex;flex-direction:column;gap:14px}
+.jd .pair{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start}
+.jd figure{margin:0;flex:1 1 440px;min-width:0;display:flex;flex-direction:column;gap:8px}
+.jd .sheet{background:var(--sheet);border:1px solid var(--rule);overflow-x:auto}
+.jd .sheet svg{display:block;width:100%;height:auto;margin:0 auto}
+.jd .narrow .sheet svg{max-width:1000px}
+.jd figcaption{font-size:14px;color:var(--muted);max-width:68ch}
+.jd figcaption b{color:var(--ink);font-weight:600}
+.jd .tw{overflow-x:auto}
+.jd table{border-collapse:collapse;width:100%;font-size:14.5px}
+.jd th,.jd td{text-align:left;vertical-align:top;padding:7px 10px;border-bottom:1px solid var(--rule)}
+.jd thead th{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500;border-bottom:1px solid var(--ink)}
+.jd tbody th{font-weight:600;white-space:nowrap}
+.jd td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.jd .b,.jd .j{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;font-family:var(--mono);font-size:12px;font-weight:600}
+.jd .b{border:1.5px solid var(--ink);border-radius:50%}
+.jd .j{background:var(--accent);color:var(--accent-ink);border-radius:3px}
+.jd .pill{font-size:12.5px;padding:2px 8px;border-radius:99px;white-space:nowrap}
+.jd .pill.fix{background:var(--fix-bg);color:var(--fix)}
+.jd .pill.des{background:var(--des-bg);color:var(--des)}
+.jd svg text{font-family:var(--sans);fill:var(--ink)}
+.jd svg .lbl{font-size:12px}
+.jd svg .note{fill:var(--muted);font-style:italic}
+.jd svg .side,.jd svg .dimc{font-size:11.5px;fill:var(--muted)}
+.jd svg .dimt{font-family:var(--mono);font-size:10.5px}
+.jd svg .bnum{font-family:var(--mono);font-size:11px;font-weight:600}
+.jd svg .jnum{font-family:var(--mono);font-size:11.5px;font-weight:600;fill:var(--accent-ink)}
+.jd svg .cutt{font-family:var(--mono);font-size:13px;font-weight:600;fill:var(--accent)}
+.jd svg rect,.jd svg polygon{stroke:var(--ink);stroke-width:1}
+.jd svg .spruce{fill:var(--spruce)}
+.jd svg .spruce2{fill:var(--spruce2)}
+.jd svg .ply{fill:var(--ply)}
+.jd svg .ply2{fill:var(--ply2)}
+.jd svg .ply3{fill:var(--ply3)}
+.jd svg .glass{fill:var(--glass)}
+.jd svg .rubber{fill:var(--rubber)}
+.jd svg .felt{fill:var(--felt);stroke:none}
+.jd svg .mask{fill:var(--mask)}
+.jd svg .foam{fill:var(--foam)}
+.jd svg .steel{fill:var(--steel)}
+.jd svg .alu{fill:var(--alu)}
+.jd svg .mon{fill:var(--mon)}
+.jd svg .wall{fill:var(--wall);stroke:none}
+.jd svg .void{fill:var(--void);stroke:var(--ink)}
+.jd svg .hidden{fill:none;stroke:var(--ink);stroke-dasharray:5 4}
+.jd svg .screw{fill:var(--accent);stroke:var(--sheet);stroke-width:.8}
+.jd svg .sdot{fill:var(--accent);stroke:var(--sheet);stroke-width:1}
+.jd svg .smark{stroke:var(--accent);stroke-width:1.5}
+.jd svg .glue{stroke:var(--fix);stroke-width:3;stroke-dasharray:2 3}
+.jd svg .thin{stroke:var(--ink);stroke-width:.8}
+.jd svg .dim{stroke:var(--muted);stroke-width:.8}
+.jd svg .brk{fill:none;stroke:var(--muted);stroke-width:1}
+.jd svg .lead{stroke-width:.8}
+.jd svg .lead.pl{stroke:var(--muted)}
+.jd svg .lead.jl{stroke:var(--accent)}
+.jd svg .dot{stroke:none}
+.jd svg .dot.pl{fill:var(--ink)}
+.jd svg .dot.jl{fill:var(--accent)}
+.jd svg .bal{fill:var(--sheet);stroke:var(--ink);stroke-width:1.5}
+.jd svg .jbox{fill:var(--accent);stroke:none}
+.jd svg .cutl{stroke:var(--accent);stroke-width:1.2;stroke-dasharray:14 4 3 4}
+.jd svg .pi{fill:var(--void);stroke:var(--ink)}
+.jd svg .slot{fill:var(--accent);stroke:none}
 
   /* Copyable Code Block inside WLED Bench-Test Step */
   .step-code-wrap {
@@ -1456,13 +1539,12 @@
       <p class="sec-sub">Mides exactes en mil·límetres de <code>design.py</code> · Zero 230V de xarxa dins el marc d'avet</p>
     </div>
 
-    <div class="drawings-grid">
-      <div class="diagram-card">
-        <div class="diagram-label">
-          <span>Alçat frontal (distribució oculta)</span>
-          <span class="mono">1242 × 942 mm</span>
-        </div>
-        <svg viewBox="0 0 752 594" class="plan" role="img" aria-label="Alçat frontal: plànol tècnic en mil·límetres" xmlns="http://www.w3.org/2000/svg">
+    <div class="diagram-card front-wrap">
+      <div class="diagram-label">
+        <span>Alçat frontal (què hi ha amagat darrere el vidre)</span>
+        <span class="mono">1242 × 942 mm</span>
+      </div>
+      <svg viewBox="0 0 752 594" class="plan" role="img" aria-label="Alçat frontal: plànol tècnic en mil·límetres" xmlns="http://www.w3.org/2000/svg">
   <rect width="100%" height="100%" fill="var(--svg-bg)" rx="10"/>
 
   <!-- Top outer width dimension -->
@@ -1502,6 +1584,11 @@
   <line x1="374.1" y1="252.6" x2="394.1" y2="252.6" stroke="#5cd2fa" stroke-width="1.3"/>
   <text x="399.1" y="256.6" fill="#7dd3fc" font-size="10.2" font-weight="600">Pi Cam 3 (sobre el monitor · a 177 cm de terra)</text>
 
+  <!-- Camera ribbon slot through the backplate (just below the camera, between the VESA straps) -->
+  <rect x="361.3" y="262.8" width="9.6" height="3" fill="#fb7185"/>
+  <line x1="358.1" y1="265.2" x2="338.1" y2="265.2" stroke="#fb7185" stroke-width="1.3"/>
+  <text x="333.1" y="269.2" fill="#fda4af" font-size="10.2" font-weight="600" text-anchor="end">Ranura de la cinta 20 × 4 mm (al tauler posterior)</text>
+
   <!-- Clear mirror height arrow above monitor -->
   <line x1="366.1" y1="88.8" x2="366.1" y2="238.6" stroke="var(--svg-muted)" stroke-width="1.1" stroke-dasharray="3 3"/>
   <rect x="224.1" y="154.7" width="284" height="22" rx="11" fill="var(--svg-pill)" stroke="var(--svg-line)"/>
@@ -1539,96 +1626,594 @@
   <!-- Mounting height footnote -->
   <text x="366.1" y="576" fill="var(--svg-muted)" font-size="10.8" text-anchor="middle" font-family="var(--mono)">Penjat +20 cm per sobre del piano de 102.5 cm → Marc 122.5–216.7 cm · Pantalla 134.5–168.1 cm</text>
 </svg>
+    </div>
+
+    <div class="diagram-card joints-wrap">
+      <div class="diagram-label">
+        <span>Plànol d'unions a escala: talls, vista del darrere i tots els cargols</span>
+        <span class="mono">mides en mm · 69 + 16 = 85 fins a la paret</span>
       </div>
-      <div class="diagram-card">
-        <div class="diagram-label">
-          <span>Secció lateral (capes en fondària)</span>
-          <span class="mono">69 + 16 = 85 mm</span>
-        </div>
-        <svg viewBox="0 0 740 364" class="plan" role="img" aria-label="Secció lateral: marc d'avet ribotat de 69 mm i separació de 16 mm fins a la paret (85 mm en total)" xmlns="http://www.w3.org/2000/svg">
-  <rect width="100%" height="100%" fill="var(--svg-bg)" rx="10"/>
-  <text x="20" y="25" fill="var(--svg-muted)" font-size="10.8" font-weight="600" font-family="var(--mono)">SECCIÓ LATERAL · MARC D'AVET DE 69 mm + SEPARACIÓ DE 16 mm = 85 mm FINS AL PLADUR</text>
-
-  <!-- Top spruce frame strip (0..FRAME_D) + glued square lip (0..LIP_D) -->
-  <rect x="40.0" y="52" width="399.8" height="20" fill="#d8b587" stroke="#8b663a" stroke-width="1.3"/>
-  <rect x="40.0" y="72" width="98.5" height="20" fill="#e5c89e" stroke="#8b663a" stroke-width="1.2"/>
-  <text x="239.9" y="66" fill="#2b1e10" font-size="10" font-weight="700" text-anchor="middle">Llistó d'avet 18 × 69 mm</text>
-  <text x="89.3" y="86" fill="#2b1e10" font-size="9" font-weight="700" text-anchor="middle">Llavi 17×17</text>
-
-  <!-- EPDM tape & 6 mm Glass -->
-  <rect x="138.5" y="73" width="11.6" height="19" fill="#ea580c"/>
-  <rect x="150.1" y="73" width="34.8" height="185" fill="var(--svg-glass-sec)" stroke="var(--svg-dim)" stroke-width="1.1"/>
-  <text x="167.5" y="166" fill="var(--svg-glass-ink)" font-size="9.5" font-weight="700" text-anchor="middle" transform="rotate(-90 167.5 166)">Vidre 6 mm (19–25)</text>
-
-  <!-- Top glass stop (y_stop0..y_stop1), 5 mm Foam mask (y_glass1..y_mask1), 9 mm Ply backplate (y_back0..y_back1) -->
-  <rect x="190.7" y="72" width="98.5" height="20" fill="#e5c89e" stroke="#8b663a" stroke-width="1.1"/>
-  <text x="239.9" y="85" fill="#2b1e10" font-size="8.5" font-weight="600" text-anchor="middle">Junquillo 17</text>
-
-  <rect x="184.9" y="92" width="29.0" height="56" fill="#181b21" stroke="var(--svg-dim)" stroke-width="1"/>
-  <rect x="289.2" y="72" width="52.1" height="82" fill="var(--svg-ply)" stroke="var(--svg-dim)" stroke-width="1.1"/>
-  <text x="315.2" y="114" fill="var(--svg-ply-ink)" font-size="9" font-weight="600" text-anchor="middle" transform="rotate(-90 315.2 114)">Contraxapat 9 mm</text>
-
-  <!-- Top inner cleat 18×18 (y_cleat_inner0..y_cleat_inner1) + tentative LED marker -->
-  <rect x="341.3" y="72" width="98.5" height="20" fill="#c9a16f" stroke="#7c5930" stroke-width="1.1"/>
-  <text x="390.6" y="85" fill="#2b1e10" font-size="8.5" font-weight="700" text-anchor="middle">Llistó int. 17</text>
-  <rect x="439.8" y="74" width="34.8" height="12" fill="#f59e0b" stroke="#b45309" stroke-width="0.9" rx="1"/>
-  <text x="478.6" y="48" fill="var(--svg-amber)" font-size="9.2" font-weight="700">LED (prov.)</text>
-  <line x1="457.2" y1="73" x2="484.6" y2="52" stroke="var(--svg-amber)" stroke-width="1" stroke-dasharray="2 2"/>
-
-  <!-- 18 mm Spruce Hanging Spacer (y_cleat_pack0..y_cleat_pack1) + 15 mm 45° French Cleat (y_cleat0..WALL_Y) -->
-  <rect x="341.3" y="98" width="104.3" height="48" fill="var(--svg-spacer)" stroke="var(--svg-dim)" stroke-width="1.1"/>
-  <text x="393.5" y="119" fill="var(--svg-ply-ink)" font-size="8.8" font-weight="600" text-anchor="middle">18 mm</text>
-  <text x="393.5" y="131" fill="var(--svg-ply-ink)" font-size="8.2" text-anchor="middle">Separador</text>
-
-  <polygon points="445.6,98 532.5,98 532.5,132 445.6,122" fill="#3da974" stroke="#166534" stroke-width="1.1"/>
-  <polygon points="445.6,127 532.5,137 532.5,158 445.6,158" fill="#2d8a5d" stroke="#166534" stroke-width="1.1"/>
-  <text x="489.1" y="115" fill="#ffffff" font-size="8.2" font-weight="700" text-anchor="middle">45°</text>
-  <text x="489.1" y="150" fill="#ffffff" font-size="8.2" font-weight="700" text-anchor="middle">Llistó</text>
-
-  <!-- Philips 27" Monitor (y_mon0..y_shell + y_shell..y_mon1) & clearance to wall -->
-  <rect x="190.7" y="162" width="162.2" height="72" fill="var(--svg-mon)" stroke="var(--svg-dim)" stroke-width="1.2" rx="2"/>
-  <rect x="352.9" y="194" width="23.2" height="40" fill="var(--svg-screen)" stroke="var(--svg-dim)" stroke-width="1.1"/>
-  <text x="271.8" y="193" fill="#f8fafc" font-size="10.5" font-weight="600" text-anchor="middle">Philips 27″</text>
-  <text x="271.8" y="208" fill="#cbd5e1" font-size="9" text-anchor="middle" font-family="var(--mono)">26–58 mm</text>
-
-  <rect x="376.1" y="206" width="69.5" height="14" fill="var(--svg-amber)" rx="2"/>
-  <!-- Rear clearance bracket -->
-  <line x1="376.1" y1="184" x2="532.5" y2="184" stroke="var(--svg-amber)" stroke-width="1.2"/>
-  <line x1="376.1" y1="180" x2="376.1" y2="188" stroke="var(--svg-amber)" stroke-width="1.2"/>
-  <line x1="532.5" y1="180" x2="532.5" y2="188" stroke="var(--svg-amber)" stroke-width="1.2"/>
-  <text x="454.3" y="177" fill="var(--svg-amber)" font-size="9.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">27 mm lliures</text>
-
-  <!-- Bottom 15 mm ply shelf + bottom backplate + bottom inner cleat + 33 mm bottom wood stand-off (corners) -->
-  <rect x="190.7" y="234" width="86.9" height="24" fill="var(--svg-ply)" stroke="var(--svg-dim)"/>
-  <text x="239.9" y="249" fill="var(--svg-ply-ink)" font-size="8.2" font-weight="600" text-anchor="middle">Llistó inf. 15</text>
-  <rect x="289.2" y="234" width="52.1" height="24" fill="var(--svg-ply)" stroke="var(--svg-dim)" stroke-width="1"/>
-  <rect x="341.3" y="244" width="98.5" height="14" fill="#c9a16f" stroke="#7c5930" stroke-width="1"/>
-  <rect x="341.3" y="230" width="191.2" height="12" fill="var(--svg-cyan-fill)" stroke="var(--svg-cyan)" stroke-dasharray="3 2" stroke-width="1.1"/>
-  <text x="436.9" y="226" fill="var(--svg-cyan)" font-size="8.2" font-weight="700" text-anchor="middle">Tac de fusta 33 mm</text>
-
-  <!-- Bottom spruce frame strip + glued lip -->
-  <rect x="40.0" y="258" width="399.8" height="20" fill="#d8b587" stroke="#8b663a" stroke-width="1.3"/>
-  <rect x="40.0" y="240" width="98.5" height="18" fill="#e5c89e" stroke="#8b663a" stroke-width="1.2"/>
-  <text x="239.9" y="272" fill="#2b1e10" font-size="8.8" font-weight="600" text-anchor="middle">Travesser inferior + 6× 4×40 cap al llistó inferior</text>
-
-  <!-- Drywall (Pladur) + Metal Stud -->
-  <rect x="532.5" y="42" width="69.5" height="252" fill="var(--svg-wall)" stroke="var(--svg-dim)" stroke-width="1.2"/>
-  <text x="567.3" y="168" fill="var(--svg-ink)" font-size="10" font-weight="600" text-anchor="middle" transform="rotate(-90 567.3 168)">Pladur</text>
-  <rect x="602.1" y="42" width="57.9" height="252" fill="var(--svg-stud)" stroke="var(--svg-dim)" stroke-dasharray="4 3"/>
-  <text x="631.0" y="168" fill="var(--svg-muted)" font-size="9.2" font-weight="600" text-anchor="middle" transform="rotate(-90 631.0 168)">Muntant metàl·lic</text>
-
-  <!-- Bottom architectural ruler ticks (0, FRAME_D, WALL_Y) -->
-  <line x1="40.0" y1="316" x2="439.8" y2="316" stroke="var(--svg-oak)" stroke-width="1.8"/>
-  <line x1="439.8" y1="316" x2="532.5" y2="316" stroke="var(--svg-cyan)" stroke-width="2.2"/>
-  <line x1="40.0" y1="309" x2="40.0" y2="323" stroke="var(--svg-oak)" stroke-width="1.5"/>
-  <line x1="439.8" y1="309" x2="439.8" y2="323" stroke="var(--svg-oak)" stroke-width="1.5"/>
-  <line x1="532.5" y1="309" x2="532.5" y2="323" stroke="var(--svg-cyan)" stroke-width="1.5"/>
-  <text x="239.9" y="338" fill="var(--svg-oak)" font-size="10.8" font-weight="700" text-anchor="middle" font-family="var(--mono)">Marc d'avet 69 mm</text>
-  <text x="486.2" y="338" fill="var(--svg-cyan)" font-size="10.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">+16 mm</text>
-  <text x="570.5" y="338" fill="var(--svg-muted)" font-size="10.5" font-weight="600" text-anchor="middle" font-family="var(--mono)">= 85 mm</text>
-  <text x="20" y="356" fill="var(--svg-muted)" font-size="9.2" font-family="var(--mono)">Capes: llavi 0–17 · EPDM 17–19 · vidre 19–25 · màsc. 25–30 · junq. 26–43 · tauler 43–52 · ll. int. 52–69 · sep. 52–70 · 45° 70–85</text>
-</svg>
+      <div class="jd">
+  <p class="jlead">Tot el mirall són dos blocs: el <b>marc</b>, que porta el vidre, i el <b>tauler posterior</b>, que porta el monitor i el llistó de penjar. Els dos blocs s'uneixen amb 22 cargols de costat, sense cola, perquè es pugui tornar a obrir.</p>
+  <ul class="rules">
+    <li><strong>El vidre no va cargolat enlloc.</strong> Descansa sobre el travesser de baix i queda atrapat entre el llavi (davant) i els junquillos i el reforç (darrere).</li>
+    <li><strong>Cap cargol arriba al vidre.</strong> Van de costat, des de sota o des del darrere. Només els dels junquillos (C) apunten cap al vidre, i per això no poden passar de 35 mm.</li>
+    <li><strong>El pes puja pel tauler.</strong> Marc → llistons interiors → tauler posterior → llistó a 45° → paret.</li>
+  </ul>
+  <div class="jsec">
+    <h3>Tall A–A: el cantell de dalt i el de baix</h3>
+    <div class="pair">
+      <figure><div class="sheet"><svg viewBox="0 0 655 774" role="img" aria-label="Secció del travesser de dalt: marc, llavi, vidre, junquillo, tauler posterior, llistó interior i llistó de penjar a 45 graus, amb els cargols de cada unió" style="min-width:450px"><rect class="wall" x="440.0" y="64.0" width="39.0" height="690.0" />
+<rect class="spruce" x="185.0" y="76.0" width="207.0" height="54.0" />
+<rect class="spruce" x="185.0" y="130.0" width="51.0" height="51.0" />
+<line class="glue" x1="185.0" y1="130.0" x2="236.0" y2="130.0"/>
+<rect class="rubber" x="236.0" y="139.0" width="6.0" height="42.0" />
+<rect class="glass" x="242.0" y="139.0" width="18.0" height="615.0" />
+<rect class="felt" x="260.0" y="130.0" width="3.0" height="51.0" />
+<rect class="spruce2" x="263.0" y="130.0" width="51.0" height="51.0" />
+<rect class="mask" x="260.0" y="181.0" width="15.0" height="573.0" />
+<rect class="foam" x="275.0" y="619.0" width="39.0" height="57.0" />
+<rect class="ply" x="314.0" y="133.0" width="27.0" height="621.0" />
+<rect class="spruce2" x="341.0" y="130.0" width="51.0" height="51.0" />
+<rect class="spruce" x="341.0" y="295.0" width="54.0" height="207.0" />
+<line class="glue" x1="341.0" y1="502.0" x2="341.0" y2="295.0"/>
+<line class="glue" x1="395.0" y1="484.0" x2="395.0" y2="295.0"/>
+<polygon class="ply2" points="395.0,484.0 395.0,295.0 440.0,295.0 440.0,529.0"/>
+<polygon class="ply3" points="395.0,718.0 395.0,484.0 440.0,529.0 440.0,718.0"/>
+<polygon class="screw" points="314.0,155.5 319.8,150.2 362.4,150.2 374.0,145.0 362.4,139.8 319.8,139.8 314.0,134.5"/>
+<polygon class="screw" points="392.0,176.5 386.2,171.2 298.6,171.2 287.0,166.0 298.6,160.8 386.2,160.8 392.0,155.5"/>
+<polygon class="screw" points="356.0,181.0 361.2,175.2 361.2,102.6 366.5,91.0 371.8,102.6 371.8,175.2 377.0,181.0"/>
+<polygon class="screw" points="314.0,356.5 319.8,351.2 362.4,351.2 374.0,346.0 362.4,340.8 319.8,340.8 314.0,335.5"/>
+<polygon class="screw" points="440.0,410.5 434.2,405.2 361.6,405.2 350.0,400.0 361.6,394.8 434.2,394.8 440.0,389.5"/>
+<polygon class="screw" points="395.0,624.4 402.9,617.2 469.2,617.2 485.0,610.0 469.2,602.8 402.9,602.8 395.0,595.6"/>
+<line class="dim" x1="185.0" y1="62.0" x2="440.0" y2="62.0"/>
+<line class="dim" x1="185.0" y1="57.0" x2="185.0" y2="67.0"/>
+<line class="dim" x1="236.0" y1="57.0" x2="236.0" y2="67.0"/>
+<line class="dim" x1="242.0" y1="57.0" x2="242.0" y2="67.0"/>
+<line class="dim" x1="260.0" y1="57.0" x2="260.0" y2="67.0"/>
+<line class="dim" x1="263.0" y1="57.0" x2="263.0" y2="67.0"/>
+<line class="dim" x1="314.0" y1="57.0" x2="314.0" y2="67.0"/>
+<line class="dim" x1="341.0" y1="57.0" x2="341.0" y2="67.0"/>
+<line class="dim" x1="392.0" y1="57.0" x2="392.0" y2="67.0"/>
+<line class="dim" x1="440.0" y1="57.0" x2="440.0" y2="67.0"/>
+<text class="dimt" x="210.5" y="53.0" text-anchor="middle">17</text>
+<text class="dimt" x="239.0" y="53.0" text-anchor="middle">2</text>
+<text class="dimt" x="251.0" y="53.0" text-anchor="middle">6</text>
+<text class="dimt" x="261.5" y="53.0" text-anchor="middle">1</text>
+<text class="dimt" x="288.5" y="53.0" text-anchor="middle">17</text>
+<text class="dimt" x="327.5" y="53.0" text-anchor="middle">9</text>
+<text class="dimt" x="366.5" y="53.0" text-anchor="middle">17</text>
+<text class="dimt" x="416.0" y="53.0" text-anchor="middle">16</text>
+<text class="dimc" x="185.0" y="34.0" text-anchor="start">gruixos des del davant, en mm (69 de marc + 16 fins a la paret)</text>
+<text class="side" x="176.0" y="768.0" text-anchor="start">← davant (sala)</text>
+<text class="side" x="479.0" y="768.0" text-anchor="end">paret →</text>
+<line class="lead pl" x1="154.0" y1="103.0" x2="203.0" y2="103.0"/>
+<circle class="dot pl" cx="203.0" cy="103.0" r="2"/>
+<circle class="bal" cx="154.0" cy="103.0" r="10"/>
+<text class="bnum" x="154.0" y="107.0" text-anchor="middle">1</text>
+<text class="lbl" x="139.0" y="107.0" text-anchor="end">Travesser del marc</text>
+<line class="lead jl" x1="154.0" y1="130.0" x2="209.0" y2="130.0"/>
+<circle class="dot jl" cx="209.0" cy="130.0" r="2"/>
+<rect class="jbox" x="144.0" y="120.0" width="20" height="20" rx="3"/>
+<text class="jnum" x="154.0" y="134.0" text-anchor="middle">A</text>
+<text class="lbl" x="139.0" y="134.0" text-anchor="end">cola</text>
+<line class="lead pl" x1="154.0" y1="160.0" x2="203.0" y2="160.0"/>
+<circle class="dot pl" cx="203.0" cy="160.0" r="2"/>
+<circle class="bal" cx="154.0" cy="160.0" r="10"/>
+<text class="bnum" x="154.0" y="164.0" text-anchor="middle">2</text>
+<text class="lbl" x="139.0" y="164.0" text-anchor="end">Llavi 17×17</text>
+<line class="lead pl" x1="154.0" y1="187.0" x2="239.0" y2="172.0"/>
+<circle class="dot pl" cx="239.0" cy="172.0" r="2"/>
+<circle class="bal" cx="154.0" cy="187.0" r="10"/>
+<text class="bnum" x="154.0" y="191.0" text-anchor="middle">3</text>
+<text class="lbl" x="139.0" y="191.0" text-anchor="end">Cinta EPDM 2 mm</text>
+<line class="lead pl" x1="154.0" y1="250.0" x2="275.0" y2="175.0"/>
+<circle class="dot pl" cx="275.0" cy="175.0" r="2"/>
+<circle class="bal" cx="154.0" cy="250.0" r="10"/>
+<text class="bnum" x="154.0" y="254.0" text-anchor="middle">7</text>
+<text class="lbl" x="139.0" y="254.0" text-anchor="end">Junquillo 17×17</text>
+<line class="lead pl" x1="154.0" y1="382.0" x2="251.0" y2="382.0"/>
+<circle class="dot pl" cx="251.0" cy="382.0" r="2"/>
+<circle class="bal" cx="154.0" cy="382.0" r="10"/>
+<text class="bnum" x="154.0" y="386.0" text-anchor="middle">4</text>
+<text class="lbl" x="139.0" y="386.0" text-anchor="end">Vidre 6 mm</text>
+<line class="lead pl" x1="154.0" y1="502.0" x2="267.5" y2="502.0"/>
+<circle class="dot pl" cx="267.5" cy="502.0" r="2"/>
+<circle class="bal" cx="154.0" cy="502.0" r="10"/>
+<text class="bnum" x="154.0" y="506.0" text-anchor="middle">8</text>
+<text class="lbl" x="139.0" y="506.0" text-anchor="end">Màscara 5 mm</text>
+<line class="lead pl" x1="154.0" y1="649.0" x2="290.0" y2="649.0"/>
+<circle class="dot pl" cx="290.0" cy="649.0" r="2"/>
+<circle class="bal" cx="154.0" cy="649.0" r="10"/>
+<text class="bnum" x="154.0" y="653.0" text-anchor="middle">15</text>
+<text class="lbl" x="139.0" y="653.0" text-anchor="end">Escuma adhesiva</text>
+<line class="lead jl" x1="501.0" y1="94.0" x2="366.5" y2="185.5"/>
+<circle class="dot jl" cx="366.5" cy="185.5" r="2"/>
+<rect class="jbox" x="491.0" y="84.0" width="20" height="20" rx="3"/>
+<text class="jnum" x="501.0" y="98.0" text-anchor="middle">D</text>
+<text class="lbl" x="516.0" y="98.0" text-anchor="start">3.5×30, sense cola</text>
+<line class="lead pl" x1="501.0" y1="137.5" x2="384.5" y2="137.5"/>
+<circle class="dot pl" cx="384.5" cy="137.5" r="2"/>
+<circle class="bal" cx="501.0" cy="137.5" r="10"/>
+<text class="bnum" x="501.0" y="141.5" text-anchor="middle">10</text>
+<text class="lbl" x="516.0" y="141.5" text-anchor="start">Llistó interior 17×17</text>
+<line class="lead jl" x1="501.0" y1="164.5" x2="353.0" y2="145.0"/>
+<circle class="dot jl" cx="353.0" cy="145.0" r="2"/>
+<rect class="jbox" x="491.0" y="154.5" width="20" height="20" rx="3"/>
+<text class="jnum" x="501.0" y="168.5" text-anchor="middle">B</text>
+<text class="lbl" x="516.0" y="168.5" text-anchor="start">3.5×20 + cola</text>
+<line class="lead jl" x1="501.0" y1="191.5" x2="392.0" y2="166.0"/>
+<circle class="dot jl" cx="392.0" cy="166.0" r="2"/>
+<rect class="jbox" x="491.0" y="181.5" width="20" height="20" rx="3"/>
+<text class="jnum" x="501.0" y="195.5" text-anchor="middle">C</text>
+<text class="lbl" x="516.0" y="195.5" text-anchor="start">3.5×35, sense cola</text>
+<line class="lead pl" x1="501.0" y1="238.0" x2="327.5" y2="238.0"/>
+<circle class="dot pl" cx="327.5" cy="238.0" r="2"/>
+<circle class="bal" cx="501.0" cy="238.0" r="10"/>
+<text class="bnum" x="501.0" y="242.0" text-anchor="middle">9</text>
+<text class="lbl" x="516.0" y="242.0" text-anchor="start">Tauler posterior 9 mm</text>
+<line class="lead pl" x1="501.0" y1="304.0" x2="422.0" y2="328.0"/>
+<circle class="dot pl" cx="422.0" cy="328.0" r="2"/>
+<circle class="bal" cx="501.0" cy="304.0" r="10"/>
+<text class="bnum" x="501.0" y="308.0" text-anchor="middle">12</text>
+<text class="lbl" x="516.0" y="308.0" text-anchor="start">Llistó 45° del mirall</text>
+<line class="lead jl" x1="501.0" y1="346.0" x2="359.0" y2="346.0"/>
+<circle class="dot jl" cx="359.0" cy="346.0" r="2"/>
+<rect class="jbox" x="491.0" y="336.0" width="20" height="20" rx="3"/>
+<text class="jnum" x="501.0" y="350.0" text-anchor="middle">F</text>
+<text class="lbl" x="516.0" y="350.0" text-anchor="start">3.5×20 + cola</text>
+<line class="lead jl" x1="501.0" y1="400.0" x2="437.0" y2="400.0"/>
+<circle class="dot jl" cx="437.0" cy="400.0" r="2"/>
+<rect class="jbox" x="491.0" y="390.0" width="20" height="20" rx="3"/>
+<text class="jnum" x="501.0" y="404.0" text-anchor="middle">G</text>
+<text class="lbl" x="516.0" y="404.0" text-anchor="start">3.5×30 + cola</text>
+<line class="lead pl" x1="501.0" y1="478.0" x2="368.0" y2="478.0"/>
+<circle class="dot pl" cx="368.0" cy="478.0" r="2"/>
+<circle class="bal" cx="501.0" cy="478.0" r="10"/>
+<text class="bnum" x="501.0" y="482.0" text-anchor="middle">11</text>
+<text class="lbl" x="516.0" y="482.0" text-anchor="start">Separador de penjar</text>
+<line class="lead jl" x1="501.0" y1="610.0" x2="407.0" y2="610.0"/>
+<circle class="dot jl" cx="407.0" cy="610.0" r="2"/>
+<rect class="jbox" x="491.0" y="600.0" width="20" height="20" rx="3"/>
+<text class="jnum" x="501.0" y="614.0" text-anchor="middle">H</text>
+<text class="lbl" x="516.0" y="614.0" text-anchor="start">cargols a la paret</text>
+<line class="lead pl" x1="501.0" y1="682.0" x2="413.0" y2="682.0"/>
+<circle class="dot pl" cx="413.0" cy="682.0" r="2"/>
+<circle class="bal" cx="501.0" cy="682.0" r="10"/>
+<text class="bnum" x="501.0" y="686.0" text-anchor="middle">13</text>
+<text class="lbl" x="516.0" y="686.0" text-anchor="start">Llistó 45° de la paret</text>
+<line class="lead pl" x1="501.0" y1="736.0" x2="461.0" y2="736.0"/>
+<circle class="dot pl" cx="461.0" cy="736.0" r="2"/>
+<circle class="bal" cx="501.0" cy="736.0" r="10"/>
+<text class="bnum" x="501.0" y="740.0" text-anchor="middle">14</text>
+<text class="lbl" x="516.0" y="740.0" text-anchor="start">Paret (pladur)</text></svg></div><figcaption><b>Dalt.</b> El tauler posterior (9) porta encolats el llistó interior (10) i el separador amb el llistó a 45° (11, 12). Els cargols D són l'única unió entre el tauler i el marc. La línia verda de punts és cola.</figcaption></figure>
+      <figure><div class="sheet"><svg viewBox="0 0 655 524" role="img" aria-label="Secció del travesser de baix: el vidre descansa sobre el travesser, el reforç inferior va cargolat des de sota i el tauler posterior s'uneix al marc pel llistó interior" style="min-width:450px"><rect class="wall" x="440.0" y="16.0" width="39.0" height="450.0" />
+<rect class="spruce" x="185.0" y="346.0" width="207.0" height="54.0" />
+<rect class="spruce" x="185.0" y="295.0" width="51.0" height="51.0" />
+<line class="glue" x1="185.0" y1="346.0" x2="236.0" y2="346.0"/>
+<rect class="rubber" x="236.0" y="295.0" width="6.0" height="42.0" />
+<rect class="rubber" x="239.0" y="337.0" width="24.0" height="9.0" />
+<rect class="glass" x="242.0" y="16.0" width="18.0" height="321.0" />
+<rect class="felt" x="260.0" y="97.0" width="3.0" height="249.0" />
+<rect class="ply2" x="263.0" y="97.0" width="45.0" height="249.0" />
+<rect class="felt" x="308.0" y="175.0" width="6.0" height="75.0" />
+<rect class="mask" x="260.0" y="16.0" width="15.0" height="81.0" />
+<rect class="ply" x="314.0" y="16.0" width="27.0" height="327.0" />
+<rect class="spruce2" x="341.0" y="295.0" width="51.0" height="51.0" />
+<polygon class="screw" points="273.5,400.0 279.5,393.4 279.5,293.2 285.5,280.0 291.5,293.2 291.5,393.4 297.5,400.0"/>
+<polygon class="screw" points="314.0,331.0 319.8,325.8 362.4,325.8 374.0,320.5 362.4,315.2 319.8,315.2 314.0,310.0"/>
+<polygon class="screw" points="356.0,295.0 361.2,300.8 361.2,373.5 366.5,385.0 371.8,373.5 371.8,300.8 377.0,295.0"/>
+<line class="dim" x1="185.0" y1="404.0" x2="185.0" y2="431.0"/>
+<line class="dim" x1="285.5" y1="404.0" x2="285.5" y2="431.0"/>
+<line class="dim" x1="366.5" y1="404.0" x2="366.5" y2="431.0"/>
+<line class="dim" x1="392.0" y1="404.0" x2="392.0" y2="431.0"/>
+<line class="dim" x1="185.0" y1="426.0" x2="392.0" y2="426.0"/>
+<text class="dimt" x="235.2" y="440.0" text-anchor="middle">33.5</text>
+<text class="dimt" x="326.0" y="440.0" text-anchor="middle">27</text>
+<text class="dimt" x="379.2" y="440.0" text-anchor="middle">8.5</text>
+<text class="dimc" x="185.0" y="460.0" text-anchor="start">eixos dels cargols E i D des del davant del marc, en mm</text>
+<line class="dim" x1="392.0" y1="373.0" x2="440.0" y2="373.0"/>
+<text class="dimt" x="416.0" y="368.0" text-anchor="middle">16</text>
+<text class="dimc" x="416.0" y="387.0" text-anchor="middle">aire</text>
+<line class="lead pl" x1="154.0" y1="46.0" x2="267.5" y2="46.0"/>
+<circle class="dot pl" cx="267.5" cy="46.0" r="2"/>
+<circle class="bal" cx="154.0" cy="46.0" r="10"/>
+<text class="bnum" x="154.0" y="50.0" text-anchor="middle">8</text>
+<text class="lbl" x="139.0" y="50.0" text-anchor="end">Màscara 5 mm</text>
+<line class="lead pl" x1="154.0" y1="112.0" x2="251.0" y2="112.0"/>
+<circle class="dot pl" cx="251.0" cy="112.0" r="2"/>
+<circle class="bal" cx="154.0" cy="112.0" r="10"/>
+<text class="bnum" x="154.0" y="116.0" text-anchor="middle">4</text>
+<text class="lbl" x="139.0" y="116.0" text-anchor="end">Vidre 6 mm</text>
+<line class="lead pl" x1="154.0" y1="178.0" x2="278.0" y2="148.0"/>
+<circle class="dot pl" cx="278.0" cy="148.0" r="2"/>
+<circle class="bal" cx="154.0" cy="178.0" r="10"/>
+<text class="bnum" x="154.0" y="182.0" text-anchor="middle">6</text>
+<text class="lbl" x="139.0" y="182.0" text-anchor="end">Reforç inferior 15×83</text>
+<line class="lead pl" x1="154.0" y1="232.0" x2="261.5" y2="232.0"/>
+<circle class="dot pl" cx="261.5" cy="232.0" r="2"/>
+<circle class="bal" cx="154.0" cy="232.0" r="10"/>
+<text class="bnum" x="154.0" y="236.0" text-anchor="middle">16</text>
+<text class="lbl" x="139.0" y="236.0" text-anchor="end">Feltre 1 mm</text>
+<line class="lead pl" x1="154.0" y1="310.0" x2="239.0" y2="310.0"/>
+<circle class="dot pl" cx="239.0" cy="310.0" r="2"/>
+<circle class="bal" cx="154.0" cy="310.0" r="10"/>
+<text class="bnum" x="154.0" y="314.0" text-anchor="middle">3</text>
+<text class="lbl" x="139.0" y="314.0" text-anchor="end">Cinta EPDM 2 mm</text>
+<line class="lead pl" x1="154.0" y1="337.0" x2="203.0" y2="322.0"/>
+<circle class="dot pl" cx="203.0" cy="322.0" r="2"/>
+<circle class="bal" cx="154.0" cy="337.0" r="10"/>
+<text class="bnum" x="154.0" y="341.0" text-anchor="middle">2</text>
+<text class="lbl" x="139.0" y="341.0" text-anchor="end">Llavi 17×17</text>
+<line class="lead pl" x1="154.0" y1="364.0" x2="245.0" y2="341.5"/>
+<circle class="dot pl" cx="245.0" cy="341.5" r="2"/>
+<circle class="bal" cx="154.0" cy="364.0" r="10"/>
+<text class="bnum" x="154.0" y="368.0" text-anchor="middle">5</text>
+<text class="lbl" x="139.0" y="368.0" text-anchor="end">Calç de suport 3 mm</text>
+<line class="lead pl" x1="154.0" y1="406.0" x2="203.0" y2="379.0"/>
+<circle class="dot pl" cx="203.0" cy="379.0" r="2"/>
+<circle class="bal" cx="154.0" cy="406.0" r="10"/>
+<text class="bnum" x="154.0" y="410.0" text-anchor="middle">1</text>
+<text class="lbl" x="139.0" y="410.0" text-anchor="end">Travesser del marc</text>
+<line class="lead jl" x1="154.0" y1="436.0" x2="281.0" y2="382.0"/>
+<circle class="dot jl" cx="281.0" cy="382.0" r="2"/>
+<rect class="jbox" x="144.0" y="426.0" width="20" height="20" rx="3"/>
+<text class="jnum" x="154.0" y="440.0" text-anchor="middle">E</text>
+<text class="lbl" x="139.0" y="440.0" text-anchor="end">4×40, sense cola</text>
+<line class="lead pl" x1="501.0" y1="88.0" x2="327.5" y2="88.0"/>
+<circle class="dot pl" cx="327.5" cy="88.0" r="2"/>
+<circle class="bal" cx="501.0" cy="88.0" r="10"/>
+<text class="bnum" x="501.0" y="92.0" text-anchor="middle">9</text>
+<text class="lbl" x="516.0" y="92.0" text-anchor="start">Tauler posterior 9 mm</text>
+<line class="lead pl" x1="501.0" y1="214.0" x2="311.0" y2="214.0"/>
+<circle class="dot pl" cx="311.0" cy="214.0" r="2"/>
+<circle class="bal" cx="501.0" cy="214.0" r="10"/>
+<text class="bnum" x="501.0" y="218.0" text-anchor="middle">16</text>
+<text class="lbl" x="516.0" y="218.0" text-anchor="start">Coixí de feltre 2 mm</text>
+<line class="lead jl" x1="501.0" y1="268.0" x2="366.5" y2="292.0"/>
+<circle class="dot jl" cx="366.5" cy="292.0" r="2"/>
+<rect class="jbox" x="491.0" y="258.0" width="20" height="20" rx="3"/>
+<text class="jnum" x="501.0" y="272.0" text-anchor="middle">D</text>
+<text class="lbl" x="516.0" y="272.0" text-anchor="start">3.5×30, sense cola</text>
+<line class="lead pl" x1="501.0" y1="310.0" x2="384.5" y2="307.0"/>
+<circle class="dot pl" cx="384.5" cy="307.0" r="2"/>
+<circle class="bal" cx="501.0" cy="310.0" r="10"/>
+<text class="bnum" x="501.0" y="314.0" text-anchor="middle">10</text>
+<text class="lbl" x="516.0" y="314.0" text-anchor="start">Llistó interior 17×17</text>
+<line class="lead jl" x1="501.0" y1="352.0" x2="350.0" y2="320.5"/>
+<circle class="dot jl" cx="350.0" cy="320.5" r="2"/>
+<rect class="jbox" x="491.0" y="342.0" width="20" height="20" rx="3"/>
+<text class="jnum" x="501.0" y="356.0" text-anchor="middle">B</text>
+<text class="lbl" x="516.0" y="356.0" text-anchor="start">3.5×20 + cola</text>
+<line class="lead pl" x1="501.0" y1="394.0" x2="461.0" y2="394.0"/>
+<circle class="dot pl" cx="461.0" cy="394.0" r="2"/>
+<circle class="bal" cx="501.0" cy="394.0" r="10"/>
+<text class="bnum" x="501.0" y="398.0" text-anchor="middle">14</text>
+<text class="lbl" x="516.0" y="398.0" text-anchor="start">Paret (pladur)</text></svg></div><figcaption><b>Baix.</b> El vidre (4) descansa sobre els calços (5) i el travesser. El reforç (6) va dret darrere del vidre i es cargola des de sota (E). El tauler s'uneix al marc igual que a dalt (D).</figcaption></figure>
+    </div>
+    <p>Els cargols B, C i D entren tots al mateix llistó interior, alternats al llarg de la peça perquè no es trobin. Aquí es dibuixen junts en un sol tall; B i C van en realitat al centre del llistó.</p>
+  </div>
+  <div class="jsec">
+    <h3>Les unions, una per una</h3>
+    <div class="tw"><table>
+      <thead><tr><th></th><th>Què uneix</th><th>Com</th><th>Cargols</th><th>On es fa</th><th>Tipus</th></tr></thead>
+      <tbody><tr><td><span class="j">A</span></td><th scope="row">Llavi → marc</th><td>Cola de fuster a tota la llargada</td><td class="num">—</td><td>Taller</td><td><span class="pill fix">encolat</span></td></tr><tr><td><span class="j">I</span></td><th scope="row">Cantonades del marc</th><td>Cola al tall a 45° + escaire d'acer per darrere</td><td class="num">16× 3.5×16</td><td>Taller</td><td><span class="pill fix">encolat</span></td></tr><tr><td><span class="j">B</span></td><th scope="row">Tauler posterior → llistons interiors</th><td>Des de la cara del davant del tauler, amb cola</td><td class="num">22× 3.5×20</td><td>Taller</td><td><span class="pill fix">encolat</span></td></tr><tr><td><span class="j">C</span></td><th scope="row">Junquillos → tauler posterior</th><td>Des del darrere del llistó interior, travessant llistó i tauler</td><td class="num">10× 3.5×35</td><td>Taller</td><td><span class="pill des">desmuntable</span></td></tr><tr><td><span class="j">F</span></td><th scope="row">Tauler posterior → separador de penjar</th><td>Des de la cara del davant del tauler, amb cola</td><td class="num">8× 3.5×20</td><td>Taller</td><td><span class="pill fix">encolat</span></td></tr><tr><td><span class="j">G</span></td><th scope="row">Llistó a 45° → separador</th><td>Des de la cara de la paret, amb cola</td><td class="num">8× 3.5×30</td><td>Taller</td><td><span class="pill fix">encolat</span></td></tr><tr><td><span class="j">E</span></td><th scope="row">Marc → reforç inferior</th><td>Des de sota del travesser, cap amunt, al cantell del contraxapat</td><td class="num">6× 4×40</td><td>Casa</td><td><span class="pill des">desmuntable</span></td></tr><tr><td><span class="j">D</span></td><th scope="row">Llistons interiors → marc</th><td>De costat, des del llistó cap a la cara interior del marc</td><td class="num">22× 3.5×30</td><td>Casa</td><td><span class="pill des">desmuntable</span></td></tr><tr><td><span class="j">J</span></td><th scope="row">Platines VESA → monitor</th><td>Als 4 forats VESA del monitor</td><td class="num">4× M4×10</td><td>Casa</td><td><span class="pill des">desmuntable</span></td></tr><tr><td><span class="j">K</span></td><th scope="row">Platines VESA → tauler posterior</th><td>Cargol passat des del davant del tauler, 2 mm de volanderes i femella al darrere</td><td class="num">4× M4×20</td><td>Casa</td><td><span class="pill des">desmuntable</span></td></tr><tr><td><span class="j">H</span></td><th scope="row">Llistó a 45° → paret</th><td>Als muntants del pladur, més tacs basculants per al pladur</td><td class="num">per confirmar</td><td>Casa</td><td><span class="pill des">desmuntable</span></td></tr></tbody>
+    </table></div>
+  </div>
+  <div class="jsec rear">
+    <h3>Vista del darrere: on cau cada cargol i la ranura de la càmera</h3>
+    <figure><div class="sheet"><svg viewBox="0 0 1195 677" role="img" aria-label="Vista del darrere del mirall amb el tauler posterior, els quatre llistons interiors, els escaires de les cantonades, el llistó de penjar, les platines VESA, la Pi 5, la càmera i la seva ranura, i la posició dels cargols" style="min-width:640px"><rect class="spruce" x="262.0" y="64.0" width="670.7" height="508.7" />
+<line class="thin" x1="932.7" y1="572.7" x2="923.0" y2="563.0"/>
+<line class="thin" x1="262.0" y1="572.7" x2="271.7" y2="563.0"/>
+<line class="thin" x1="932.7" y1="64.0" x2="923.0" y2="73.7"/>
+<line class="thin" x1="262.0" y1="64.0" x2="271.7" y2="73.7"/>
+<rect class="void" x="271.7" y="73.7" width="651.2" height="489.2" />
+<polygon class="ply" points="895.4,562.4 299.3,562.4 272.3,535.4 272.3,101.3 299.3,74.3 895.4,74.3 922.4,101.3 922.4,535.4"/>
+<rect class="void" x="423.5" y="314.0" width="347.8" height="204.1" />
+<rect class="mon" x="431.6" y="322.1" width="331.6" height="196.0" />
+<rect class="hidden" x="273.3" y="518.1" width="648.0" height="44.8" />
+<rect class="spruce2" x="294.9" y="73.7" width="604.8" height="9.2" />
+<rect class="spruce2" x="294.9" y="553.8" width="604.8" height="9.2" />
+<rect class="spruce2" x="913.8" y="96.9" width="9.2" height="442.8" />
+<rect class="spruce2" x="271.7" y="96.9" width="9.2" height="442.8" />
+<rect class="steel" x="901.4" y="560.3" width="21.6" height="2.7" />
+<rect class="steel" x="920.3" y="541.4" width="2.7" height="21.6" />
+<rect class="steel" x="271.7" y="560.3" width="21.6" height="2.7" />
+<rect class="steel" x="271.7" y="541.4" width="2.7" height="21.6" />
+<rect class="steel" x="901.4" y="73.7" width="21.6" height="2.7" />
+<rect class="steel" x="920.3" y="73.7" width="2.7" height="21.6" />
+<rect class="steel" x="271.7" y="73.7" width="21.6" height="2.7" />
+<rect class="steel" x="271.7" y="73.7" width="2.7" height="21.6" />
+<rect class="ply2" x="354.3" y="103.4" width="486.0" height="42.1" />
+<rect class="ply2" x="846.3" y="505.7" width="37.8" height="37.3" />
+<rect class="ply2" x="310.6" y="505.7" width="37.8" height="37.3" />
+<rect class="alu" x="616.2" y="289.7" width="16.2" height="172.8" />
+<circle class="sdot" cx="624.3" cy="301.9" r="2.6"/>
+<circle class="sdot" cx="624.3" cy="456.0" r="2.6"/>
+<circle class="sdot" cx="624.3" cy="402.0" r="2.6"/>
+<rect class="alu" x="562.2" y="289.7" width="16.2" height="172.8" />
+<circle class="sdot" cx="570.3" cy="301.9" r="2.6"/>
+<circle class="sdot" cx="570.3" cy="456.0" r="2.6"/>
+<circle class="sdot" cx="570.3" cy="402.0" r="2.6"/>
+<circle class="sdot" cx="867.3" cy="78.3" r="3.2"/>
+<circle class="sdot" cx="867.3" cy="558.4" r="3.2"/>
+<circle class="sdot" cx="759.3" cy="78.3" r="3.2"/>
+<circle class="sdot" cx="759.3" cy="558.4" r="3.2"/>
+<circle class="sdot" cx="651.3" cy="78.3" r="3.2"/>
+<circle class="sdot" cx="651.3" cy="558.4" r="3.2"/>
+<circle class="sdot" cx="543.3" cy="78.3" r="3.2"/>
+<circle class="sdot" cx="543.3" cy="558.4" r="3.2"/>
+<circle class="sdot" cx="435.3" cy="78.3" r="3.2"/>
+<circle class="sdot" cx="435.3" cy="558.4" r="3.2"/>
+<circle class="sdot" cx="327.3" cy="78.3" r="3.2"/>
+<circle class="sdot" cx="327.3" cy="558.4" r="3.2"/>
+<circle class="sdot" cx="918.4" cy="507.3" r="3.2"/>
+<circle class="sdot" cx="276.3" cy="507.3" r="3.2"/>
+<circle class="sdot" cx="918.4" cy="412.8" r="3.2"/>
+<circle class="sdot" cx="276.3" cy="412.8" r="3.2"/>
+<circle class="sdot" cx="918.4" cy="318.3" r="3.2"/>
+<circle class="sdot" cx="276.3" cy="318.3" r="3.2"/>
+<circle class="sdot" cx="918.4" cy="223.8" r="3.2"/>
+<circle class="sdot" cx="276.3" cy="223.8" r="3.2"/>
+<circle class="sdot" cx="918.4" cy="129.3" r="3.2"/>
+<circle class="sdot" cx="276.3" cy="129.3" r="3.2"/>
+<circle class="sdot" cx="813.3" cy="122.3" r="2.6"/>
+<circle class="sdot" cx="751.6" cy="122.3" r="2.6"/>
+<circle class="sdot" cx="689.9" cy="122.3" r="2.6"/>
+<circle class="sdot" cx="628.2" cy="122.3" r="2.6"/>
+<circle class="sdot" cx="566.5" cy="122.3" r="2.6"/>
+<circle class="sdot" cx="504.8" cy="122.3" r="2.6"/>
+<circle class="sdot" cx="443.1" cy="122.3" r="2.6"/>
+<circle class="sdot" cx="381.3" cy="122.3" r="2.6"/>
+<line class="smark" x1="867.3" y1="575.7" x2="867.3" y2="585.7"/>
+<polygon class="screw" points="863.3,585.7 871.3,585.7 867.3,576.7"/>
+<line class="smark" x1="759.3" y1="575.7" x2="759.3" y2="585.7"/>
+<polygon class="screw" points="755.3,585.7 763.3,585.7 759.3,576.7"/>
+<line class="smark" x1="651.3" y1="575.7" x2="651.3" y2="585.7"/>
+<polygon class="screw" points="647.3,585.7 655.3,585.7 651.3,576.7"/>
+<line class="smark" x1="543.3" y1="575.7" x2="543.3" y2="585.7"/>
+<polygon class="screw" points="539.3,585.7 547.3,585.7 543.3,576.7"/>
+<line class="smark" x1="435.3" y1="575.7" x2="435.3" y2="585.7"/>
+<polygon class="screw" points="431.3,585.7 439.3,585.7 435.3,576.7"/>
+<line class="smark" x1="327.3" y1="575.7" x2="327.3" y2="585.7"/>
+<polygon class="screw" points="323.3,585.7 331.3,585.7 327.3,576.7"/>
+<rect class="pi" x="574.1" y="240.0" width="46.4" height="30.2" />
+<rect class="hidden" x="590.3" y="271.4" width="14.0" height="14.0" />
+<rect class="slot" x="591.9" y="286.5" width="10.8" height="2.2" />
+<line class="cutl" x1="797.7" y1="42.0" x2="797.7" y2="598.7"/>
+<text class="cutt" x="797.7" y="36.0" text-anchor="middle">A</text>
+<text class="cutt" x="797.7" y="612.7" text-anchor="middle">A</text>
+<line class="cutl" x1="624.3" y1="42.0" x2="624.3" y2="598.7"/>
+<text class="cutt" x="624.3" y="36.0" text-anchor="middle">B</text>
+<text class="cutt" x="624.3" y="612.7" text-anchor="middle">B</text>
+<line class="lead pl" x1="232.0" y1="68.0" x2="282.5" y2="75.1"/>
+<circle class="dot pl" cx="282.5" cy="75.1" r="2"/>
+<circle class="bal" cx="232.0" cy="68.0" r="10"/>
+<text class="bnum" x="232.0" y="72.0" text-anchor="middle">17</text>
+<text class="lbl" x="217.0" y="72.0" text-anchor="end">Escaire d'acer</text>
+<line class="lead pl" x1="232.0" y1="200.1" x2="276.3" y2="200.1"/>
+<circle class="dot pl" cx="276.3" cy="200.1" r="2"/>
+<circle class="bal" cx="232.0" cy="200.1" r="10"/>
+<text class="bnum" x="232.0" y="204.1" text-anchor="middle">10</text>
+<text class="lbl" x="217.0" y="204.1" text-anchor="end">Llistó interior</text>
+<line class="lead pl" x1="232.0" y1="235.2" x2="577.4" y2="244.4"/>
+<circle class="dot pl" cx="577.4" cy="244.4" r="2"/>
+<circle class="bal" cx="232.0" cy="235.2" r="10"/>
+<text class="bnum" x="232.0" y="239.2" text-anchor="middle">22</text>
+<text class="lbl" x="217.0" y="239.2" text-anchor="end">Pi 5 (cara del darrere)</text>
+<line class="lead pl" x1="232.0" y1="263.8" x2="591.9" y2="275.1"/>
+<circle class="dot pl" cx="591.9" cy="275.1" r="2"/>
+<circle class="bal" cx="232.0" cy="263.8" r="10"/>
+<text class="bnum" x="232.0" y="267.8" text-anchor="middle">23</text>
+<text class="lbl" x="217.0" y="267.8" text-anchor="end">Càmera (cara del davant)</text>
+<line class="lead pl" x1="232.0" y1="292.4" x2="593.0" y2="287.6"/>
+<circle class="dot pl" cx="593.0" cy="287.6" r="2"/>
+<circle class="bal" cx="232.0" cy="292.4" r="10"/>
+<text class="bnum" x="232.0" y="296.4" text-anchor="middle">21</text>
+<text class="lbl" x="217.0" y="296.4" text-anchor="end">Ranura de la cinta de la càmera 20×4</text>
+<text class="lbl note" x="217.0" y="311.4" text-anchor="end">mides al detall de sota</text>
+<line class="lead jl" x1="232.0" y1="340.5" x2="276.3" y2="318.3"/>
+<circle class="dot jl" cx="276.3" cy="318.3" r="2"/>
+<rect class="jbox" x="222.0" y="330.5" width="20" height="20" rx="3"/>
+<text class="jnum" x="232.0" y="344.5" text-anchor="middle">D</text>
+<text class="lbl" x="217.0" y="344.5" text-anchor="end">3.5×30, de costat</text>
+<line class="lead pl" x1="232.0" y1="491.7" x2="329.5" y2="524.1"/>
+<circle class="dot pl" cx="329.5" cy="524.1" r="2"/>
+<circle class="bal" cx="232.0" cy="491.7" r="10"/>
+<text class="bnum" x="232.0" y="495.7" text-anchor="middle">20</text>
+<text class="lbl" x="217.0" y="495.7" text-anchor="end">Tac separador</text>
+<line class="lead pl" x1="962.7" y1="108.3" x2="802.5" y2="113.7"/>
+<circle class="dot pl" cx="802.5" cy="113.7" r="2"/>
+<circle class="bal" cx="962.7" cy="108.3" r="10"/>
+<text class="bnum" x="962.7" y="112.3" text-anchor="middle">12</text>
+<text class="lbl" x="977.7" y="112.3" text-anchor="start">Llistó a 45° del mirall</text>
+<line class="lead jl" x1="962.7" y1="146.1" x2="813.3" y2="122.3"/>
+<circle class="dot jl" cx="813.3" cy="122.3" r="2"/>
+<rect class="jbox" x="952.7" y="136.1" width="20" height="20" rx="3"/>
+<text class="jnum" x="962.7" y="150.1" text-anchor="middle">G</text>
+<text class="lbl" x="977.7" y="150.1" text-anchor="start">3.5×30 + cola</text>
+<line class="lead pl" x1="962.7" y1="248.7" x2="867.9" y2="248.7"/>
+<circle class="dot pl" cx="867.9" cy="248.7" r="2"/>
+<circle class="bal" cx="962.7" cy="248.7" r="10"/>
+<text class="bnum" x="962.7" y="252.7" text-anchor="middle">9</text>
+<text class="lbl" x="977.7" y="252.7" text-anchor="start">Tauler posterior</text>
+<line class="lead pl" x1="962.7" y1="356.7" x2="629.7" y2="356.7"/>
+<circle class="dot pl" cx="629.7" cy="356.7" r="2"/>
+<circle class="bal" cx="962.7" cy="356.7" r="10"/>
+<text class="bnum" x="962.7" y="360.7" text-anchor="middle">18</text>
+<text class="lbl" x="977.7" y="360.7" text-anchor="start">Platina VESA</text>
+<line class="lead pl" x1="962.7" y1="437.7" x2="741.5" y2="437.7"/>
+<circle class="dot pl" cx="741.5" cy="437.7" r="2"/>
+<circle class="bal" cx="962.7" cy="437.7" r="10"/>
+<text class="bnum" x="962.7" y="441.7" text-anchor="middle">19</text>
+<text class="lbl" x="977.7" y="441.7" text-anchor="start">Monitor</text>
+<line class="lead pl" x1="962.7" y1="534.9" x2="824.7" y2="540.3"/>
+<circle class="dot pl" cx="824.7" cy="540.3" r="2"/>
+<circle class="bal" cx="962.7" cy="534.9" r="10"/>
+<text class="bnum" x="962.7" y="538.9" text-anchor="middle">6</text>
+<text class="lbl" x="977.7" y="538.9" text-anchor="start">Reforç (amagat)</text>
+<line class="lead jl" x1="962.7" y1="602.7" x2="867.3" y2="581.3"/>
+<circle class="dot jl" cx="867.3" cy="581.3" r="2"/>
+<rect class="jbox" x="952.7" y="592.7" width="20" height="20" rx="3"/>
+<text class="jnum" x="962.7" y="606.7" text-anchor="middle">E</text>
+<text class="lbl" x="977.7" y="606.7" text-anchor="start">4×40, des de sota</text>
+<text class="side" x="597.3" y="646.7" text-anchor="middle">Vist des del darrere (des de la paret): esquerra i dreta van al revés que de cara.</text>
+<text class="side" x="597.3" y="664.7" text-anchor="middle">Punts vermells = cargols. Les posicions al llarg de cada llistó són orientatives (cada 18 cm aprox.).</text></svg></div><figcaption>Els llistons interiors (10) s'aturen 43 mm abans de cada cantonada per deixar lloc als escaires (17), i el tauler té les cantonades matades per passar-hi. El reforç inferior (6) queda amagat darrere del tauler; els seus 6 cargols (E) entren per sota del marc. La ranura (21) deixa passar la cinta de la càmera (23), que va a la cara del davant, fins a la Pi 5 (22), que va a la del darrere: 20×4 mm, centrada, a 509 mm de la vora de baix del tauler, entre les dues platines.</figcaption></figure>
+    <figure class="detail"><div class="sheet"><svg viewBox="0 0 1014 488" role="img" aria-label="Detall de la ranura de la cinta de la càmera al tauler posterior, amb les mides des de la finestra del monitor i l'eix del tauler" style="min-width:520px"><rect class="ply" x="262.0" y="26.0" width="537.6" height="432.0"/>
+<rect class="void" x="262.0" y="393.2" width="537.6" height="64.8"/>
+<rect class="mon" x="262.0" y="429.2" width="537.6" height="28.8"/>
+<rect class="alu" x="614.8" y="285.2" width="72.0" height="172.8"/>
+<circle class="sdot" cx="650.8" cy="339.2" r="4.5"/>
+<rect class="alu" x="374.8" y="285.2" width="72.0" height="172.8"/>
+<circle class="sdot" cx="410.8" cy="339.2" r="4.5"/>
+<rect class="pi" x="427.6" y="64.4" width="206.4" height="134.4"/>
+<rect class="hidden" x="499.6" y="203.6" width="62.4" height="62.4"/>
+<rect class="slot" x="506.8" y="270.8" width="48.0" height="9.6"/>
+<line class="cutl" x1="530.8" y1="30.0" x2="530.8" y2="454.0"/>
+<text class="dimc" x="530.8" y="20.0" text-anchor="middle">eix del tauler</text>
+<line class="dim" x1="506.8" y1="314.0" x2="554.8" y2="314.0"/>
+<line class="dim" x1="554.8" y1="283.4" x2="554.8" y2="319.0"/>
+<line class="dim" x1="530.8" y1="283.4" x2="530.8" y2="319.0"/>
+<line class="dim" x1="506.8" y1="283.4" x2="506.8" y2="319.0"/>
+<text class="dimt" x="518.8" y="330.0" text-anchor="middle">10</text>
+<text class="dimt" x="542.8" y="330.0" text-anchor="middle">10</text>
+<line class="dim" x1="588.4" y1="393.2" x2="588.4" y2="275.6"/>
+<line class="dim" x1="557.8" y1="275.6" x2="593.4" y2="275.6"/>
+<line class="dim" x1="583.4" y1="393.2" x2="593.4" y2="393.2"/>
+<text class="dimt" x="596.4" y="338.4" text-anchor="start">49</text>
+<line class="lead pl" x1="240.0" y1="102.8" x2="446.8" y2="88.4"/>
+<circle class="dot pl" cx="446.8" cy="88.4" r="2"/>
+<circle class="bal" cx="240.0" cy="102.8" r="10"/>
+<text class="bnum" x="240.0" y="106.8" text-anchor="middle">22</text>
+<text class="lbl" x="225.0" y="106.8" text-anchor="end">Pi 5 (cara del darrere)</text>
+<line class="lead pl" x1="240.0" y1="208.4" x2="504.4" y2="215.6"/>
+<circle class="dot pl" cx="504.4" cy="215.6" r="2"/>
+<circle class="bal" cx="240.0" cy="208.4" r="10"/>
+<text class="bnum" x="240.0" y="212.4" text-anchor="middle">23</text>
+<text class="lbl" x="225.0" y="212.4" text-anchor="end">Càmera (cara del davant)</text>
+<line class="lead pl" x1="240.0" y1="275.6" x2="511.6" y2="275.6"/>
+<circle class="dot pl" cx="511.6" cy="275.6" r="2"/>
+<circle class="bal" cx="240.0" cy="275.6" r="10"/>
+<text class="bnum" x="240.0" y="279.6" text-anchor="middle">21</text>
+<text class="lbl" x="225.0" y="279.6" text-anchor="end">Ranura 20×4</text>
+<line class="lead pl" x1="240.0" y1="295.6" x2="511.6" y2="275.6"/>
+<circle class="dot pl" cx="511.6" cy="275.6" r="2"/>
+<text class="lbl note" x="236.0" y="299.6" text-anchor="end">509 mm de la vora de baix del tauler</text>
+<line class="lead pl" x1="240.0" y1="366.8" x2="396.4" y2="366.8"/>
+<circle class="dot pl" cx="396.4" cy="366.8" r="2"/>
+<circle class="bal" cx="240.0" cy="366.8" r="10"/>
+<text class="bnum" x="240.0" y="370.8" text-anchor="middle">18</text>
+<text class="lbl" x="225.0" y="370.8" text-anchor="end">Platina VESA</text>
+<line class="lead pl" x1="821.6" y1="126.8" x2="766.0" y2="126.8"/>
+<circle class="dot pl" cx="766.0" cy="126.8" r="2"/>
+<circle class="bal" cx="821.6" cy="126.8" r="10"/>
+<text class="bnum" x="821.6" y="130.8" text-anchor="middle">9</text>
+<text class="lbl" x="836.6" y="130.8" text-anchor="start">Tauler posterior</text>
+<line class="lead jl" x1="821.6" y1="339.2" x2="650.8" y2="339.2"/>
+<circle class="dot jl" cx="650.8" cy="339.2" r="2"/>
+<rect class="jbox" x="811.6" y="329.2" width="20" height="20" rx="3"/>
+<text class="jnum" x="821.6" y="343.2" text-anchor="middle">K</text>
+<text class="lbl" x="836.6" y="343.2" text-anchor="start">M4×20 + femella</text>
+<line class="lead pl" x1="821.6" y1="387.2" x2="751.6" y2="393.2"/>
+<circle class="dot pl" cx="751.6" cy="393.2" r="2"/>
+<text class="lbl note" x="825.6" y="391.2" text-anchor="start">vora de dalt de la finestra</text>
+<line class="lead pl" x1="821.6" y1="449.6" x2="766.0" y2="443.6"/>
+<circle class="dot pl" cx="766.0" cy="443.6" r="2"/>
+<circle class="bal" cx="821.6" cy="449.6" r="10"/>
+<text class="bnum" x="821.6" y="453.6" text-anchor="middle">19</text>
+<text class="lbl" x="836.6" y="453.6" text-anchor="start">Monitor</text></svg></div><figcaption><b>Detall de la ranura (21), vist des del darrere.</b> Es marca des de la finestra del monitor, que ja està tallada: 49 mm per sobre de la seva vora de dalt i centrada a l'eix del tauler (10 mm a cada costat). Dos forats de Ø 4 mm amb els centres a 16 mm l'un de l'altre, units amb la serra de calar o una llima. Queda entre les dues platines (18) i just sota la Pi 5 (22). Un cop passada la cinta, es tapa amb cinta negra.</figcaption></figure>
+  </div>
+  <div class="jsec">
+    <h3>Tall B–B: el monitor penja del tauler, no del reforç</h3>
+    <div class="pair">
+      <figure><div class="sheet"><svg viewBox="0 0 574 874" role="img" aria-label="Secció pel monitor: el monitor penja de la platina VESA, que va cargolada al tauler posterior per sobre de la finestra; no descansa sobre el reforç inferior" style="min-width:450px"><rect class="wall" x="369.6" y="16.0" width="28.6" height="242.0" />
+<rect class="glass" x="224.4" y="16.0" width="13.2" height="242.0" />
+<rect class="wall" x="369.6" y="292.0" width="28.6" height="554.4" />
+<rect class="glass" x="224.4" y="292.0" width="13.2" height="554.4" />
+<rect class="felt" x="237.6" y="809.0" width="2.2" height="37.4" />
+<rect class="ply2" x="239.8" y="809.0" width="33.0" height="37.4" />
+<rect class="ply" x="277.2" y="809.0" width="19.8" height="37.4" />
+<rect class="ply" x="277.2" y="16.0" width="19.8" height="151.8" />
+<rect class="mask" x="237.6" y="16.0" width="11.0" height="180.4" />
+<rect class="mon" x="239.8" y="292.0" width="61.6" height="514.8" />
+<rect class="mon" x="239.8" y="200.8" width="19.8" height="57.2" />
+<rect class="mon" x="301.4" y="589.0" width="8.8" height="217.8" />
+<rect class="alu" x="301.4" y="68.8" width="4.4" height="189.2" />
+<rect class="alu" x="301.4" y="292.0" width="4.4" height="290.4" />
+<rect class="alu" x="297.0" y="107.3" width="4.4" height="22.0" />
+<rect class="screw" x="305.8" y="110.6" width="7.0" height="15.4" />
+<polygon class="screw" points="271.0,126.7 277.2,126.7 277.2,122.7 311.5,122.7 321.2,118.3 311.5,113.9 277.2,113.9 277.2,109.9 271.0,109.9"/>
+<polygon class="screw" points="312.0,564.4 305.8,564.4 305.8,560.4 293.5,560.4 283.8,556.0 293.5,551.6 305.8,551.6 305.8,547.6 312.0,547.6"/>
+<polygon class="screw" points="312.0,344.4 305.8,344.4 305.8,340.4 293.5,340.4 283.8,336.0 293.5,331.6 305.8,331.6 305.8,327.6 312.0,327.6"/>
+<text class="side" x="176.0" y="868.4" text-anchor="start">← davant (sala)</text>
+<text class="side" x="398.2" y="868.4" text-anchor="end">paret →</text>
+<line class="lead pl" x1="154.0" y1="77.6" x2="243.1" y2="77.6"/>
+<circle class="dot pl" cx="243.1" cy="77.6" r="2"/>
+<circle class="bal" cx="154.0" cy="77.6" r="10"/>
+<text class="bnum" x="154.0" y="81.6" text-anchor="middle">8</text>
+<text class="lbl" x="139.0" y="81.6" text-anchor="end">Màscara 5 mm</text>
+<line class="lead pl" x1="154.0" y1="165.6" x2="231.0" y2="165.6"/>
+<circle class="dot pl" cx="231.0" cy="165.6" r="2"/>
+<circle class="bal" cx="154.0" cy="165.6" r="10"/>
+<text class="bnum" x="154.0" y="169.6" text-anchor="middle">4</text>
+<text class="lbl" x="139.0" y="169.6" text-anchor="end">Vidre 6 mm</text>
+<line class="lead pl" x1="154.0" y1="481.2" x2="261.8" y2="481.2"/>
+<circle class="dot pl" cx="261.8" cy="481.2" r="2"/>
+<circle class="bal" cx="154.0" cy="481.2" r="10"/>
+<text class="bnum" x="154.0" y="485.2" text-anchor="middle">19</text>
+<text class="lbl" x="139.0" y="485.2" text-anchor="end">Monitor</text>
+<line class="lead pl" x1="154.0" y1="771.6" x2="253.0" y2="807.9"/>
+<circle class="dot pl" cx="253.0" cy="807.9" r="2"/>
+<text class="lbl note" x="150.0" y="775.6" text-anchor="end">1 mm d'aire</text>
+<line class="lead pl" x1="154.0" y1="828.8" x2="250.8" y2="828.8"/>
+<circle class="dot pl" cx="250.8" cy="828.8" r="2"/>
+<circle class="bal" cx="154.0" cy="828.8" r="10"/>
+<text class="bnum" x="154.0" y="832.8" text-anchor="middle">6</text>
+<text class="lbl" x="139.0" y="832.8" text-anchor="end">Reforç inferior</text>
+<line class="lead jl" x1="420.2" y1="77.6" x2="312.4" y2="118.3"/>
+<circle class="dot jl" cx="312.4" cy="118.3" r="2"/>
+<rect class="jbox" x="410.2" y="67.6" width="20" height="20" rx="3"/>
+<text class="jnum" x="420.2" y="81.6" text-anchor="middle">K</text>
+<text class="lbl" x="435.2" y="81.6" text-anchor="start">M4×20 + femella</text>
+<line class="lead pl" x1="420.2" y1="143.6" x2="287.1" y2="143.6"/>
+<circle class="dot pl" cx="287.1" cy="143.6" r="2"/>
+<circle class="bal" cx="420.2" cy="143.6" r="10"/>
+<text class="bnum" x="420.2" y="147.6" text-anchor="middle">9</text>
+<text class="lbl" x="435.2" y="147.6" text-anchor="start">Tauler posterior</text>
+<line class="lead pl" x1="420.2" y1="214.0" x2="303.6" y2="220.6"/>
+<circle class="dot pl" cx="303.6" cy="220.6" r="2"/>
+<circle class="bal" cx="420.2" cy="214.0" r="10"/>
+<text class="bnum" x="420.2" y="218.0" text-anchor="middle">18</text>
+<text class="lbl" x="435.2" y="218.0" text-anchor="start">Platina VESA 30×2</text>
+<line class="lead jl" x1="420.2" y1="336.0" x2="310.2" y2="336.0"/>
+<circle class="dot jl" cx="310.2" cy="336.0" r="2"/>
+<rect class="jbox" x="410.2" y="326.0" width="20" height="20" rx="3"/>
+<text class="jnum" x="420.2" y="340.0" text-anchor="middle">J</text>
+<text class="lbl" x="435.2" y="340.0" text-anchor="start">M4×10</text>
+<line class="lead pl" x1="420.2" y1="437.2" x2="287.1" y2="437.2"/>
+<circle class="dot pl" cx="287.1" cy="437.2" r="2"/>
+<text class="lbl note" x="424.2" y="441.2" text-anchor="start">finestra 644×378</text>
+<line class="lead jl" x1="420.2" y1="556.0" x2="310.2" y2="556.0"/>
+<circle class="dot jl" cx="310.2" cy="556.0" r="2"/>
+<rect class="jbox" x="410.2" y="546.0" width="20" height="20" rx="3"/>
+<text class="jnum" x="420.2" y="560.0" text-anchor="middle">J</text>
+<text class="lbl" x="435.2" y="560.0" text-anchor="start">M4×10</text>
+<line class="lead pl" x1="420.2" y1="826.6" x2="287.1" y2="826.6"/>
+<circle class="dot pl" cx="287.1" cy="826.6" r="2"/>
+<circle class="bal" cx="420.2" cy="826.6" r="10"/>
+<text class="bnum" x="420.2" y="830.6" text-anchor="middle">9</text>
+<text class="lbl" x="435.2" y="830.6" text-anchor="start">Tauler posterior</text>
+<polyline class="brk" points="170.0,275.0 277.1,275.0 283.1,268.0 291.1,282.0 297.1,275.0 404.2,275.0"/></svg></div><figcaption>La platina (18) es cargola al monitor (J) i al tauler posterior per sobre de la finestra (K). Entre el monitor i el reforç queda 1 mm d'aire: el reforç no l'aguanta.</figcaption></figure>
+      <div style="flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:12px">
+        <h3>Peces</h3>
+        <div class="tw"><table>
+          <thead><tr><th></th><th>Peça</th><th>Què és</th></tr></thead>
+          <tbody><tr><td><span class="b">1</span></td><th scope="row">Marc</th><td>Llistó d'avet 18×69, 4 peces a 45°</td></tr><tr><td><span class="b">2</span></td><th scope="row">Llavi</th><td>Llistó 17×17 encolat per dins, arran del davant</td></tr><tr><td><span class="b">3</span></td><th scope="row">Cinta EPDM</th><td>2 mm, enganxada al llavi; el vidre s'hi recolza</td></tr><tr><td><span class="b">4</span></td><th scope="row">Vidre</th><td>1200×900×6, amb 3 mm lliures a cada costat</td></tr><tr><td><span class="b">5</span></td><th scope="row">Calços de suport</th><td>2 de goma dura de 3 mm, a ¼ i ¾ de l'amplada</td></tr><tr><td><span class="b">6</span></td><th scope="row">Reforç inferior</th><td>Contraxapat de 15, 1200×83, dret darrere del vidre</td></tr><tr><td><span class="b">7</span></td><th scope="row">Junquillos</th><td>Llistó 17×17 a dalt i als dos costats</td></tr><tr><td><span class="b">8</span></td><th scope="row">Màscara</th><td>Cartó ploma negre de 5 mm, 1170×805</td></tr><tr><td><span class="b">9</span></td><th scope="row">Tauler posterior</th><td>Contraxapat de 9, 1204×904, amb finestra per al monitor</td></tr><tr><td><span class="b">10</span></td><th scope="row">Llistons interiors</th><td>Llistó 17×17: 2 de 1120 i 2 de 820</td></tr><tr><td><span class="b">11</span></td><th scope="row">Separador de penjar</th><td>Llistó 18×69 de 900 mm</td></tr><tr><td><span class="b">12</span></td><th scope="row">Llistó a 45° del mirall</th><td>Contraxapat de 15, 900 mm</td></tr><tr><td><span class="b">13</span></td><th scope="row">Llistó a 45° de la paret</th><td>L'altra meitat del mateix tall</td></tr><tr><td><span class="b">14</span></td><th scope="row">Paret</th><td>Pladur amb muntants (per confirmar)</td></tr><tr><td><span class="b">15</span></td><th scope="row">Escuma adhesiva</th><td>15 mm, al tauler: prem la màscara contra el vidre</td></tr><tr><td><span class="b">16</span></td><th scope="row">Feltre</th><td>1 mm on la fusta toca el vidre; coixí de 2 mm darrere el reforç</td></tr><tr><td><span class="b">17</span></td><th scope="row">Escaires d'acer</th><td>40×40×15, un a cada cantonada, per darrere</td></tr><tr><td><span class="b">18</span></td><th scope="row">Platines VESA</th><td>Alumini 30×2, 2 de 320 mm</td></tr><tr><td><span class="b">19</span></td><th scope="row">Monitor</th><td>Passa per la finestra del tauler; el seu marc, amb feltre, toca el vidre</td></tr><tr><td><span class="b">20</span></td><th scope="row">Tacs separadors</th><td>2 de 33 mm a baix, perquè el mirall quedi pla a la paret</td></tr><tr><td><span class="b">21</span></td><th scope="row">Ranura de la cinta de la càmera</th><td>20×4 mm al tauler posterior, centrada d'esquerra a dreta, a 509 mm de la vora de baix del tauler (dos forats de Ø 4 units)</td></tr><tr><td><span class="b">22</span></td><th scope="row">Raspberry Pi 5</th><td>Sobre separadors de llautó M2.5, a la cara del darrere del tauler, al centre</td></tr><tr><td><span class="b">23</span></td><th scope="row">Càmera</th><td>A la cara del davant del tauler, just sobre el monitor; mira per un forat de Ø 20 mm a la màscara</td></tr></tbody>
+        </table></div>
       </div>
+    </div>
+  </div>
+</div>
     </div>
 
     <div class="diagram-card wiring-wrap">
@@ -1653,9 +2238,9 @@
   <text x="46" y="168" fill="var(--svg-muted)" font-size="10">Cable fix 1.2 m → ≈1.0 m fins a la Pi 5 centrada</text>
 
   <rect x="34" y="190" width="244" height="80" rx="7" fill="var(--svg-amber-fill)" stroke="var(--svg-amber)" stroke-width="1.3"/>
-  <text x="46" y="210" fill="var(--svg-amber-ink)" font-size="11.8" font-weight="700">3. Font LED 5V 6A (30W) + fusible 5A</text>
-  <text x="46" y="227" fill="var(--svg-ink-2)" font-size="10">Cable 2×1.5 mm² amunt + fusible 5 A en línia</text>
-  <text x="46" y="243" fill="var(--svg-ink-2)" font-size="10">Alimenta ESP32, 74AHCT125 i ELS DOS extrems</text>
+  <text x="46" y="210" fill="var(--svg-amber-ink)" font-size="11.8" font-weight="700">3. Font LED 5V 8A (Tesfish, comprada)</text>
+  <text x="46" y="227" fill="var(--svg-ink-2)" font-size="10">Cable 2×1.5 mm² amunt (encara per comprar)</text>
+  <text x="46" y="243" fill="var(--svg-ink-2)" font-size="10">Alimenta el controlador i ELS DOS extrems</text>
   <text x="46" y="259" fill="var(--svg-muted)" font-size="9.5">Repartit amb connectors de palanca Wago 221-413</text>
 
   <!-- Slim White Wall Channel -->
@@ -1687,23 +2272,23 @@
 
   <!-- Sensors -->
   <rect x="652" y="56" width="316" height="36" rx="7" fill="var(--svg-cyan-fill)" stroke="var(--svg-cyan)"/>
-  <text x="664" y="78" fill="var(--svg-ink)" font-size="10.6"><tspan font-weight="700" fill="var(--svg-cyan)">Pi Cam 3 Wide</tspan> · CSI Pi 5 de 500 mm (carcassa per definir)</text>
+  <text x="664" y="78" fill="var(--svg-ink)" font-size="10.6"><tspan font-weight="700" fill="var(--svg-cyan)">Pi Cam 3 Wide</tspan> · cinta de 500 mm per la ranura del tauler</text>
 
   <rect x="652" y="100" width="316" height="36" rx="7" fill="var(--svg-violet-fill)" stroke="var(--svg-violet)"/>
-  <text x="664" y="122" fill="var(--svg-ink)" font-size="10.6"><tspan font-weight="700" fill="var(--svg-violet)">HLK-LD2410C</tspan> · cable 1.5 m · prova amb vidre / sota travesser</text>
+  <text x="664" y="122" fill="var(--svg-ink)" font-size="10.6"><tspan font-weight="700" fill="var(--svg-violet)">HLK-LD2410C</tspan> (1 + recanvi) · prova amb vidre / sota travesser</text>
 
   <rect x="652" y="144" width="316" height="36" rx="7" fill="var(--svg-sage-fill)" stroke="var(--svg-sage)"/>
-  <text x="664" y="166" fill="var(--svg-ink)" font-size="10.6"><tspan font-weight="700" fill="var(--svg-sage)">Micròfon USB de barreta</tspan> · + allargador USB 1 m per sota</text>
+  <text x="664" y="166" fill="var(--svg-ink)" font-size="10.6"><tspan font-weight="700" fill="var(--svg-sage)">Micròfon USB SunFounder</tspan> · + allargador USB 1 m per sota</text>
 
   <!-- ESP32 WLED + SK6812 Strip -->
   <rect x="438" y="202" width="182" height="68" rx="7" fill="var(--svg-amber-fill)" stroke="var(--svg-amber)" stroke-width="1.3"/>
-  <text x="529" y="222" fill="var(--svg-amber-ink)" font-size="11.8" font-weight="700" text-anchor="middle">ESP32 + 74AHCT125</text>
-  <text x="529" y="238" fill="var(--svg-ink-2)" font-size="9.8" text-anchor="middle">WLED · convertidor de nivell 3.3→5 V</text>
+  <text x="529" y="222" fill="var(--svg-amber-ink)" font-size="11.8" font-weight="700" text-anchor="middle">Controlador GLEDOPTO (ESP32)</text>
+  <text x="529" y="238" fill="var(--svg-ink-2)" font-size="9.8" text-anchor="middle">WLED gravat · conv. nivell integrat</text>
   <text x="529" y="254" fill="var(--svg-muted)" font-size="9.5" text-anchor="middle" font-family="var(--mono)">límit 4000 mA · Wi-Fi JSON</text>
 
   <rect x="652" y="202" width="316" height="68" rx="7" fill="var(--svg-amber-fill)" stroke="var(--svg-amber)" stroke-width="1.6"/>
   <text x="810" y="222" fill="var(--svg-amber-ink)" font-size="11.6" font-weight="700" text-anchor="middle">SK6812 RGBW 3000K (~4.16 m · halo per definir)</text>
-  <text x="810" y="238" fill="var(--svg-ink-2)" font-size="9.8" text-anchor="middle">~250 LED · 330 Ω dades · condensador 1000 µF · fusible 5 A</text>
+  <text x="810" y="238" fill="var(--svg-ink-2)" font-size="9.8" text-anchor="middle">~250 LED · dades des del controlador (cable de menys de 30 cm)</text>
   <text x="810" y="255" fill="var(--svg-amber-ink)" font-size="9.5" font-weight="600" text-anchor="middle">Alimentació pels DOS extrems (repartida amb Wago 221)</text>
 
   <!-- Smooth connections inside mirror -->
@@ -1928,10 +2513,10 @@
           <span class="chk-box" aria-hidden="true"></span>
           <div class="shop-body">
             <div class="shop-top">
-              <span class="shop-name">Raspberry Pi 5 + Active Cooler + font oficial USB-C de 27W + microSD 64 GB</span>
+              <span class="shop-name">Raspberry Pi 5 (4 GB) + Active Cooler + font oficial USB-C de 27W + microSD 64 GB</span>
               <span class="shop-qty mono">1 joc (≈ €130–180)</span>
             </div>
-            <div class="shop-note">Tiendatec / Kubii / Amazon.es (1–3 dies). La font oficial de 27 W té un cable fix d&#x27;1.2 m (~1.0 m de recorregut des de la regleta a 90 cm fins a la Pi 5 centrada).</div>
+            <div class="shop-note">Pi, font i Active Cooler ja comprats (RaspiPC). FALTA la microSD: la de 16 GB que teniu és justa i vella, compreu-ne una de 64 GB nova (≈ €12–16). La font oficial de 27 W té un cable fix d&#x27;1.2 m (~1.0 m de recorregut des de la regleta a 90 cm fins a la Pi 5 centrada).</div>
           </div>
         </label>
         <label class="shop-item" data-store="online" data-item-id="item_2">
@@ -1942,7 +2527,7 @@
               <span class="shop-name">Pi Camera Module 3 Wide + cable CSI per a Pi 5 de 500 mm (22→15 pins)</span>
               <span class="shop-qty mono">1 joc (≈ €45)</span>
             </div>
-            <div class="shop-note">Tiendatec / Kubii (1–3 dies). La càmera ara va just sobre el monitor, a 177 cm de terra (a la posició d&#x27;abans, 15,5 cm més amunt, tallava la cara de qui es posa davant del piano), així que al cable de 500 mm li sobra llargada: plegueu-lo pla. Comproveu que és el cable de CÀMERA, no el de pantalla. Redissenyeu l&#x27;STL 02 quan tingueu la càmera a mà.</div>
+            <div class="shop-note">Ja comprada (Tiendatec). La càmera ara va just sobre el monitor, a 177 cm de terra (a la posició d&#x27;abans, 15,5 cm més amunt, tallava la cara de qui es posa davant del piano), així que al cable de 500 mm li sobra llargada: plegueu-lo pla. Comproveu que és el cable de CÀMERA, no el de pantalla. Redissenyeu l&#x27;STL 02 quan tingueu la càmera a mà.</div>
           </div>
         </label>
         <label class="shop-item" data-store="online" data-item-id="item_3">
@@ -1953,7 +2538,7 @@
               <span class="shop-name">Kit de separadors de llautó M2.5 (per muntar la Pi 5 a l&#x27;aire)</span>
               <span class="shop-qty mono">1 kit (≈ €16)</span>
             </div>
-            <div class="shop-note">Amazon.es (separadors hexagonals M2.5 mascle-femella amb cargols i femelles, ≈ €15.79 vist el 26 nov.) — es cargolen directament als forats guia de Ø 2 mm del tauler posterior de 9 mm (refrigeració a l&#x27;aire, evita que el PLA s&#x27;estovi darrere el monitor calent).</div>
+            <div class="shop-note">Ja comprats (separadors Pimoroni, Tiendatec): comproveu que són M2.5 mascle-femella. Es cargolen directament als forats guia de Ø 2 mm del tauler posterior de 9 mm (refrigeració a l&#x27;aire, evita que el PLA s&#x27;estovi darrere el monitor calent).</div>
           </div>
         </label>
         <label class="shop-item" data-store="online" data-item-id="item_4">
@@ -1964,7 +2549,7 @@
               <span class="shop-name">Tira LED SK6812 RGBW — blanc càlid 3000K, 5 V, 60 LED/m, IP30, 5 m</span>
               <span class="shop-qty mono">1 rotlle (≈ €25–30)</span>
             </div>
-            <div class="shop-note">Amazon.es (1–2 dies). Blanc càlid 3000K dedicat + animacions RGB (en calen ~4.16 m; la posició final de la tira es decideix després de la prova amb la tira encesa).</div>
+            <div class="shop-note">Ja comprada (Amazon). Blanc càlid 3000K dedicat + animacions RGB (en calen ~4.16 m; la posició final de la tira es decideix després de la prova amb la tira encesa).</div>
           </div>
         </label>
         <label class="shop-item" data-store="online" data-item-id="item_5">
@@ -1972,10 +2557,10 @@
           <span class="chk-box" aria-hidden="true"></span>
           <div class="shop-body">
             <div class="shop-top">
-              <span class="shop-name">Font d&#x27;alimentació DC de 5 V 6 A (30 W) + adaptador de connector DC amb borns de cargol</span>
+              <span class="shop-name">Font d&#x27;alimentació DC de 5 V 8 A (Tesfish) + 3 parells de connectors DC 5,5 × 2,1 amb borns de cargol</span>
               <span class="shop-qty mono">1 joc (≈ €15)</span>
             </div>
-            <div class="shop-note">Amazon.es (1–2 dies). Va a la regleta a 90 cm darrere el piano; alimenta ESP32 + 74AHCT125 + tots dos extrems de la tira SK6812.</div>
+            <div class="shop-note">Ja comprats (Amazon). La font va a la regleta a 90 cm darrere el piano; alimenta el controlador GLEDOPTO i tots dos extrems de la tira SK6812. Els connectors DC de 5,5 × 2,1 aguanten uns 5 A: per això el límit del WLED es queda a 4000 mA, encara que la font en doni 8.</div>
           </div>
         </label>
         <label class="shop-item" data-store="online" data-item-id="item_6">
@@ -1983,10 +2568,10 @@
           <span class="chk-box" aria-hidden="true"></span>
           <div class="shop-body">
             <div class="shop-top">
-              <span class="shop-name">ESP32 DevKitC USB-C + convertidor de nivell 74AHCT125 + fusible de 5 A amb portafusibles + resistència de 330 Ω + condensador de 1000 µF</span>
-              <span class="shop-qty mono">1 joc (≈ €20)</span>
+              <span class="shop-name">Controlador GLEDOPTO ESP32 WLED (substitueix l&#x27;ESP32 DevKitC + 74AHCT125 + resistència + condensador del pla original)</span>
+              <span class="shop-qty mono">1 u. (≈ €20)</span>
             </div>
-            <div class="shop-note">Amazon.es / botiga d&#x27;electrònica (1–2 dies). Fa anar el WLED (conversió de les dades 3.3→5 V, protecció de 5 A en línia, límit de 4000 mA per programari).</div>
+            <div class="shop-note">Ja comprat (Amazon). Ve amb el WLED gravat i, segons el fabricant, amb el convertidor de nivell integrat: no cal soldar res. Mireu el model a l&#x27;etiqueta (GL-C-…) i si porta fusible; si no en porta, afegiu-ne un de 5 A en línia. El convertidor de nivell a part (74AHCT125) només cal si la tira parpelleja.</div>
           </div>
         </label>
         <label class="shop-item" data-store="online" data-item-id="item_7">
@@ -1994,10 +2579,10 @@
           <span class="chk-box" aria-hidden="true"></span>
           <div class="shop-body">
             <div class="shop-top">
-              <span class="shop-name">Radar mmWave HLK-LD2410C de 24 GHz + cable de 4 fils d&#x27;1.5 m</span>
-              <span class="shop-qty mono">1 joc (≈ €10)</span>
+              <span class="shop-name">Radar mmWave HLK-LD2410C de 24 GHz (2 u.: un de recanvi) + cable de 4 fils d&#x27;1.5 m</span>
+              <span class="shop-qty mono">2 u. (≈ €10)</span>
             </div>
-            <div class="shop-note">Amazon.es (1–2 dies). Primer feu la prova a la taula contra el vostre vidre real; si el recobriment del mirall bloqueja els 24 GHz, munteu-lo sota el travesser inferior.</div>
+            <div class="shop-note">Ja comprats (Amazon). Primer feu la prova a la taula contra el vostre vidre real; si el recobriment del mirall bloqueja els 24 GHz, munteu-lo sota el travesser inferior.</div>
           </div>
         </label>
         <label class="shop-item" data-store="online" data-item-id="item_8">
@@ -2005,10 +2590,10 @@
           <span class="chk-box" aria-hidden="true"></span>
           <div class="shop-body">
             <div class="shop-top">
-              <span class="shop-name">Micròfon USB mini de barreta (tipo pincho) + allargador USB d&#x27;1 m</span>
+              <span class="shop-name">Micròfon USB mini SunFounder + allargador USB d&#x27;1 m</span>
               <span class="shop-qty mono">1 joc (≈ €10)</span>
             </div>
-            <div class="shop-note">Amazon.es (1–2 dies). Perfil prim de barreta (els micròfons de tipus disc són massa gruixuts per a l&#x27;espai del darrere / de sota); queda ben amagat sota el travesser inferior: enganxeu-lo a la vora del DAVANT de la cara de sota. És un micròfon bàsic, sense tractament de soroll ni d&#x27;eco: proveu-lo a 1 m i a 3 m, amb música i sense, abans de tancar-ho tot. Si es queda curt, una matriu USB ReSpeaker Lite o XVF3800 es connecta al mateix allargador.</div>
+            <div class="shop-note">Ja comprats (Amazon). Perfil prim de barreta (els micròfons de tipus disc són massa gruixuts per a l&#x27;espai del darrere / de sota); queda ben amagat sota el travesser inferior: enganxeu-lo a la vora del DAVANT de la cara de sota. És un micròfon bàsic, sense tractament de soroll ni d&#x27;eco: proveu-lo a 1 m i a 3 m, amb música i sense, abans de tancar-ho tot. Si es queda curt, una matriu USB ReSpeaker Lite o XVF3800 es connecta al mateix allargador.</div>
           </div>
         </label>
         <label class="shop-item" data-store="online" data-item-id="item_9">
@@ -2019,7 +2604,7 @@
               <span class="shop-name">Cable micro-HDMI a HDMI en angle de 90°</span>
               <span class="shop-qty mono">1 u. (≈ €10)</span>
             </div>
-            <div class="shop-note">Amazon.es (1–2 dies). Feu servir un cable en angle i no un adaptador rígid. Mesureu el connector DC real del monitor abans de comprar cap adaptador DC en angle.</div>
+            <div class="shop-note">ENCARA PER COMPRAR (Amazon.es, 1–2 dies). Feu servir un cable en angle i no un adaptador rígid. Mesureu el connector DC real del monitor abans de comprar cap adaptador DC en angle.</div>
           </div>
         </label>
         <label class="shop-item" data-store="online" data-item-id="item_10">
@@ -2407,7 +2992,7 @@
           <li>Trepant i broques (taladro y brocas) — cargols de muntatge i tacs de pladur</li>
           <li>Nivell i imant / detector de muntants — anivellar el llistó de paret i trobar els muntants del pladur</li>
           <li>Cúter i regle d'acer (cúter y regla metálica) — tallar la màscara de cartró ploma i la finestra de la cartolina negra</li>
-          <li>Soldador, multímetre i cables Dupont — resistència/condensador/74AHCT125/fusible dels LED i radar</li>
+          <li>Tornavís petit, multímetre i cables Dupont — borns del controlador dels LED i radar (soldador només si cal empalmar la tira)</li>
           <li>Manta neta, guants i 2× ventoses per a vidre — manipular el vidre amb seguretat entre 2 persones</li>
           <li>Teclat i ratolí — configuració inicial de la Raspberry Pi 5</li>
           <li>Impressora 3D amb filament PLA (Albert) — STL 01 ara, 03 més tard, 07 opcional</li>
@@ -2538,7 +3123,7 @@
                 <h4>Feu la prova en sec amb una plantilla de 1200 × 900 mm, feu tots els forats previs, pinteu amb esprai i prepareu el transport</h4>
                 <div class="step-badges"><span class='sbadge sbadge-sage'>Prova en sec abans de marxar</span><span class='sbadge sbadge-neutral'>Exterior 124.2 × 94.2 × 6.9 cm</span></div>
               </div>
-              <ul class="step-bullets"><li>Poseu una plantilla de cartró o MDF de 1200 × 900 mm dins l&#x27;obertura del marc, suplementada a tot el voltant fins a 8 mm de gruix total (6 mm de vidre + 2 mm d&#x27;EPDM) més 1 mm de marge per al feltre. Confirmeu 3 mm de folgança a tot el voltant i diagonals iguals (≈ 1508 mm interior).</li><li>Poseu el llistó inferior de 15 mm darrere la plantilla i feu els forats previs per als 6× 4×40 mm, drets cap amunt a través del travesser inferior fins al centre del cantell del contraxapat de 15 mm (forat guia de Ø 2.5 mm al contraxapat perquè no s&#x27;esberli; avellaneu els caps). SENSE cola — només cargols, i es posen a casa després del vidre.</li><li>Assenteu el conjunt del tauler posterior darrere la plantilla + llistó inferior i feu de costat tots els forats previs dels 22× 3.5×30 mm, des dels llistons interiors cap al marc d&#x27;avet de 18 mm (forat passant de Ø 4 mm als llistons, forat guia de Ø 2 mm al marc). SENSE cola — aquesta és la unió desmuntable! (NO intenteu cargolar el tauler posterior directament al marc de davant a darrere.)</li><li>Feu també: els 4 forats de les platines VESA (Ø 4.5 mm) a la franja de 45 mm de sobre la finestra del monitor del tauler posterior, i passeu-hi els 4 cargols M4×20 des del DAVANT del tauler posterior (enganxeu els caps amb cinta perquè no surtin: un cop tancat el tauler posterior, al davant ja no s&#x27;hi arriba), 4× forats guia de Ø 2 mm al centre del tauler posterior (z = 560–616 mm) per als separadors de llautó M2.5 de la Pi 5 (amb l&#x27;STL 07 opcional com a plantilla), la ranura per a la cinta de la càmera al tauler posterior (20 × 4 mm, centrada d&#x27;esquerra a dreta a z = 528 mm, entre les dues platines VESA i just sota els forats de la Pi 5: dos forats de Ø 4 mm units amb la serra de calar o una llima), i el forat del cargol del segur antiaixecament sota el travesser inferior.</li><li>Acabat i assecat: pinteu amb esprai negre mat la cavitat interior, el llistó inferior, els junquillos i la cara del davant del tauler posterior (2 capes fines, assecat ~1–2 h). L&#x27;avet exterior no necessita acabat; si hi feu 1 capa opcional de vernís a l&#x27;aigua incolor mat, espereu ≥4–6 h (idealment tota la nit) abans de posar el marc de cara avall sobre una manta a casa.</li><li>Transport cap a casa: la mida exterior és 124.2 × 94.2 × 6.9 cm — comproveu el maleter / els seients del cotxe. Viatgeu amb el tauler posterior cargolat (com a mínim 6–8 dels cargols de costat de 3.5×30) perquè el marc es mantingui ben a escaire durant el trajecte.</li></ul>
+              <ul class="step-bullets"><li>Poseu una plantilla de cartró o MDF de 1200 × 900 mm dins l&#x27;obertura del marc, suplementada a tot el voltant fins a 8 mm de gruix total (6 mm de vidre + 2 mm d&#x27;EPDM) més 1 mm de marge per al feltre. Confirmeu 3 mm de folgança a tot el voltant i diagonals iguals (≈ 1508 mm interior).</li><li>Poseu el llistó inferior de 15 mm darrere la plantilla i feu els forats previs per als 6× 4×40 mm, drets cap amunt a través del travesser inferior fins al centre del cantell del contraxapat de 15 mm (forat guia de Ø 2.5 mm al contraxapat perquè no s&#x27;esberli; avellaneu els caps). SENSE cola — només cargols, i es posen a casa després del vidre.</li><li>Assenteu el conjunt del tauler posterior darrere la plantilla + llistó inferior i feu de costat tots els forats previs dels 22× 3.5×30 mm, des dels llistons interiors cap al marc d&#x27;avet de 18 mm (forat passant de Ø 4 mm als llistons, forat guia de Ø 2 mm al marc). SENSE cola — aquesta és la unió desmuntable! (NO intenteu cargolar el tauler posterior directament al marc de davant a darrere.)</li><li>Feu també: els 4 forats de les platines VESA (Ø 4.5 mm) a la franja de 45 mm de sobre la finestra del monitor del tauler posterior, i passeu-hi els 4 cargols M4×20 des del DAVANT del tauler posterior (enganxeu els caps amb cinta perquè no surtin: un cop tancat el tauler posterior, al davant ja no s&#x27;hi arriba), 4× forats guia de Ø 2 mm al centre del tauler posterior (z = 560–616 mm) per als separadors de llautó M2.5 de la Pi 5 (amb l&#x27;STL 07 opcional com a plantilla), la ranura per a la cinta de la càmera al tauler posterior (20 × 4 mm, centrada d&#x27;esquerra a dreta i 49 mm per sobre de la vora de dalt de la finestra del monitor, entre les dues platines VESA i just sota els forats de la Pi 5: dos forats de Ø 4 mm units amb la serra de calar o una llima; vegeu el detall de la ranura al plànol d&#x27;unions), i el forat del cargol del segur antiaixecament sota el travesser inferior.</li><li>Acabat i assecat: pinteu amb esprai negre mat la cavitat interior, el llistó inferior, els junquillos i la cara del davant del tauler posterior (2 capes fines, assecat ~1–2 h). L&#x27;avet exterior no necessita acabat; si hi feu 1 capa opcional de vernís a l&#x27;aigua incolor mat, espereu ≥4–6 h (idealment tota la nit) abans de posar el marc de cara avall sobre una manta a casa.</li><li>Transport cap a casa: la mida exterior és 124.2 × 94.2 × 6.9 cm — comproveu el maleter / els seients del cotxe. Viatgeu amb el tauler posterior cargolat (com a mínim 6–8 dels cargols de costat de 3.5×30) perquè el marc es mantingui ben a escaire durant el trajecte.</li></ul>
               
             </div>
           </article></div>
@@ -2562,7 +3147,7 @@
                 <h4>Prova a la taula del monitor, del radar contra el vidre real i de la tira LED amb WLED</h4>
                 <div class="step-badges"><span class='sbadge sbadge-cyan'>Primer les proves a la taula</span><span class='sbadge sbadge-warn'>Poseu el límit del WLED a 4000 mA</span></div>
               </div>
-              <ul class="step-bullets"><li>Comprovació del monitor (ja el teniu): verifiqueu que és el Philips 27E2N1100L/00 (614 × 363 × 32 mm, àrea encesa 598 × 336 mm), proveu el cable micro-HDMI a 90°, mesureu el connector DC real abans de comprar un adaptador DC en angle, tapeu el logotip / LED d&#x27;encesa amb cinta negra i comproveu ddcutil / l&#x27;encesa automàtica.</li><li>Prova a la taula del radar (H3): connecteu l&#x27;HLK-LD2410C amb el seu cable de 4 fils d&#x27;1.5 m i proveu la detecció de presència sobre una taula, just darrere el vostre vidre real de 1200 × 900 × 6 mm. Si detecta bé a través del recobriment del mirall, munteu-lo a l&#x27;STL 03 dins la cavitat, a l&#x27;esquerra del monitor; si el recobriment bloqueja els 24 GHz, munteu-lo sota el travesser inferior.</li><li>Configuració del WLED i prova de l&#x27;halo (L1): connecteu l&#x27;ESP32 per USB-C → Chrome → install.wled.me → graveu-hi el WLED. Poseu-hi el tipus de tira SK6812 RGBW (Warm White), el nombre de LED (~250 per a ~4.16 m — ajusteu-lo a la tira retallada) i Maximum Current = 4000 mA. Cablejat: GPIO de l&#x27;ESP32 → 74AHCT125 (3.3→5 V) → resistència de 330 Ω → Data-In; condensador de 1000 µF entre 5 V/GND; fusible de 5 A + portafusibles a l&#x27;alimentació de 5 V; injecteu 5 V + GND pels DOS extrems amb connectors de palanca Wago 221-413. Aguanteu la tira encesa darrere el marc contra la paret per decidir la posició final dels LED (cara del darrere dels llistons interiors o clips al tauler posterior).</li></ul>
+              <ul class="step-bullets"><li>Comprovació del monitor (ja el teniu): verifiqueu que és el Philips 27E2N1100L/00 (614 × 363 × 32 mm, àrea encesa 598 × 336 mm), proveu el cable micro-HDMI a 90°, mesureu el connector DC real abans de comprar un adaptador DC en angle, tapeu el logotip / LED d&#x27;encesa amb cinta negra i comproveu ddcutil / l&#x27;encesa automàtica.</li><li>Prova a la taula del radar (H3): connecteu l&#x27;HLK-LD2410C amb el seu cable de 4 fils d&#x27;1.5 m i proveu la detecció de presència sobre una taula, just darrere el vostre vidre real de 1200 × 900 × 6 mm. Si detecta bé a través del recobriment del mirall, munteu-lo a l&#x27;STL 03 dins la cavitat, a l&#x27;esquerra del monitor; si el recobriment bloqueja els 24 GHz, munteu-lo sota el travesser inferior.</li><li>Configuració del WLED i prova de l&#x27;halo (L1): el controlador GLEDOPTO ja porta el WLED gravat: alimenteu-lo amb la font de 5 V, connecteu-vos al seu Wi-Fi «WLED-AP» (contrasenya wled1234) i poseu-lo a la xarxa de casa. Poseu-hi el tipus de tira SK6812 RGBW (Warm White), el nombre de LED (~250 per a ~4.16 m — ajusteu-lo a la tira retallada) i Maximum Current = 4000 mA. Cablejat, sense soldar: 5 V i GND de la font als borns d&#x27;entrada del controlador; sortida del controlador (V+, DATA, GND) al principi de la tira amb menys de 30 cm de cable; injecteu 5 V + GND també a l&#x27;altre extrem, directament des de la font, amb connectors de palanca Wago 221-413. El convertidor de nivell ja va dins el controlador (si la tira parpelleja, llavors sí que cal un 74AHCT125 a part). Aguanteu la tira encesa darrere el marc contra la paret per decidir la posició final dels LED (cara del darrere dels llistons interiors o clips al tauler posterior).</li></ul>
               
           <div class="step-code-wrap">
             <div class="step-code-head">
@@ -2604,7 +3189,7 @@ curl -X POST http://mirror-led.local/json/state -d &#x27;{&quot;on&quot;:false,&
                 <h4>Tanqueu el tauler posterior i munteu el monitor, la Pi 5 centrada i els sensors</h4>
                 <div class="step-badges"><span class='sbadge sbadge-sage'>Només cargols (desmuntable)</span><span class='sbadge sbadge-oak'>Separadors VESA de 2 mm</span></div>
               </div>
-              <ul class="step-bullets"><li>Enganxeu feltre adhesiu negre d&#x27;1 mm a les cares del davant dels junquillos de 17 × 17 mm (ja cargolats a la cara del davant del tauler posterior) i enganxeu tires d&#x27;escuma adhesiva negra de 15 mm (substitueix l&#x27;STL 04) al voltant de la cara del davant del tauler posterior, per dins dels junquillos, perquè aguantin plana la màscara de cartró ploma de 5 mm.</li><li>Baixeu el conjunt del tauler posterior amb suavitat sobre el vidre + llistó inferior i colleu de costat tots els 22× cargols de 3.5×30 mm, des dels llistons interiors cap al marc d&#x27;avet de 18 mm (SENSE cola — ajustats sense forçar el vidre). Després tapeu amb cinta americana negra les dues petites obertures que queden a les cantonades de dalt del darrere, on les cantonades del tauler posterior estan matades, perquè la llum dels LED no es pugui colar darrere el vidre.</li><li>Folreu la vora del monitor Philips amb feltre negre d&#x27;1 mm, encaixeu-lo a la finestra de 644 × 378 mm del tauler posterior i cargoleu les dues platines VESA d&#x27;alumini de 320 mm al monitor (4× M4×10 + volanderes) i al tauler posterior (enfileu les platines als 4 cargols M4×20 que ja surten del tauler posterior i poseu les femelles des del darrere), amb separadors de 2 mm entre cada platina i el tauler posterior perquè en collar no s&#x27;empenyi el monitor contra el vidre. Deixeu una escletxa d&#x27;1 mm de folgança sota el monitor, per sobre del llistó inferior (calceu 1 mm mentre colleu les platines; darrere el vidre, la cartolina negra / el feltre la tanquen contra les fuites de llum).</li><li>Cargoleu els separadors de llautó M2.5 als 4 forats guia de Ø 2 mm ja fets al centre del tauler posterior (refrigeració a l&#x27;aire) i munteu-hi la Pi 5 + Active Cooler. Munteu l&#x27;ESP32 + el cablejat del 74AHCT125 / fusible, passeu el cable de càmera de la Pi 5 per la ranura de just sota la càmera i plegueu pla el tros que sobri (instal·leu la Pi Cam 3 quan l&#x27;STL 02 estigui redissenyat; fixeu-ne l&#x27;enfocament per programari perquè no busqui focus al vidre), tapeu la ranura amb cinta negra, munteu el radar (a la cavitat o sota el travesser inferior, segons la prova a la taula del Pas 06) i el micròfon USB de barreta + allargador d&#x27;1 m sota el travesser inferior.</li><li>Enganxeu coixinets prims de feltre per a la paret a la cara del darrere dels dos tacs separadors de fusta de baix, de 33 mm.</li></ul>
+              <ul class="step-bullets"><li>Enganxeu feltre adhesiu negre d&#x27;1 mm a les cares del davant dels junquillos de 17 × 17 mm (ja cargolats a la cara del davant del tauler posterior) i enganxeu tires d&#x27;escuma adhesiva negra de 15 mm (substitueix l&#x27;STL 04) al voltant de la cara del davant del tauler posterior, per dins dels junquillos, perquè aguantin plana la màscara de cartró ploma de 5 mm.</li><li>Baixeu el conjunt del tauler posterior amb suavitat sobre el vidre + llistó inferior i colleu de costat tots els 22× cargols de 3.5×30 mm, des dels llistons interiors cap al marc d&#x27;avet de 18 mm (SENSE cola — ajustats sense forçar el vidre). Després tapeu amb cinta americana negra les dues petites obertures que queden a les cantonades de dalt del darrere, on les cantonades del tauler posterior estan matades, perquè la llum dels LED no es pugui colar darrere el vidre.</li><li>Folreu la vora del monitor Philips amb feltre negre d&#x27;1 mm, encaixeu-lo a la finestra de 644 × 378 mm del tauler posterior i cargoleu les dues platines VESA d&#x27;alumini de 320 mm al monitor (4× M4×10 + volanderes) i al tauler posterior (enfileu les platines als 4 cargols M4×20 que ja surten del tauler posterior i poseu les femelles des del darrere), amb separadors de 2 mm entre cada platina i el tauler posterior perquè en collar no s&#x27;empenyi el monitor contra el vidre. Deixeu una escletxa d&#x27;1 mm de folgança sota el monitor, per sobre del llistó inferior (calceu 1 mm mentre colleu les platines; darrere el vidre, la cartolina negra / el feltre la tanquen contra les fuites de llum).</li><li>Cargoleu els separadors de llautó M2.5 als 4 forats guia de Ø 2 mm ja fets al centre del tauler posterior (refrigeració a l&#x27;aire) i munteu-hi la Pi 5 + Active Cooler. Munteu el controlador GLEDOPTO dels LED, passeu el cable de càmera de la Pi 5 per la ranura de just sota la càmera i plegueu pla el tros que sobri (instal·leu la Pi Cam 3 quan l&#x27;STL 02 estigui redissenyat; fixeu-ne l&#x27;enfocament per programari perquè no busqui focus al vidre), tapeu la ranura amb cinta negra, munteu el radar (a la cavitat o sota el travesser inferior, segons la prova a la taula del Pas 06) i el micròfon USB de barreta + allargador d&#x27;1 m sota el travesser inferior.</li><li>Enganxeu coixinets prims de feltre per a la paret a la cara del darrere dels dos tacs separadors de fusta de baix, de 33 mm.</li></ul>
               
             </div>
           </article>
