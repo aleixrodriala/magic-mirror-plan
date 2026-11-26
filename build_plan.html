@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Magic Mirror Build Plan — 22×60 mm Oak · Bottom-Center · Drywall</title>
+<title>Magic Mirror Final Build Plan — Oak + Reactive LED Halo + Zero-Hole Sensors</title>
 <style>
   :root {
     --bg: #0e1014; --panel: #161921; --panel2: #1e232e; --ink: #eef1f6;
-    --muted: #9aa4b5; --line: #2a3140; --accent: #e5a94c; --green: #45c486;
+    --muted: #9aa4b5; --line: #2a3140; --accent: #e5a94c; --green: #45c486; --blue: #5b9bff;
   }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--ink); font: 400 15px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
@@ -26,50 +26,78 @@
   .nav a.active { background: var(--green); color: #08150e; border-color: var(--green); font-weight: 700; }
   .nav a:hover:not(.active), .nav button:hover { border-color: var(--accent); }
 
-  main { max-width: 1240px; margin: 0 auto; padding: 26px 24px 72px; display: grid; gap: 40px; }
+  main { max-width: 1260px; margin: 0 auto; padding: 26px 24px 72px; display: grid; gap: 42px; }
   h2 { margin: 0 0 14px; font-size: 20px; padding-bottom: 8px; border-bottom: 1px solid var(--line); display: flex; align-items: baseline; gap: 10px; }
   h2 .ref { color: var(--accent); font-family: ui-monospace, monospace; font-size: 14px; }
-
-  .hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.15fr); gap: 22px; align-items: stretch; }
-  .hero-photo { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
-  .hero-photo img { width: 100%; height: auto; border-radius: 8px; display: block; }
-  .hero-photo .cap { color: var(--muted); font-size: 13px; }
-  .hero-3d { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
-  #canvas3d { width: 100%; flex: 1; min-height: 430px; display: block; cursor: grab; }
-  #canvas3d:active { cursor: grabbing; }
-  .bar3d { padding: 10px 14px; background: var(--panel2); border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; font-size: 13px; }
-  .bar3d input[type=range] { flex: 1; min-width: 130px; accent-color: var(--accent); }
-  .cbtn { background: var(--panel); color: var(--ink); border: 1px solid var(--line); padding: 5px 9px; border-radius: 6px; cursor: pointer; font-size: 12px; }
-  .cbtn:hover { border-color: var(--accent); }
+  h3 { margin: 0 0 8px; font-size: 16px; color: var(--accent); }
 
   .specs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
   .spec { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
   .spec dt { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
-  .spec dd { margin: 4px 0 0; font-size: 16px; font-weight: 700; font-family: ui-monospace, monospace; }
+  .spec dd { margin: 4px 0 0; font-size: 15.5px; font-weight: 700; font-family: ui-monospace, monospace; }
 
-  .drawings { display: grid; grid-template-columns: 1.15fr 1fr; gap: 18px; align-items: start; }
+  .hero { display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(0, 1.18fr); gap: 22px; align-items: stretch; }
+  .hero-photo { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+  .hero-photo img { width: 100%; height: auto; border-radius: 8px; display: block; }
+  .led-modes { display: flex; gap: 6px; flex-wrap: wrap; }
+  .mbtn {
+    flex: 1; background: var(--panel2); color: var(--ink); border: 1px solid var(--line);
+    padding: 7px 10px; border-radius: 7px; cursor: pointer; font-size: 12.5px; font-weight: 600;
+  }
+  .mbtn.active { background: var(--accent); color: #111; border-color: var(--accent); }
+  .mbtn.cyan.active { background: #38bdf8; color: #081822; border-color: #38bdf8; }
+  .hero-photo .cap { color: var(--muted); font-size: 12.5px; }
+
+  .hero-3d { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+  #canvas3d { width: 100%; flex: 1; min-height: 460px; display: block; cursor: grab; }
+  #canvas3d:active { cursor: grabbing; }
+  .bar3d { padding: 10px 14px; background: var(--panel2); border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 9px; align-items: center; justify-content: space-between; font-size: 13px; }
+  .bar3d input[type=range] { flex: 1; min-width: 120px; accent-color: var(--accent); }
+  .cbtn { background: var(--panel); color: var(--ink); border: 1px solid var(--line); padding: 5px 9px; border-radius: 6px; cursor: pointer; font-size: 12px; }
+  .cbtn:hover { border-color: var(--accent); }
+
+  .drawings { display: grid; grid-template-columns: 1.12fr 1fr; gap: 18px; align-items: start; }
   .plan { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: 10px; }
 
+  .shop-group { display: grid; gap: 8px; margin-bottom: 18px; }
   .tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
-  table { width: 100%; border-collapse: collapse; font-size: 14px; }
-  th, td { text-align: left; padding: 10px 13px; border-bottom: 1px solid var(--line); vertical-align: top; }
-  th { font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); background: var(--panel2); }
+  table { width: 100%; border-collapse: collapse; font-size: 13.8px; }
+  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); background: var(--panel2); }
   tr:last-child td { border-bottom: 0; }
   td.n { font-family: ui-monospace, monospace; white-space: nowrap; color: var(--accent); }
   .chk { width: 16px; height: 16px; accent-color: var(--green); cursor: pointer; }
+  tr.done td { opacity: 0.45; text-decoration: line-through; }
+  .dlbtn {
+    display: inline-block; background: var(--panel2); color: var(--green); border: 1px solid var(--green);
+    padding: 4px 10px; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: 700; white-space: nowrap;
+  }
+  .dlbtn:hover { background: var(--green); color: #08150e; }
+  .zip-bar {
+    display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between;
+    background: var(--panel); border: 1px solid var(--green); border-radius: 10px; padding: 14px 18px; margin-bottom: 14px;
+  }
+  .zip-btn {
+    background: var(--green); color: #07150d; text-decoration: none; padding: 9px 16px;
+    border-radius: 8px; font-weight: 700; font-size: 13.5px;
+  }
   .note { background: var(--panel); border-left: 3px solid var(--accent); padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 13.5px; color: #d5dce6; margin-top: 12px; }
+  pre.code {
+    background: #0b0d12; border: 1px solid var(--line); border-radius: 8px; padding: 12px 15px;
+    overflow-x: auto; font: 12.5px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color: #d6e4ff; margin: 10px 0 0;
+  }
 
-  ol.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
-  ol.steps li { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px; display: grid; grid-template-columns: 42px 1fr; gap: 12px; align-items: start; }
-  .snum { font: 700 20px/1.2 ui-monospace, monospace; color: var(--green); }
-  ol.steps h3 { margin: 0 0 4px; font-size: 16px; }
-  ol.steps p { margin: 0; color: #cfd6e2; font-size: 14px; }
+  ol.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 13px; }
+  ol.steps li { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px; display: grid; grid-template-columns: 40px 1fr; gap: 12px; align-items: start; }
+  .snum { font: 700 19px/1.2 ui-monospace, monospace; color: var(--green); }
+  ol.steps h3 { margin: 0 0 4px; font-size: 15.5px; color: var(--ink); }
+  ol.steps p { margin: 0; color: #cfd6e2; font-size: 13.8px; }
 
   @media (max-width: 960px) { .hero, .drawings { grid-template-columns: 1fr; } .specs { grid-template-columns: repeat(2, 1fr); } }
   @media print {
     body { background: #fff; color: #111; }
-    .nav, .hero-3d { display: none; }
-    .spec, .tbl-wrap, ol.steps li { border-color: #ccc; background: #fff; color: #111; }
+    .nav, .hero-3d, .led-modes { display: none; }
+    .spec, .tbl-wrap, ol.steps li, .zip-bar { border-color: #ccc; background: #fff; color: #111; }
     ol.steps p, .note { color: #222; }
   }
 </style>
@@ -78,8 +106,8 @@
 
 <header>
   <div class="brand">
-    <h1>Magic Mirror Build Plan — 22 × 60 mm Flush Natural Oak</h1>
-    <div class="sub">Landscape 120 × 90 cm · Bottom-Center Philips 27″ · Recessed Drywall (Pladur) French Cleat</div>
+    <h1>Magic Mirror Final Build Plan — Natural Oak + Reactive LED Halo</h1>
+    <div class="sub">Landscape 120×90 cm · Bottom-Center Philips 27″ · Zero Visible Holes · Drywall (Pladur) French Cleat</div>
   </div>
   <nav class="nav">
     <a href="compare.html">1. Placement</a>
@@ -91,17 +119,22 @@
 
 <main>
   <dl class="specs">
-    <div class="spec"><dt>Outer Frame</dt><dd>1230 × 930 mm</dd></div>
-    <div class="spec"><dt>Depth (Flush)</dt><dd>60 mm (+0 cleat)</dd></div>
+    <div class="spec"><dt>Outer Oak Frame</dt><dd>1230 × 930 mm</dd></div>
+    <div class="spec"><dt>Oak + Halo Gap</dt><dd>60 + 10 mm</dd></div>
     <div class="spec"><dt>Oak Front Rim</dt><dd>22 mm mitered</dd></div>
-    <div class="spec"><dt>Visible Mirror</dt><dd>1186 × 886 mm</dd></div>
-    <div class="spec"><dt>Total Weight</dt><dd>≈ 26.8 kg</dd></div>
+    <div class="spec"><dt>Front Holes</dt><dd>ZERO (all hidden!)</dd></div>
+    <div class="spec"><dt>Total Weight</dt><dd>≈ 27.5 kg</dd></div>
   </dl>
 
   <section class="hero">
     <div class="hero-photo">
-      <img src="oak_land_bot_center.jpg" alt="Final 22x60 mm natural oak magic mirror on your wall above the piano">
-      <div class="cap">Final look on your wall (+22 cm above piano: 124.5–217.5 cm · Screen 135.9–169.5 cm · 46 cm clear mirror above).</div>
+      <img id="heroImg" src="oak_halo_warm.jpg" alt="Magic mirror on wall with reactive LED halo">
+      <div class="led-modes">
+        <button class="mbtn active" data-img="oak_halo_warm.jpg" data-led="warm">☀ Warm 3000K Idle</button>
+        <button class="mbtn cyan" data-img="oak_halo_think.jpg" data-led="think">✦ Cyan Thinking</button>
+        <button class="mbtn" data-img="oak_land_bot_center.jpg" data-led="off">○ LEDs Off</button>
+      </div>
+      <div class="cap">Preview on your wall (+22 cm above piano: 124.5–217.5 cm). Click above to toggle the SK6812 RGBW wall halo (updates 3D view too!).</div>
     </div>
     <div class="hero-3d">
       <div id="canvas3d"></div>
@@ -109,145 +142,243 @@
         <label style="font-weight:600;">Explode: <span id="ev">0%</span></label>
         <input type="range" id="exp" min="0" max="100" value="0">
         <button class="cbtn" id="cFront">3/4 Front</button>
-        <button class="cbtn" id="cSide">Side</button>
-        <button class="cbtn" id="cBack">Back &amp; Cleat</button>
+        <button class="cbtn" id="cSide">Side (10 mm Halo)</button>
+        <button class="cbtn" id="cBack">Back &amp; LEDs</button>
       </div>
     </div>
   </section>
 
   <section>
-    <h2><span class="ref">01</span>Technical Drawings (Exact Millimeters)</h2>
+    <h2><span class="ref">01</span>Technical Drawings &amp; LED/Sensor Architecture</h2>
     <div class="drawings">
-      <svg viewBox="0 0 750 576" class="plan" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 750 581" class="plan" xmlns="http://www.w3.org/2000/svg">
   <rect width="100%" height="100%" fill="#161921" rx="8"/>
-  <!-- Outer oak frame -->
+  <!-- Outer oak frame + warm LED halo glow outline -->
+  <rect x="64.2" y="49.2" width="601.9" height="457.9" fill="none" stroke="#f5b85c" stroke-opacity="0.35" stroke-width="6" rx="4"/>
   <rect x="70.0" y="55.0" width="590.4" height="446.4" fill="#a1856f" stroke="#6c5644" stroke-width="1.5"/>
-  <!-- Miter lines -->
-  <line x1="70.0" y1="55.0" x2="80.6" y2="65.6" stroke="#5c4635" stroke-width="1"/>
-  <line x1="660.4" y1="55.0" x2="649.8" y2="65.6" stroke="#5c4635" stroke-width="1"/>
-  <line x1="70.0" y1="501.4" x2="80.6" y2="490.8" stroke="#5c4635" stroke-width="1"/>
-  <line x1="660.4" y1="501.4" x2="649.8" y2="490.8" stroke="#5c4635" stroke-width="1"/>
   <!-- Visible mirror glass -->
-  <rect x="80.6" y="65.6" width="569.3" height="425.3" fill="#242932" stroke="#111" stroke-width="1"/>
-  <!-- Hidden glass perimeter (dashed) -->
-  <rect x="77.2" y="62.2" width="576.0" height="432.0" fill="none" stroke="#6b7280" stroke-dasharray="4 4" stroke-width="1"/>
-  <!-- Bottom ply shelf / stiffener (behind glass) -->
-  <rect x="75.8" y="455.8" width="578.9" height="39.8" fill="#1b1f27" stroke="#475569" stroke-dasharray="3 3" stroke-width="1"/>
-  <!-- Button notch -->
+  <rect x="80.6" y="65.6" width="569.3" height="425.3" fill="#232831" stroke="#111" stroke-width="1"/>
+  <!-- LED perimeter inset 32 mm (dashed amber) -->
+  <rect x="85.4" y="70.4" width="559.7" height="415.7" fill="none" stroke="#f5b85c" stroke-dasharray="4 4" stroke-width="1.2"/>
+  <!-- Recessed French cleat -->
+  <rect x="149.2" y="87.2" width="432.0" height="33.6" fill="none" stroke="#45c486" stroke-dasharray="6 4" stroke-width="1.5"/>
+  <text x="365.2" y="104.9" fill="#45c486" font-size="11" text-anchor="middle" font-family="ui-monospace,monospace">45° French Cleat 900 mm (hits ≥2 pladur studs)</text>
+  <!-- Hidden Pi Cam 3 behind glass -->
+  <circle cx="365.2" cy="92.0" r="7" fill="#38bdf8" fill-opacity="0.25" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="379.2" y="96.0" fill="#7dd3fc" font-size="10.5">Hidden Pi Cam 3 (Ø12 mm mask hole only)</text>
+  <!-- Bottom ply shelf + button notch -->
+  <rect x="75.8" y="455.8" width="578.9" height="39.8" fill="#1b1f27" stroke="#475569" stroke-dasharray="3 3"/>
   <rect x="410.3" y="455.8" width="48.5" height="4" fill="#e5a94c"/>
-  <!-- Recessed French cleat (behind top) -->
-  <rect x="149.2" y="80.0" width="432.0" height="33.6" fill="none" stroke="#45c486" stroke-dasharray="6 4" stroke-width="1.5"/>
-  <text x="365.2" y="96.8" fill="#45c486" font-size="11" text-anchor="middle" font-family="ui-monospace,monospace">Recessed 45° French cleat · 900 mm (hits ≥2 pladur studs)</text>
-  <!-- Monitor outer body (dashed) -->
+  <!-- Hidden mmWave radar & bottom USB mic -->
+  <rect x="292.2" y="469.0" width="14" height="10" fill="#a78bfa" rx="2"/>
+  <text x="280.0" y="476.8" fill="#c4b5fd" font-size="10" text-anchor="end">mmWave Radar (0 holes!)</text>
+  <rect x="427.6" y="490.8" width="14" height="8" fill="#34d399" rx="2"/>
+  <text x="444.4" y="494.2" fill="#6ee7b7" font-size="10">Hidden USB Mic (underside)</text>
+  <!-- Monitor body & active lit screen -->
   <rect x="217.8" y="281.6" width="294.7" height="174.2" fill="#12151b" stroke="#94a3b8" stroke-dasharray="5 3" stroke-width="1.2"/>
-  <!-- Active lit screen -->
   <rect x="221.7" y="285.4" width="287.0" height="161.3" fill="#1d2430" stroke="#e5a94c" stroke-width="1.8"/>
-  <text x="365.2" y="360.0" fill="#f8fafc" font-size="13" font-weight="600" text-anchor="middle">Philips 27″ Screen (Bottom-Center)</text>
+  <text x="365.2" y="360.0" fill="#f8fafc" font-size="13" font-weight="600" text-anchor="middle">Philips 27″ (Bottom-Center)</text>
   <text x="365.2" y="378.0" fill="#e5a94c" font-size="11" text-anchor="middle" font-family="ui-monospace,monospace">Lit 598 × 336 mm · Body 614 × 363 mm</text>
-  <!-- EPDM setting blocks at 1/4 points -->
+  <!-- EPDM setting blocks -->
   <rect x="197.2" y="494.2" width="48.0" height="6" fill="#f97316"/>
   <rect x="485.2" y="494.2" width="48.0" height="6" fill="#f97316"/>
-  <text x="221.2" y="514.2" fill="#fb923c" font-size="10" text-anchor="middle">EPDM block (¼)</text>
-  <text x="509.2" y="514.2" fill="#fb923c" font-size="10" text-anchor="middle">EPDM block (¾)</text>
-  <!-- Dimensions -->
-  <line x1="70.0" y1="26" x2="660.4" y2="26" stroke="#cbd5e1" stroke-width="1.2"/>
-  <text x="365.2" y="20" fill="#eef1f6" font-size="12" text-anchor="middle" font-family="ui-monospace,monospace">Outer width 1230 mm (visible mirror 1186 mm · oak rim 22 mm)</text>
-  <line x1="684.4" y1="55.0" x2="684.4" y2="501.4" stroke="#cbd5e1" stroke-width="1.2"/>
-  <text x="694.4" y="278.2" fill="#eef1f6" font-size="12" font-family="ui-monospace,monospace" transform="rotate(90 694.4 278.2)" text-anchor="middle">Outer height 930 mm</text>
-  <!-- Clear mirror above & sides callouts -->
-  <text x="365.2" y="175.5" fill="#94a3b8" font-size="12" text-anchor="middle">↑ 458 mm clear mirror above screen (head/shoulders) ↑</text>
-  <text x="151.1" y="366.0" fill="#94a3b8" font-size="11" text-anchor="middle">← 294 mm →</text>
-  <text x="579.3" y="366.0" fill="#94a3b8" font-size="11" text-anchor="middle">← 294 mm →</text>
-  <text x="365.2" y="560" fill="#94a3b8" font-size="11.5" text-anchor="middle">Mounted +22 cm above your 102.5 cm piano → Frame: 124.5–217.5 cm · Screen: 135.9–169.5 cm</text>
+  <!-- Outer dimensions -->
+  <line x1="70.0" y1="24" x2="660.4" y2="24" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="365.2" y="18" fill="#eef1f6" font-size="12" text-anchor="middle" font-family="ui-monospace,monospace">Outer 1230 × 930 mm · Oak face 22 mm · LED perimeter 4.06 m</text>
+  <text x="365.2" y="199.5" fill="#94a3b8" font-size="11.5" text-anchor="middle">↑ 458 mm clear mirror above screen ↑</text>
+  <text x="365.2" y="567" fill="#94a3b8" font-size="11.5" text-anchor="middle">Mounted +22 cm above 102.5 cm piano → Frame 124.5–217.5 cm · Screen 135.9–169.5 cm</text>
 </svg>
-      <svg viewBox="0 0 740 310" class="plan" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 740 315" class="plan" xmlns="http://www.w3.org/2000/svg">
   <rect width="100%" height="100%" fill="#161921" rx="8"/>
-  <text x="20" y="24" fill="#98a2b3" font-size="12" font-weight="600">SIDE CROSS-SECTION (EXACT DEPTH STACK-UP · 0 → 60 mm FLUSH TO DRYWALL)</text>
+  <text x="18" y="23" fill="#98a2b3" font-size="11.5" font-weight="600">SIDE CROSS-SECTION (60 mm OAK + 10 mm FLOATING LED HALO &amp; 360° COOLING GAP)</text>
 
-  <!-- Top half: Upper section (glass + mask + 9mm ply backplate + 15mm recessed French cleat) -->
-  <!-- Oak top rail (0..60 mm, rabbet lip 0..8 mm) -->
-  <path d="M 46.0 44 H 574.0 V 68 H 116.4 V 90 H 46.0 Z" fill="#a1856f" stroke="#5c4635" stroke-width="1.2"/>
-  <text x="345.20000000000005" y="60" fill="#18120d" font-size="11" font-weight="700" text-anchor="middle">Oak rail 22 × 60 mm</text>
+  <!-- Oak top rail 0..60 mm -->
+  <path d="M 36.0 44 H 492.0 V 66 H 96.8 V 88 H 36.0 Z" fill="#a1856f" stroke="#5c4635" stroke-width="1.2"/>
+  <text x="294.4" y="59" fill="#18120d" font-size="10.5" font-weight="700" text-anchor="middle">Oak rail 22 × 60 mm</text>
 
-  <!-- EPDM tape 8..10 mm -->
-  <rect x="116.4" y="72" width="17.6" height="18" fill="#f97316"/>
-  <!-- 6 mm Glass 10..16 mm (runs full height) -->
-  <rect x="134.0" y="70" width="52.800000000000004" height="175" fill="#64748b" fill-opacity="0.65" stroke="#94a3b8" stroke-width="1"/>
-  <text x="160.4" y="158" fill="#f8fafc" font-size="10.5" font-weight="600" text-anchor="middle" transform="rotate(-90 160.4 158)">6 mm Glass</text>
+  <!-- EPDM 8..10, Glass 10..16 -->
+  <rect x="96.8" y="70" width="15.2" height="18" fill="#f97316"/>
+  <rect x="112.0" y="68" width="45.599999999999994" height="176" fill="#64748b" fill-opacity="0.65" stroke="#94a3b8"/>
+  <text x="134.8" y="156" fill="#f8fafc" font-size="10" font-weight="600" text-anchor="middle" transform="rotate(-90 134.8 156)">6 mm Glass</text>
 
-  <!-- Upper glass stop 17..32 mm -->
-  <rect x="195.60000000000002" y="68" width="132.0" height="24" fill="#c7a57a" stroke="#6c5644"/>
-  <text x="261.6" y="84" fill="#16120c" font-size="9.5" font-weight="600" text-anchor="middle">Stop 15×15</text>
+  <!-- Top stop 17..32, Mask 16..21, 9mm Poplar ply backplate 32..41 -->
+  <rect x="165.2" y="66" width="114.0" height="22" fill="#c7a57a" stroke="#6c5644"/>
+  <rect x="157.6" y="88" width="38.0" height="52" fill="#0b0c0f" stroke="#475569"/>
+  <rect x="279.2" y="66" width="68.39999999999999" height="78" fill="#334155" stroke="#94a3b8"/>
+  <text x="313.4" y="106" fill="#e2e8f0" font-size="9" text-anchor="middle" transform="rotate(-90 313.4 106)">9 mm Ply</text>
 
-  <!-- Black mask 16..21 mm -->
-  <rect x="186.8" y="92" width="44.0" height="46" fill="#0b0c0f" stroke="#475569"/>
-  <!-- 9 mm Poplar Ply backplate 32..41 mm (above monitor cutout) -->
-  <rect x="327.6" y="68" width="79.2" height="74" fill="#334155" stroke="#94a3b8"/>
-  <text x="367.20000000000005" y="112" fill="#e2e8f0" font-size="9.5" text-anchor="middle" transform="rotate(-90 367.20000000000005 112)">9 mm Ply</text>
+  <!-- 45° Outward LED Halo strip + glow cone! -->
+  <polygon points="347.59999999999997,67 431.2,67 347.59999999999997,78" fill="#fbbf24" stroke="#f59e0b"/>
+  <polygon points="416.0,66 568.0,38 568.0,66" fill="#fbbf24" fill-opacity="0.28"/>
+  <text x="423.59999999999997" y="40" fill="#fcd34d" font-size="9.5" font-weight="600">45° LED wash →</text>
 
-  <!-- Recessed 15 mm 45° French cleat 41..56 mm (inside rear pocket -> 0 mm wall gap!) -->
-  <polygon points="406.8,76 538.8000000000001,76 538.8000000000001,116 406.8,104" fill="#45c486" stroke="#166534"/>
-  <polygon points="406.8,108 538.8000000000001,120 538.8000000000001,142 406.8,142" fill="#2ea86e" stroke="#166534"/>
-  <text x="472.8" y="96" fill="#071a10" font-size="9" font-weight="700" text-anchor="middle">45°</text>
-  <text x="472.8" y="135" fill="#071a10" font-size="8.5" font-weight="700" text-anchor="middle">Cleat</text>
+  <!-- 14 mm Cleat Spacer (41..55) + 15 mm 45° French Cleat (55..70) -->
+  <rect x="347.59999999999997" y="88" width="106.39999999999999" height="46" fill="#475569" stroke="#94a3b8"/>
+  <text x="400.79999999999995" y="114" fill="#e2e8f0" font-size="8.5" text-anchor="middle">Spacer</text>
+  <polygon points="454.0,88 568.0,88 568.0,122 454.0,112" fill="#45c486" stroke="#166534"/>
+  <polygon points="454.0,116 568.0,126 568.0,146 454.0,146" fill="#2ea86e" stroke="#166534"/>
+  <text x="511.0" y="106" fill="#071a10" font-size="8.5" font-weight="700" text-anchor="middle">45°</text>
+  <text x="511.0" y="139" fill="#071a10" font-size="8" font-weight="700" text-anchor="middle">Cleat</text>
 
-  <!-- Lower half: Monitor zone (17..45 mm shell, 45..49 mm stand box, 49..60 mm 11 mm plug clearance!) -->
-  <rect x="195.60000000000002" y="148" width="246.40000000000003" height="74" fill="#1e293b" stroke="#cbd5e1" stroke-width="1.2"/>
-  <rect x="442.00000000000006" y="182" width="35.2" height="40" fill="#0f172a" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="318.8" y="182" fill="#f8fafc" font-size="11" font-weight="600" text-anchor="middle">Philips 27″</text>
-  <text x="318.8" y="198" fill="#94a3b8" font-size="10" text-anchor="middle">28 mm shell / 32 mm box</text>
-  <!-- 90° plug in 11 mm clearance (49..58 mm) -->
-  <rect x="477.20000000000005" y="196" width="79.2" height="14" fill="#e5a94c" rx="2"/>
-  <text x="516.8" y="188" fill="#e5a94c" font-size="9.5" text-anchor="middle">11 mm</text>
-  <text x="516.8" y="224" fill="#e5a94c" font-size="9" text-anchor="middle">90° plug</text>
+  <!-- Monitor 17..45 (shell) + 45..49 (stand box) + 90° plug with 21 mm clearance to drywall! -->
+  <rect x="165.2" y="148" width="212.79999999999998" height="74" fill="#1e293b" stroke="#cbd5e1" stroke-width="1.2"/>
+  <rect x="378.0" y="182" width="30.4" height="40" fill="#0f172a" stroke="#cbd5e1"/>
+  <text x="271.6" y="182" fill="#f8fafc" font-size="10.5" font-weight="600" text-anchor="middle">Philips 27″</text>
+  <text x="271.6" y="197" fill="#94a3b8" font-size="9.5" text-anchor="middle">28/32 mm</text>
+  <rect x="408.4" y="194" width="76.0" height="14" fill="#e5a94c" rx="2"/>
+  <text x="484.4" y="186" fill="#e5a94c" font-size="9.5" text-anchor="middle">21 mm clear!</text>
 
-  <!-- Bottom shelf 17..32 mm + bottom oak rail -->
-  <rect x="195.60000000000002" y="222" width="132.0" height="24" fill="#334155" stroke="#94a3b8"/>
-  <text x="261.6" y="238" fill="#e2e8f0" font-size="9" text-anchor="middle">Shelf</text>
-  <path d="M 46.0 264 H 574.0 V 246 H 116.4 V 228 H 46.0 Z" fill="#a1856f" stroke="#5c4635" stroke-width="1.2"/>
+  <!-- Bottom shelf + bottom oak rail + 10 mm 3D-printed wall standoff pad -->
+  <rect x="165.2" y="222" width="114.0" height="22" fill="#334155" stroke="#94a3b8"/>
+  <path d="M 36.0 264 H 492.0 V 246 H 96.8 V 228 H 36.0 Z" fill="#a1856f" stroke="#5c4635" stroke-width="1.2"/>
+  <rect x="492.0" y="246" width="76.0" height="16" fill="#38bdf8" fill-opacity="0.45" stroke="#38bdf8"/>
+  <text x="530.0" y="278" fill="#7dd3fc" font-size="9" text-anchor="middle">10 mm gap</text>
 
-  <!-- Drywall (Pladur) 60..73 mm + Steel Stud 73..88 mm -->
-  <rect x="574.0" y="36" width="114.4" height="242" fill="#e2e8f0" fill-opacity="0.22" stroke="#cbd5e1"/>
-  <text x="631.2" y="158" fill="#e2e8f0" font-size="11" font-weight="600" text-anchor="middle" transform="rotate(-90 631.2 158)">Drywall (Pladur 13 mm)</text>
-  <rect x="688.4000000000001" y="36" width="105.60000000000001" height="242" fill="#475569" fill-opacity="0.45" stroke="#94a3b8" stroke-dasharray="4 3"/>
-  <text x="741.2" y="158" fill="#cbd5e1" font-size="10" text-anchor="middle" transform="rotate(-90 741.2 158)">Pladur Stud</text>
+  <!-- Drywall (Pladur) 70..83 mm + Stud -->
+  <rect x="568.0" y="34" width="83.6" height="248" fill="#e2e8f0" fill-opacity="0.20" stroke="#cbd5e1"/>
+  <text x="609.8" y="156" fill="#e2e8f0" font-size="10.5" font-weight="600" text-anchor="middle" transform="rotate(-90 609.8 156)">Drywall (Pladur)</text>
+  <rect x="651.6" y="34" width="68.39999999999999" height="248" fill="#475569" fill-opacity="0.45" stroke="#94a3b8" stroke-dasharray="4 3"/>
+  <text x="685.8" y="156" fill="#cbd5e1" font-size="9.5" text-anchor="middle" transform="rotate(-90 685.8 156)">Stud</text>
 
-  <!-- Depth scale bar at bottom -->
-  <line x1="46.0" y1="286" x2="574.0" y2="286" stroke="#e5a94c" stroke-width="1.6"/>
-  <text x="310.0" y="302" fill="#e5a94c" font-size="12" font-weight="700" text-anchor="middle" font-family="ui-monospace,monospace">Total Depth = 60 mm FLUSH (0 mm extra hanger gap!)</text>
+  <line x1="36.0" y1="292" x2="568.0" y2="292" stroke="#e5a94c" stroke-width="1.5"/>
+  <text x="302.0" y="307" fill="#e5a94c" font-size="11.5" font-weight="700" text-anchor="middle" font-family="ui-monospace,monospace">60 mm Oak + 10 mm Floating Halo Gap = 70 mm Total</text>
+</svg>
+    </div>
+    <div style="margin-top:18px;">
+      <svg viewBox="0 0 980 280" class="plan" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="#161921" rx="8"/>
+  <!-- Zone 1: Outside (Behind Piano - Safe 230V -> Low-Voltage DC Only!) -->
+  <rect x="16" y="16" width="270" height="248" rx="8" fill="#1d222c" stroke="#475569" stroke-dasharray="5 4"/>
+  <text x="30" y="38" fill="#e5a94c" font-size="12" font-weight="700">BEHIND PIANO (230V Power Strip)</text>
+  <text x="30" y="54" fill="#94a3b8" font-size="10.5">ZERO 230V mains inside the wood frame!</text>
+
+  <rect x="30" y="68" width="242" height="44" rx="6" fill="#141820" stroke="#64748b"/>
+  <text x="42" y="87" fill="#f8fafc" font-size="12" font-weight="600">1. Philips 27″ DC Brick</text>
+  <text x="42" y="103" fill="#94a3b8" font-size="10.5">Included w/ monitor → 90° DC plug</text>
+
+  <rect x="30" y="124" width="242" height="44" rx="6" fill="#141820" stroke="#64748b"/>
+  <text x="42" y="143" fill="#f8fafc" font-size="12" font-weight="600">2. Pi 5 Official 27W USB-C PSU</text>
+  <text x="42" y="159" fill="#94a3b8" font-size="10.5">5V 5A USB-C straight to Pi 5</text>
+
+  <rect x="30" y="180" width="242" height="68" rx="6" fill="#1b1a14" stroke="#f5b85c"/>
+  <text x="42" y="200" fill="#fcd34d" font-size="12" font-weight="700">3. 5V 6A (30W) LED Power Brick</text>
+  <text x="42" y="216" fill="#cbd5e1" font-size="10.5">18 AWG 2-wire up wall → powers BOTH</text>
+  <text x="42" y="232" fill="#cbd5e1" font-size="10.5">ESP32 + both ends of SK6812 strip</text>
+
+  <!-- Slim White Wall Channel -->
+  <rect x="304" y="96" width="84" height="86" rx="6" fill="#252b37" stroke="#94a3b8"/>
+  <text x="346" y="124" fill="#f8fafc" font-size="11" font-weight="600" text-anchor="middle">1 Slim</text>
+  <text x="346" y="139" fill="#f8fafc" font-size="11" font-weight="600" text-anchor="middle">White</text>
+  <text x="346" y="154" fill="#f8fafc" font-size="11" font-weight="600" text-anchor="middle">Channel</text>
+  <text x="346" y="170" fill="#94a3b8" font-size="9.5" text-anchor="middle">(16×8 mm)</text>
+
+  <line x1="272" y1="90" x2="304" y2="115" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="272" y1="146" x2="304" y2="140" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="272" y1="210" x2="304" y2="164" stroke="#f5b85c" stroke-width="2.5"/>
+
+  <!-- Zone 2: Inside Mirror -->
+  <rect x="406" y="16" width="558" height="248" rx="8" fill="#181d27" stroke="#45c486" stroke-dasharray="5 4"/>
+  <text x="420" y="38" fill="#45c486" font-size="12" font-weight="700">INSIDE MIRROR (Low-Voltage Only · Zero Visible Front Holes)</text>
+
+  <!-- Philips Monitor -->
+  <rect x="422" y="52" width="150" height="44" rx="6" fill="#12161f" stroke="#94a3b8"/>
+  <text x="497" y="72" fill="#f8fafc" font-size="12" font-weight="600" text-anchor="middle">Philips 27″ Monitor</text>
+  <text x="497" y="87" fill="#94a3b8" font-size="10" text-anchor="middle">90° HDMI + 90° DC</text>
+
+  <!-- Raspberry Pi 5 -->
+  <rect x="422" y="114" width="175" height="62" rx="6" fill="#29171a" stroke="#f87171"/>
+  <text x="509" y="136" fill="#fecaca" font-size="12.5" font-weight="700" text-anchor="middle">Raspberry Pi 5</text>
+  <text x="509" y="152" fill="#e2e8f0" font-size="10" text-anchor="middle">MagicMirror² + Voice / AI</text>
+  <text x="509" y="167" fill="#94a3b8" font-size="9.5" text-anchor="middle">BT 5.0 → Soundbar next to piano</text>
+
+  <!-- Sensors connected to Pi 5 -->
+  <rect x="640" y="52" width="308" height="34" rx="6" fill="#14202b" stroke="#38bdf8"/>
+  <text x="652" y="73" fill="#bae6fd" font-size="11"><strong>Pi Cam 3 Wide</strong> (CSI ribbon · hidden behind glass)</text>
+
+  <rect x="640" y="94" width="308" height="34" rx="6" fill="#1e182e" stroke="#a78bfa"/>
+  <text x="652" y="115" fill="#ddd6fe" font-size="11"><strong>HLK-LD2410C Radar</strong> (4 wires · sees thru wood/glass!)</text>
+
+  <rect x="640" y="136" width="308" height="34" rx="6" fill="#132520" stroke="#34d399"/>
+  <text x="652" y="157" fill="#a7f3d0" font-size="11"><strong>USB Omni Mic</strong> (USB-A · hidden bottom underside)</text>
+
+  <!-- ESP32 WLED + SK6812 Strip -->
+  <rect x="422" y="196" width="185" height="54" rx="6" fill="#242014" stroke="#f5b85c"/>
+  <text x="514" y="216" fill="#fde68a" font-size="12" font-weight="700" text-anchor="middle">ESP32 running WLED</text>
+  <text x="514" y="232" fill="#e2e8f0" font-size="10" text-anchor="middle">Pi 5 sends Wi-Fi JSON state</text>
+  <text x="514" y="244" fill="#94a3b8" font-size="9.5" text-anchor="middle">(4000 mA software limit!)</text>
+
+  <rect x="640" y="196" width="308" height="54" rx="6" fill="#2a2112" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="794" y="216" fill="#fef08a" font-size="12" font-weight="700" text-anchor="middle">SK6812 RGBW 3000K Strip (~4.1 m)</text>
+  <text x="794" y="232" fill="#e2e8f0" font-size="10" text-anchor="middle">60 LEDs/m · 330 Ω on Data · 1000 µF cap on 5V</text>
+  <text x="794" y="245" fill="#fcd34d" font-size="9.5" text-anchor="middle">Power injected at BOTH ends (Wago 221 split)</text>
+
+  <!-- Wiring connections -->
+  <line x1="388" y1="115" x2="422" y2="74" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="388" y1="140" x2="422" y2="145" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="388" y1="164" x2="422" y2="220" stroke="#f5b85c" stroke-width="2.5"/>
+  <line x1="497" y1="96" x2="497" y2="114" stroke="#cbd5e1" stroke-width="2"/>
+  <line x1="597" y1="128" x2="640" y2="69" stroke="#38bdf8" stroke-width="1.6"/>
+  <line x1="597" y1="142" x2="640" y2="111" stroke="#a78bfa" stroke-width="1.6"/>
+  <line x1="597" y1="156" x2="640" y2="153" stroke="#34d399" stroke-width="1.6"/>
+  <line x1="514" y1="176" x2="514" y2="196" stroke="#f5b85c" stroke-width="1.6" stroke-dasharray="3 3"/>
+  <line x1="607" y1="223" x2="640" y2="223" stroke="#fbbf24" stroke-width="2.5"/>
 </svg>
     </div>
     <div class="note">
-      <strong>Why 60 mm instead of 55 mm?</strong> Exact millimeter check: front oak lip (8) + EPDM tape (2) + glass (6) + felt (1) + Philips stand box (32) = <strong>49 mm</strong>. At <strong>60 mm</strong> total depth, right-angle HDMI &amp; DC plugs get a comfortable <strong>11 mm clearance</strong> off the drywall, and the 15 mm French cleat sits completely recessed flush inside the back pocket (<strong>0 mm wall gap</strong>).
+      <strong>Why ESP32 + WLED instead of wiring LEDs directly to Pi 5 GPIO?</strong> Raspberry Pi 5 changed GPIO hardware (RP1 chip), so classic <code>rpi_ws281x</code> libraries flicker or conflict with audio/SPI. A €6 ESP32 flashed at <strong>install.wled.me</strong> drives <strong>SK6812 RGBW 3000K</strong> at 60 FPS with zero flicker, protects your PSU via a built-in <strong>4000 mA software cap</strong>, and lets your Pi 5 trigger any animation over local Wi-Fi in 1 line:
+      <pre class="code"># Warm 3000K idle halo (35%):      curl -X POST http://mirror-led.local/json/state -d '{"on":true,"bri":90,"seg":[{"fx":0,"col":[[0,0,0,255]]}]}'
+# Cyan "listening/thinking" wave:  curl -X POST http://mirror-led.local/json/state -d '{"on":true,"bri":160,"seg":[{"fx":2,"sx":140,"col":[[40,210,255,0]]}]}'
+# Smooth fade off (room empty):    curl -X POST http://mirror-led.local/json/state -d '{"on":false,"transition":15}'</pre>
     </div>
   </section>
 
   <section>
-    <h2><span class="ref">02</span>Wood &amp; Panel Cut List (Take to the Wood Shop)</h2>
+    <h2><span class="ref">02</span>3D-Printable Parts Pack (Small Printer Ready — Zero Supports!)</h2>
+    <div class="zip-bar">
+      <div>
+        <strong style="font-size:15px;">All 7 Verified Binary .STL Files (fits any 180×180 mm bed)</strong>
+        <div style="color:var(--muted);font-size:13px;">Recommended settings: <strong>PETG</strong> (black for camera shroud &amp; mask clips), 0.2 mm layer height, 3 walls, 25% gyroid infill, <strong>no supports needed</strong>.</div>
+      </div>
+      <a class="zip-btn" href="stl/magic-mirror-stl-pack.zip" download>↓ Download All 7 STLs (.ZIP)</a>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Part</th><th>Qty</th><th>Material &amp; Size</th><th>Purpose</th><th>File</th></tr></thead>
+        <tbody><tr><td><strong>90° Oak Miter Clamping Jig</strong></td><td class='n'>4×</td><td>PLA or PETG · 95×95×24 mm</td><td>Guarantees dead-square 45° oak corners with built-in glue-relief notch so you never glue the jig to the oak.</td><td><a class='dlbtn' href='stl/01_miter_clamp_jig_x4.stl' download>↓ STL</a></td></tr><tr><td><strong>Pi Camera 3 Hidden Shroud</strong></td><td class='n'>1×</td><td>Matte Black PETG · 64×36×14 mm</td><td>Light-proof mount pressing gently behind the mirror glass (Ø14 mm lens aperture + M2 standoffs + bottom CSI slot).</td><td><a class='dlbtn' href='stl/02_picam3_hidden_shroud.stl' download>↓ STL</a></td></tr><tr><td><strong>HLK-LD2410C Radar Holder</strong></td><td class='n'>1×</td><td>PETG · 44×30×9 mm</td><td>Snap-in cradle holding the 24 GHz presence radar facing forward through the glass/oak with zero visible holes.</td><td><a class='dlbtn' href='stl/03_mmwave_ld2410c_holder.stl' download>↓ STL</a></td></tr><tr><td><strong>Foam-Mask Turn Buttons</strong></td><td class='n'>10×</td><td>Black PETG · 36×14×7 mm</td><td>Low-profile stepped turn-buttons pressing the 5 mm black foam-board mask dead flat against the glass.</td><td><a class='dlbtn' href='stl/04_mask_turn_button_x10.stl' download>↓ STL</a></td></tr><tr><td><strong>45° Outward LED Halo Clips</strong></td><td class='n'>16×</td><td>PETG · 24×15×22 mm</td><td>Holds the 10 mm SK6812 strip inset 32 mm from the edge, angled 45° outward for a smooth, hotspot-free wall glow!</td><td><a class='dlbtn' href='stl/05_led_45deg_clip_x16.stl' download>↓ STL</a></td></tr><tr><td><strong>10 mm Bottom Wall Spacers</strong></td><td class='n'>2×</td><td>PETG · 44×44×10 mm</td><td>Matches the exact 10 mm floating halo gap at the bottom corners so the mirror hangs dead-plumb (add thin felt on wall side).</td><td><a class='dlbtn' href='stl/06_wall_halo_spacer_10mm_x2.stl' download>↓ STL</a></td></tr><tr><td><strong>Raspberry Pi 5 Standoff Mount</strong></td><td class='n'>1×</td><td>PETG · 96×60×8 mm</td><td>Official 58×49 mm M2.5 Pi 5 pattern raised 5 mm for rear airflow, screws cleanly onto the 9 mm poplar backplate.</td><td><a class='dlbtn' href='stl/07_raspberry_pi5_mount.stl' download>↓ STL</a></td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="ref">03</span>Wood &amp; Panel Cut List (Take to Wood Shop)</h2>
     <div class="tbl-wrap">
       <table>
         <thead><tr><th>Part</th><th>Material</th><th>Qty</th><th>Exact Size</th></tr></thead>
-        <tbody><tr><td><strong>Oak outer frame — top &amp; bottom</strong></td><td>Solid European Oak 22 × 60 mm (rabbet 10 × 52 mm)*</td><td class='n'>2</td><td class='n'>1230 mm (45° mitered)</td></tr><tr><td><strong>Oak outer frame — left &amp; right</strong></td><td>Solid European Oak 22 × 60 mm (rabbet 10 × 52 mm)*</td><td class='n'>2</td><td class='n'>930 mm (45° mitered)</td></tr><tr><td><strong>Structural backplate (shear panel)</strong></td><td>Poplar plywood 9 mm (contrachapado de chopo)</td><td class='n'>1</td><td class='n'>1206 × 906 mm (cut 644×383 mm monitor window)</td></tr><tr><td><strong>Bottom shelf / stiffener</strong></td><td>Birch plywood 15 mm</td><td class='n'>1</td><td class='n'>1206 × 83 mm (notch 100×6 mm for buttons)</td></tr><tr><td><strong>Glass stops — top</strong></td><td>Pine/oak strip 15 × 15 mm</td><td class='n'>1</td><td class='n'>1206 mm</td></tr><tr><td><strong>Glass stops — sides</strong></td><td>Pine/oak strip 15 × 15 mm</td><td class='n'>2</td><td class='n'>808 mm</td></tr><tr><td><strong>French cleat (wall + frame halves)</strong></td><td>Birch plywood 15 mm (rip 145 mm strip at 45°)</td><td class='n'>1</td><td class='n'>900 × 145 mm → 2× ~70 mm cleats</td></tr><tr><td><strong>VESA hanging straps</strong></td><td>Aluminium flat bar 30 × 3 mm</td><td class='n'>2</td><td class='n'>323 mm</td></tr><tr><td><strong>Black light-block mask</strong></td><td>Black foam board 5 mm (cartón pluma negro)</td><td class='n'>1</td><td class='n'>1176 × 808 mm</td></tr><tr><td><strong>Crisp screen window overlay</strong></td><td>Matte black card (cartulina negra)</td><td class='n'>1</td><td class='n'>640 × 390 mm (cut 598 × 336 mm window)</td></tr></tbody>
-      </table>
-    </div>
-    <div class="note">
-      <strong>*Zero-router oak alternative:</strong> If you buy at Leroy Merlin instead of a local carpintería, get one <strong>18 mm tablero alistonado de roble</strong> ripped into <strong>60 mm</strong> strips and glue a thin <strong>8 × 8 mm oak strip</strong> flush inside the front edge as the lip (gives a clean 26 mm oak face with zero rabbet milling!).
-    </div>
-  </section>
-
-  <section>
-    <h2><span class="ref">03</span>Shopping List (Check Off as You Buy)</h2>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr><th></th><th>Item</th><th>Qty</th><th>Notes &amp; Drywall Specs</th></tr></thead>
-        <tbody><tr><td><input type='checkbox' class='chk'></td><td><strong>Solid European Oak frame rails*</strong></td><td class='n'>4.6 m linear</td><td>22 × 60 mm solid oak with 10 × 52 mm rabbet (at local carpintería/maderería). Zero-router alt: 1× 18 mm tablero alistonado de roble (2400×400) ripped to 60 mm + 8×8 mm oak lip strip.</td></tr><tr><td><input type='checkbox' class='chk'></td><td><strong>Poplar plywood 9 mm (contrachapado de chopo)</strong></td><td class='n'>1 sheet (1206×906 mm)</td><td>Lightweight structural shear backplate (~3.2 kg vs 7.2 kg birch!) — cut monitor window out.</td></tr><tr><td><input type='checkbox' class='chk'></td><td><strong>Birch plywood 15 mm (contrachapado abedul)</strong></td><td class='n'>1 offcut (~1210×250 mm)</td><td>Bottom 83 mm monitor shelf/stiffener + 900×145 mm strip ripped at 45° for the two French cleat halves.</td></tr><tr><td><input type='checkbox' class='chk'></td><td><strong>Pine or oak strip 15 × 15 mm (listón)</strong></td><td class='n'>2 × 2.4 m</td><td>Removable top &amp; side glass stops.</td></tr><tr><td><input type='checkbox' class='chk'></td><td><strong>Black foam board 5 mm (cartón pluma negro)</strong></td><td class='n'>1 sheet 100×140 cm</td><td>Light-blocking mask behind the mirror around the monitor (art shop).</td></tr><tr><td><input type='checkbox' class='chk'></td><td><strong>Matte black card (cartulina negra)</strong></td><td class='n'>1 sheet 70×50 cm</td><td>Razor-clean 598 × 336 mm window overlay behind the glass.</td></tr><tr><td><input type='checkbox' class='chk'></td><td><strong>Aluminium flat bar 30 × 3 mm (pletina)</strong></td><td class='n'>1 m</td><td>Cut into 2× VESA straps (390 mm each), bolted to monitor M4 holes + backplate.</td></tr><tr><td><input type='checkbox' class='chk'></td><td><strong>EPDM glazing tape (10 × 2 mm) + 1 mm black felt tape</strong></td><td class='n'>5 m each</td><td>EPDM cushions glass on front lip; felt lines stops, shelf, and monitor bezel.</td></tr><tr><td><input type='checkbox' class='chk'></td><td><strong>Hard rubber setting blocks (100 × 8 × 3 mm, 80–90 Shore A)</strong></td><td class='n'>2</td><td>Support the 16.2 kg glass bottom edge at the ¼ points (30 &amp; 90 cm).</td></tr><tr><td><input type='checkbox' class='chk'></td><td><strong>DRYWALL (Pladur) anchors: Fischer DuoTec 10 or metal Molly M6</strong></td><td class='n'>4–6 pcs</td><td>For the 900 mm wall French cleat! Hit ≥2 vertical pladur studs with stud screws + 4 DuoTec/Molly toggles (rated ≥25 kg each).</td></tr><tr><td><input type='checkbox' class='chk'></td><td><strong>Right-angle HDMI adapter + Right-angle DC power adapter</strong></td><td class='n'>1 each</td><td>Essential! Philips 27E2N1100L ports face straight back — keeps plugs within the 11 mm wall clearance.</td></tr><tr><td><input type='checkbox' class='chk'></td><td><strong>Screws, wood glue, matte black paint, clear matte oak oil</strong></td><td class='n'>1 set</td><td>4×40 / 3.5×30 / 3×20 screws, M4×10 VESA bolts + washers, matte black spray/paint for inside, Rubio/Osmo matte clear oil to match your Disney frame oak.</td></tr><tr><td><input type='checkbox' class='chk'></td><td><strong>Electronics (if not already bought)</strong></td><td class='n'>1 set</td><td>Raspberry Pi 5 + active cooler + 27 W USB-C PSU + micro-HDMI cable + optional mini PIR AM312.</td></tr></tbody>
+        <tbody><tr><td><strong>Oak outer frame — top &amp; bottom</strong></td><td>Solid European Oak 22 × 60 mm (rabbet 10 × 52 mm)*</td><td class='n'>2</td><td class='n'>1230 mm (45° mitered)</td></tr><tr><td><strong>Oak outer frame — left &amp; right</strong></td><td>Solid European Oak 22 × 60 mm (rabbet 10 × 52 mm)*</td><td class='n'>2</td><td class='n'>930 mm (45° mitered)</td></tr><tr><td><strong>Structural shear backplate</strong></td><td>Poplar plywood 9 mm (contrachapado de chopo)</td><td class='n'>1</td><td class='n'>1206 × 906 mm (cut 644×383 mm monitor window)</td></tr><tr><td><strong>Bottom shelf / stiffener</strong></td><td>Birch plywood 15 mm</td><td class='n'>1</td><td class='n'>1206 × 83 mm (notch 100×6 mm for buttons)</td></tr><tr><td><strong>Cleat spacer batten</strong></td><td>Birch plywood 15 mm (sets 10 mm halo gap)</td><td class='n'>1</td><td class='n'>900 × 70 mm</td></tr><tr><td><strong>French cleat (wall + frame halves)</strong></td><td>Birch plywood 15 mm (rip 145 mm strip at 45°)</td><td class='n'>1</td><td class='n'>900 × 145 mm → 2× ~70 mm cleats</td></tr><tr><td><strong>Glass stops — top</strong></td><td>Pine/oak strip 15 × 15 mm</td><td class='n'>1</td><td class='n'>1206 mm</td></tr><tr><td><strong>Glass stops — sides</strong></td><td>Pine/oak strip 15 × 15 mm</td><td class='n'>2</td><td class='n'>808 mm</td></tr><tr><td><strong>VESA hanging straps</strong></td><td>Aluminium flat bar 30 × 3 mm</td><td class='n'>2</td><td class='n'>323 mm</td></tr><tr><td><strong>Black light-block mask</strong></td><td>Black foam board 5 mm (cartón pluma negro)</td><td class='n'>1</td><td class='n'>1176 × 808 mm (+ Ø12 mm hidden cam hole)</td></tr><tr><td><strong>Crisp screen window overlay</strong></td><td>Matte black card (cartulina negra)</td><td class='n'>1</td><td class='n'>640 × 390 mm (cut 598 × 336 mm window)</td></tr></tbody>
       </table>
     </div>
   </section>
 
   <section>
-    <h2><span class="ref">04</span>Step-by-Step Build &amp; Drywall Hanging Guide</h2>
-    <ol class="steps"><li><div class='snum'>01</div><div><h3>Test the Philips 27″ monitor first (before cutting!)</h3><p>Plug in your right-angle HDMI &amp; DC adapters and verify they project ≤ 10 mm past the rear stand box. Show a full-white image to confirm the 598 × 336 mm lit area, mark the 5 bottom buttons (122–203 mm from right) for the shelf notch, tape over the power LED, and check auto-power-on / ddcutil.</p></div></li><li><div class='snum'>02</div><div><h3>Get the wood cut &amp; mitered</h3><p>Have your local carpintería/maderería cut the four 22 × 60 mm European oak rails with the 10 × 52 mm rabbet and 45° mitered corners (or use the zero-router 18 mm oak + 8 × 8 mm glued lip alt). Have Leroy Merlin cut the 9 mm poplar backplate (1206 × 906 mm), the 15 mm bottom shelf, and rip the 900 × 145 mm French cleat lengthwise at 45°.</p></div></li><li><div class='snum'>03</div><div><h3>Glue the oak frame &amp; finish the wood</h3><p>Glue and clamp the 4 mitered oak corners squarely (check diagonals within 1–2 mm; reinforce inside corners with small hidden L-brackets or corner splines). Cut 2–3 discreet ventilation slots (120 × 12 mm) into the hidden top &amp; bottom edges. Apply clear matte oil/varnish to the oak outside (matching your Disney frame) and paint the inside, shelf, and 9 mm backplate matte black.</p></div></li><li><div class='snum'>04</div><div><h3>Cut monitor window &amp; dry-fit everything (NO glass yet!)</h3><p>Jigsaw the 644 × 383 mm window in the 9 mm poplar backplate (giving open access to monitor ports, buttons, and cooling). Screw the 15 mm bottom shelf (notched for buttons) into the bottom oak rail + backplate. Dry-fit the monitor on the shelf, drill the two 30 × 3 mm aluminium VESA straps to connect the monitor&#x27;s M4 VESA holes up to the backplate above the cutout, and test-fit the Pi 5 and right-angle cables.</p></div></li><li><div class='snum'>05</div><div><h3>Install the 1200 × 900 × 6 mm two-way glass</h3><p>Two people + clean gloves on a soft blanket, oak frame face-down. Stick EPDM glazing tape around the front lip. Check which side of the glass is coated (pen-tip reflection test: on the coated side the tip touches its reflection — face coating toward the room). Lower the glass gently onto the lip and slide the two EPDM setting blocks under the bottom edge at 30 cm &amp; 90 cm.</p></div></li><li><div class='snum'>06</div><div><h3>Lock the glass in &amp; add the black mask</h3><p>Apply 1 mm black felt to the stops and shelf. Screw the 15 × 15 mm top &amp; side stops snug (not tight!) against the glass, then screw in the notched bottom shelf (no glue so the glass can always be removed). Lay in the 5 mm black foam-board mask + matte-black card window overlay.</p></div></li><li><div class='snum'>07</div><div><h3>Mount the monitor, Pi 5, backplate &amp; frame cleat</h3><p>Stick 1 mm felt on the monitor bezel, set it on the bottom shelf, bolt the two aluminium VESA straps to the monitor (M4 × 10) and into the 9 mm poplar backplate. Screw the 9 mm backplate around the entire inner oak perimeter every 15 cm (this turns the frame into a zero-sag shear box!). Screw and glue the upper 45° French cleat half flat onto the backplate (recessed flush inside the 19 mm rear pocket!).</p></div></li><li><div class='snum'>08</div><div><h3>Hang safely on the drywall (pladur) above the piano</h3><p>Mark the wall cleat height so the frame bottom lands +22 cm above your 102.5 cm piano (frame: 124.5–217.5 cm, screen: 135.9–169.5 cm). Use a magnet/stud finder to locate the vertical pladur studs (montantes). Level and screw the 900 mm wall French cleat into ≥2 studs PLUS 4× Fischer DuoTec 10 or metal Molly toggles across the cleat. Two people lift the ~26 kg mirror straight onto the cleat (0 mm wall gap!), route the thin power cord down behind the piano (or up to the junction box), and add 1 small anti-lift screw at the bottom edge.</p></div></li></ol>
+    <h2><span class="ref">04</span>Shopping List — Organized by Where to Buy (Auto-Saves Checkmarks)</h2>
+    
+    <div class="shop-group">
+      <h3>Wood Shop / Carpintería (or Leroy Merlin)</h3>
+      <div class="tbl-wrap"><table><thead><tr><th style="width:36px"></th><th>Item</th><th>Qty / Est.</th><th>Details</th></tr></thead><tbody><tr><td><input type='checkbox' class='chk' data-id='item_1'></td><td><strong>Solid European Oak frame rails (22 × 60 mm, rabbet 10 × 52 mm)*</strong></td><td class='n'>4.6 m linear</td><td>Ask local carpintería/maderería to mill the rabbet &amp; 45° miters to match your Disney frame. *Zero-router Leroy Merlin alt: 1× 18 mm tablero alistonado de roble (2400×400) ripped to 60 mm + 8×8 mm oak lip strip.</td></tr><tr><td><input type='checkbox' class='chk' data-id='item_2'></td><td><strong>Poplar plywood 9 mm (contrachapado de chopo)</strong></td><td class='n'>1206 × 906 mm</td><td>Lightweight shear backplate (~3.2 kg vs 7.2 kg birch!). Cut out the 644 × 383 mm monitor window.</td></tr><tr><td><input type='checkbox' class='chk' data-id='item_3'></td><td><strong>Birch plywood 15 mm (contrachapado abedul)</strong></td><td class='n'>~1210 × 350 mm</td><td>For bottom 83 mm shelf + 900×70 mm cleat spacer + 900×145 mm strip ripped lengthwise at 45° (French cleat).</td></tr><tr><td><input type='checkbox' class='chk' data-id='item_4'></td><td><strong>Pine or oak strip 15 × 15 mm (listón)</strong></td><td class='n'>2 × 2.4 m</td><td>Removable top &amp; side glass stops.</td></tr></tbody></table></div>
+    </div>
+    <div class="shop-group">
+      <h3>Hardware &amp; Art Store (Leroy Merlin / Ferretería / Papelería)</h3>
+      <div class="tbl-wrap"><table><thead><tr><th style="width:36px"></th><th>Item</th><th>Qty / Est.</th><th>Details</th></tr></thead><tbody><tr><td><input type='checkbox' class='chk' data-id='item_5'></td><td><strong>DRYWALL (Pladur) anchors: Fischer DuoTec 10 or metal Molly M6</strong></td><td class='n'>6 pcs</td><td>For the 900 mm wall cleat! Hit ≥2 vertical pladur studs with stud screws + 4 DuoTec/Molly toggles (≥25 kg each).</td></tr><tr><td><input type='checkbox' class='chk' data-id='item_6'></td><td><strong>Aluminium flat bar 30 × 3 mm (pletina)</strong></td><td class='n'>1 m</td><td>Cut into 2× VESA hanging straps (390 mm each).</td></tr><tr><td><input type='checkbox' class='chk' data-id='item_7'></td><td><strong>EPDM glazing tape (10 × 2 mm) + 1 mm black felt tape</strong></td><td class='n'>5 m each</td><td>EPDM cushions glass on oak lip; felt lines stops, shelf, and monitor bezel.</td></tr><tr><td><input type='checkbox' class='chk' data-id='item_8'></td><td><strong>Hard rubber setting blocks (100 × 8 × 3 mm, 80–90 Shore A)</strong></td><td class='n'>2 pcs</td><td>Carry the 16.2 kg glass bottom edge at the ¼ points (30 &amp; 90 cm).</td></tr><tr><td><input type='checkbox' class='chk' data-id='item_9'></td><td><strong>Black foam board 5 mm (cartón pluma negro, 100×140 cm)</strong></td><td class='n'>1 sheet</td><td>Art shop — light-blocking mask right behind the glass (cut Ø12 mm hidden hole for Pi Cam 3).</td></tr><tr><td><input type='checkbox' class='chk' data-id='item_10'></td><td><strong>Matte black card (cartulina negra, 70×50 cm)</strong></td><td class='n'>1 sheet</td><td>Razor-clean 598 × 336 mm window overlay behind glass.</td></tr><tr><td><input type='checkbox' class='chk' data-id='item_11'></td><td><strong>Matte clear oak oil/varnish + matte black spray paint + wood glue</strong></td><td class='n'>1 each</td><td>Osmo/Rubio/Xylazel clear matte oil to match your Disney oak; matte black paint for inside &amp; backplate.</td></tr><tr><td><input type='checkbox' class='chk' data-id='item_12'></td><td><strong>Screws, M4×10 VESA bolts + washers, Wago 221-413 lever connectors</strong></td><td class='n'>1 pack each</td><td>Wood screws 4×40 / 3.5×30 / 3×20; M4×10 for monitor VESA; 4× Wago 221-413 for clean solder-free 5V power splitting.</td></tr><tr><td><input type='checkbox' class='chk' data-id='item_13'></td><td><strong>Slim paintable white cable channel (canaleta 16 × 8 mm)</strong></td><td class='n'>1 m</td><td>Hides the 3 thin low-voltage DC cables neatly from behind the piano up into the mirror.</td></tr></tbody></table></div>
+    </div>
+    <div class="shop-group">
+      <h3>Online: Reactive LED Halo + Sensors + Pi 5 (Amazon / AliExpress / Pi Shop)</h3>
+      <div class="tbl-wrap"><table><thead><tr><th style="width:36px"></th><th>Item</th><th>Qty / Est.</th><th>Details</th></tr></thead><tbody><tr><td><input type='checkbox' class='chk' data-id='item_14'></td><td><strong>SK6812 RGBW LED Strip — Warm White 3000K, 5V, 60 LEDs/m, IP30 (5 m)</strong></td><td class='n'>1 roll (~€22)</td><td>MUST be SK6812 RGBW Warm White (WW/3000K) 5V IP30 — dedicated warm white matches your TV cabinet &amp; oak, plus full RGB animations!</td></tr><tr><td><input type='checkbox' class='chk' data-id='item_15'></td><td><strong>5V 6A (30W) DC Power Supply + DC barrel screw-terminal adapter</strong></td><td class='n'>1 set (~€14)</td><td>Stays cool behind piano! Powers BOTH ESP32 and both ends of the 4.1 m strip safely (set WLED limit to 4000 mA).</td></tr><tr><td><input type='checkbox' class='chk' data-id='item_16'></td><td><strong>ESP32 DevKitC / ESP32-WROOM-32 USB-C board (for WLED)</strong></td><td class='n'>1 pc (~€6)</td><td>Flashes WLED in 30 sec at install.wled.me — avoids Pi 5 GPIO flicker and gives instant Wi-Fi JSON control + phone app!</td></tr><tr><td><input type='checkbox' class='chk' data-id='item_17'></td><td><strong>LED wiring kit: 18 AWG 2-wire cable (5 m), 330 Ω resistor, 1000 µF 10V cap</strong></td><td class='n'>1 set (~€8)</td><td>18 AWG carries 5V without voltage drop; 330 Ω protects data line; 1000 µF cap smooths inrush on 5V rail.</td></tr><tr><td><input type='checkbox' class='chk' data-id='item_18'></td><td><strong>HLK-LD2410C 24 GHz mmWave Presence Radar (+ dupont wires)</strong></td><td class='n'>1 pc (~€5)</td><td>Hidden inside bottom cavity — sees straight through oak &amp; glass (0 holes!), detects static presence &amp; exact distance.</td></tr><tr><td><input type='checkbox' class='chk' data-id='item_19'></td><td><strong>Raspberry Pi Camera Module 3 Wide + 30 cm Pi 5 CSI Ribbon (22→15 pin!)</strong></td><td class='n'>1 set (~€35)</td><td>IMPORTANT: Pi 5 uses the narrower 22-pin CSI connector — get the Pi 5 camera cable! Sits 100% invisible behind mirror glass.</td></tr><tr><td><input type='checkbox' class='chk' data-id='item_20'></td><td><strong>Compact USB Omnidirectional Mini Microphone (e.g. Fifine/generic USB puck)</strong></td><td class='n'>1 pc (~€12)</td><td>Tucked facing down on the hidden bottom underside — clear voice pickup, zero front holes.</td></tr><tr><td><input type='checkbox' class='chk' data-id='item_21'></td><td><strong>Right-angle HDMI adapter + Right-angle DC barrel adapter (check size!)</strong></td><td class='n'>1 each (~€10)</td><td>Verify exact Philips DC barrel diameter (usually 5.5×2.5 or 5.5×2.1 mm) once monitor arrives.</td></tr><tr><td><input type='checkbox' class='chk' data-id='item_22'></td><td><strong>Raspberry Pi 5 (4 GB or 8 GB) + Active Cooler + Official 27W USB-C PSU + micro-HDMI</strong></td><td class='n'>1 set</td><td>Official 27W PSU + Active Cooler strongly recommended so Pi 5 runs cool and quiet.</td></tr></tbody></table></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="ref">05</span>Step-by-Step Build, LED Setup &amp; Drywall Hanging Guide</h2>
+    <ol class="steps"><li><div class='snum'>01</div><div><h3>Test Philips 27″ monitor &amp; print the 7 STLs first</h3><p>While inside the 15-day return window: test right-angle HDMI &amp; DC adapters, verify the 598 × 336 mm lit area on full white, mark the 5 bottom buttons (122–203 mm from right) for the shelf notch, tape over the Philips logo + power LED, and check auto-power-on / ddcutil. Have your friend print the 7 STLs in PETG (0.2 mm layer, 25% infill, zero supports needed!).</p></div></li><li><div class='snum'>02</div><div><h3>Get the oak &amp; plywood cut at the wood shop</h3><p>Have a local carpintería/maderería cut the four 22 × 60 mm European oak rails with the 10 × 52 mm rabbet &amp; 45° miters (or use the zero-router Leroy Merlin 18 mm oak + 8×8 mm lip alt). Have them cut the 9 mm poplar backplate (1206 × 906 mm), the 15 mm shelf + cleat spacer, and rip the 900 × 145 mm birch strip lengthwise at 45°.</p></div></li><li><div class='snum'>03</div><div><h3>Glue &amp; finish the oak frame (zero holes drilled in front/sides!)</h3><p>Clamp the 4 mitered oak corners using the 4× 3D-printed 90° miter jigs (check diagonals within 1–2 mm; reinforce inside corners with small hidden brackets). Apply clear matte oak oil outside (matching your Disney frame) and paint the inside, shelf, and 9 mm poplar backplate matte black.</p></div></li><li><div class='snum'>04</div><div><h3>Cut monitor window &amp; dry-fit electronics (NO glass yet)</h3><p>Jigsaw the 644 × 383 mm window in the 9 mm poplar backplate. Notch the 15 mm bottom shelf for the monitor buttons. Mount the Pi 5 on its 3D-printed plate, clip the HLK-LD2410C radar in the bottom cavity, tuck the compact USB mic facing straight down on the bottom underside, and test-fit the VESA straps + right-angle cables.</p></div></li><li><div class='snum'>05</div><div><h3>Flash WLED &amp; wire the SK6812 RGBW LED halo (bench test first!)</h3><p>Plug the ESP32 into your PC, open Chrome → install.wled.me → flash WLED in 30 seconds! In WLED LED Preferences: choose SK6812 RGBW (Warm White), set LED count (~243), set Maximum Current = 4000 mA! Screw the 16× 3D-printed 45° clips around the backplate perimeter (inset 32 mm from outer oak edge), stick the 4.1 m strip on, put the 330 Ω resistor on GPIO2→Data, 1000 µF cap across 5V/GND, and use Wago 221-413 connectors to inject 5V + GND at BOTH ends of the strip.</p></div></li><li><div class='snum'>06</div><div><h3>Install the 1200 × 900 × 6 mm two-way glass</h3><p>Two people + clean gloves on a blanket, oak frame face-down. Stick EPDM glazing tape around the front lip. Check which glass face is coated (pen-tip test: tip touches reflection on coated side → coating faces room). Lower glass gently onto the lip and place the two EPDM setting blocks under the bottom edge at 30 cm &amp; 90 cm.</p></div></li><li><div class='snum'>07</div><div><h3>Lock glass in, add mask + hidden Pi Camera 3</h3><p>Line stops &amp; shelf with 1 mm black felt; screw in top/side stops snug (not tight!) and screw in the bottom notched shelf (no glue!). Cut a clean Ø12 mm hole in the 5 mm black foam mask at top-center, attach the 3D-printed matte-black Pi Cam 3 shroud flush behind the glass, lay in the mask + black card screen overlay, and lock flat with the 10× 3D-printed turn buttons.</p></div></li><li><div class='snum'>08</div><div><h3>Bolt monitor, backplate, French cleat &amp; bottom 10 mm spacers</h3><p>Stick 1 mm felt on monitor bezel, place on bottom shelf, bolt the two aluminium VESA straps to M4 VESA holes + 9 mm poplar backplate. Screw the 9 mm backplate around the oak perimeter every 15 cm. Screw/glue the 14 mm spacer batten + top 45° French cleat half onto the backplate (creates the exact 10 mm halo gap!). Screw the 2× 10 mm 3D-printed bottom wall spacers at the bottom corners.</p></div></li><li><div class='snum'>09</div><div><h3>Hang safely on the drywall (pladur) &amp; pair Bluetooth bar</h3><p>Locate vertical pladur studs (montantes) with a magnet/stud finder. Level the 900 mm wall French cleat so the mirror bottom lands +22 cm above your 102.5 cm piano (frame: 124.5–217.5 cm), anchoring into ≥2 studs + 4× Fischer DuoTec 10 / metal Molly M6 toggles. Lift mirror onto cleat, run the 3 thin low-voltage DC wires down the slim painted white channel to the 3 bricks behind the piano, pair Pi 5 Bluetooth to your soundbar, and test the LED halo triggers!</p></div></li></ol>
   </section>
 </main>
 
@@ -263,11 +394,22 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 
+// Persistent shopping checklist
+document.querySelectorAll(".chk").forEach(cb => {
+  const id = "mm_chk_" + cb.dataset.id;
+  if (localStorage.getItem(id) === "1") { cb.checked = true; cb.closest("tr").classList.add("done"); }
+  cb.onchange = () => {
+    localStorage.setItem(id, cb.checked ? "1" : "0");
+    cb.closest("tr").classList.toggle("done", cb.checked);
+  };
+});
+
+// 3D Scene
 const container = document.getElementById("canvas3d");
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x13161d);
 const camera = new THREE.PerspectiveCamera(36, container.clientWidth / container.clientHeight, 0.05, 20);
-camera.position.set(1.15, 0.28, 1.72);
+camera.position.set(1.18, 0.28, 1.72);
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(container.clientWidth, container.clientHeight);
@@ -278,10 +420,10 @@ container.appendChild(renderer.domElement);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
-controls.target.set(0, 0, -0.03);
+controls.target.set(0, 0, -0.035);
 
-scene.add(new THREE.HemisphereLight(0xf8f9ff, 0x262932, 0.95));
-const key = new THREE.DirectionalLight(0xfff6eb, 1.5); key.position.set(2.2, 2.4, 2.5); scene.add(key);
+scene.add(new THREE.HemisphereLight(0xf8f9ff, 0x262932, 0.90));
+const key = new THREE.DirectionalLight(0xfff6eb, 1.45); key.position.set(2.2, 2.4, 2.5); scene.add(key);
 const backL = new THREE.DirectionalLight(0xd4e6ff, 0.75); backL.position.set(-2.0, 0.8, -2.2); scene.add(backL);
 
 const oakTex = new THREE.TextureLoader().load("oak_disney_tex.jpg");
@@ -295,10 +437,17 @@ const monMat = new THREE.MeshStandardMaterial({ color: 0x161920, roughness: 0.45
 const aluMat = new THREE.MeshStandardMaterial({ color: 0xcbd5e1, metalness: 0.85, roughness: 0.25 });
 const cleatMat = new THREE.MeshStandardMaterial({ color: 0x45c486, roughness: 0.55 });
 const piMat = new THREE.MeshStandardMaterial({ color: 0xdc2626, roughness: 0.4 });
-const wallMat = new THREE.MeshStandardMaterial({ color: 0xe9e6e0, roughness: 0.92, transparent: true, opacity: 0.65 });
+const espMat = new THREE.MeshStandardMaterial({ color: 0x2563eb, roughness: 0.4 });
+const sensorMat = new THREE.MeshStandardMaterial({ color: 0xa78bfa, roughness: 0.35 });
+const ledMat = new THREE.MeshStandardMaterial({ color: 0xffd28a, emissive: 0xffb84d, emissiveIntensity: 2.2, roughness: 0.2 });
+const wallMat = new THREE.MeshStandardMaterial({ color: 0xe9e6e0, roughness: 0.92, transparent: true, opacity: 0.72 });
 const studMat = new THREE.MeshStandardMaterial({ color: 0x7c8ea6, metalness: 0.6, roughness: 0.4 });
 
-// Screen UI texture
+// Warm halo PointLights illuminating the drywall behind the frame!
+const haloLight = new THREE.PointLight(0xffb855, 1.4, 2.2);
+haloLight.position.set(0, 0, -0.058);
+scene.add(haloLight);
+
 const uc = document.createElement("canvas"); uc.width = 512; uc.height = 288;
 const uctx = uc.getContext("2d"); uctx.fillStyle = "#08090b"; uctx.fillRect(0, 0, 512, 288);
 uctx.fillStyle = "#fff"; uctx.font = "200 68px system-ui"; uctx.fillText("21:47", 24, 106);
@@ -312,15 +461,13 @@ const MM = 0.001;
 const CX = 615.0, CZ = 465.0;
 
 function addPart(x0, x1, y0, y1, z0, z1, mat, expZ) {
-  const w = (x1 - x0)*MM, h = (z1 - z0)*MM, d = (y1 - y0)*MM;
-  const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
+  const m = new THREE.Mesh(new THREE.BoxGeometry((x1-x0)*MM, (z1-z0)*MM, (y1-y0)*MM), mat);
   const bz = -((y0 + y1)/2)*MM;
   m.position.set(((x0 + x1)/2 - CX)*MM, ((z0 + z1)/2 - CZ)*MM, bz);
   scene.add(m);
   entries.push({ m, bz, expZ });
 }
 
-// Exact geometry from design.py!
 const GEOM = {
   oak: [(0, 12, 0, 60, 0, 930), (1218, 1230, 0, 60, 0, 930), (12, 1218, 0, 60, 918, 930), (12, 1218, 0, 60, 0, 12), (12, 1218, 0, 8, 908, 918), (12, 1218, 0, 8, 12, 22), (12, 22, 0, 8, 22, 908), (1208, 1218, 0, 8, 22, 908)],
   glass: [(15, 1215, 10, 16, 15, 915)],
@@ -330,31 +477,64 @@ const GEOM = {
   backplate: [(12, 1218, 32, 41, 12, 90), (12, 1218, 32, 41, 473, 918), (12, 293.0, 32, 41, 90, 473), (937.0, 1218, 32, 41, 90, 473)],
   monitor: [(308.0, 922.0, 17, 45, 95, 343), (308.0, 922.0, 17, 26, 343, 458), (537.0, 693.0, 45, 49, 95, 195)],
   straps: [(550.0, 580.0, 45, 48, 195, 518), (650.0, 680.0, 45, 48, 195, 518)],
-  cleat: [(165.0, 1065.0, 41, 56, 808, 878)],
-  pi: [(1068, 1163, 22, 46, 650, 715)],
+  spacer: [(165.0, 1065.0, 41, 55, 793, 863)],
+  cleat: [(165.0, 1065.0, 55, 70, 793, 863)],
+  pi: [(1053, 1148, 41, 65, 610, 675)],
+  esp: [(82, 137, 41, 55, 620, 650)],
+  cam: [(602.0, 628.0, 17, 32, 840, 866)],
+  radar: [(463.0, 487.0, 20, 30, 45.5, 69.5)],
+  led: [(32, 1198, 50, 58, 888, 898), (32, 1198, 50, 58, 32, 42), (32, 42, 50, 58, 42, 888), (1188, 1198, 50, 58, 42, 888)],
 };
 
 GEOM.oak.forEach(b => addPart(...b, oakMat, 0.28));
 GEOM.glass.forEach(b => addPart(...b, glassMat, 0.20));
 GEOM.mask.forEach(b => addPart(...b, maskMat, 0.12));
+GEOM.cam.forEach(b => addPart(...b, sensorMat, 0.09));
+GEOM.radar.forEach(b => addPart(...b, sensorMat, 0.08));
 GEOM.stops.forEach(b => addPart(...b, oakMat, 0.06));
 GEOM.shelf.forEach(b => addPart(...b, plyBlackMat, 0.02));
 GEOM.monitor.forEach(b => addPart(...b, monMat, -0.04));
 GEOM.straps.forEach(b => addPart(...b, aluMat, -0.10));
-GEOM.backplate.forEach(b => addPart(...b, plyBlackMat, -0.20));
-GEOM.pi.forEach(b => addPart(...b, piMat, -0.15));
-GEOM.cleat.forEach(b => addPart(...b, cleatMat, -0.32));
+GEOM.backplate.forEach(b => addPart(...b, plyBlackMat, -0.18));
+GEOM.led.forEach(b => addPart(...b, ledMat, -0.22));
+GEOM.pi.forEach(b => addPart(...b, piMat, -0.24));
+GEOM.esp.forEach(b => addPart(...b, espMat, -0.24));
+GEOM.spacer.forEach(b => addPart(...b, plyBlackMat, -0.28));
+GEOM.cleat.forEach(b => addPart(...b, cleatMat, -0.34));
 
-// Lit screen plane
+// Bottom 10 mm 3D-printed wall spacers
+addPart(80, 124, 60, 70, 50, 94, sensorMat, -0.34);
+addPart(1106, 1150, 60, 70, 50, 94, sensorMat, -0.34);
+
 const scr = new THREE.Mesh(new THREE.PlaneGeometry(598*MM, 336*MM), scrMat);
 const sbz = -16.6*MM;
 scr.position.set((615.0 - CX)*MM, (282.0 - CZ)*MM, sbz);
 scene.add(scr); entries.push({ m: scr, bz: sbz, expZ: 0.04 });
 
-// Wall half of cleat + Drywall + Studs
-addPart(165.0, 1065.0, 41, 56, 736, 806, cleatMat, -0.44);
-addPart(-200, 1430, 60, 73, -180, 1110, wallMat, -0.56);
-for (const sx of [215, 615, 1015]) addPart(sx-24, sx+24, 73, 118, -180, 1110, studMat, -0.56);
+// Wall cleat half + Drywall + Metal Studs
+addPart(165.0, 1065.0, 55, 70, 721, 791, cleatMat, -0.46);
+addPart(-200, 1430, 70, 83, -180, 1110, wallMat, -0.58);
+for (const sx of [215, 615, 1015]) addPart(sx-24, sx+24, 83, 128, -180, 1110, studMat, -0.58);
+
+// LED Mode switcher (updates both hero room photo and live 3D LED glow!)
+let pulseMode = "warm";
+document.querySelectorAll(".mbtn").forEach(b => {
+  b.onclick = () => {
+    document.querySelectorAll(".mbtn").forEach(x => x.classList.remove("active"));
+    b.classList.add("active");
+    document.getElementById("heroImg").src = b.dataset.img;
+    pulseMode = b.dataset.led;
+    if (pulseMode === "warm") {
+      ledMat.emissive.setHex(0xffb84d); ledMat.emissiveIntensity = 2.2;
+      haloLight.color.setHex(0xffb855); haloLight.intensity = 1.4;
+    } else if (pulseMode === "think") {
+      ledMat.emissive.setHex(0x28c8ff); ledMat.emissiveIntensity = 2.6;
+      haloLight.color.setHex(0x38bdf8); haloLight.intensity = 1.8;
+    } else {
+      ledMat.emissiveIntensity = 0.0; haloLight.intensity = 0.0;
+    }
+  };
+});
 
 const expInput = document.getElementById("exp");
 expInput.oninput = () => {
@@ -365,9 +545,9 @@ expInput.oninput = () => {
 
 let anim = null;
 function fly(p, t) { anim = { p0: camera.position.clone(), p1: new THREE.Vector3(...p), t0: controls.target.clone(), t1: new THREE.Vector3(...t), k: 0 }; }
-document.getElementById("cFront").onclick = () => fly([1.15, 0.28, 1.72], [0, 0, -0.03]);
-document.getElementById("cSide").onclick  = () => fly([1.55, 0.08, 0.30], [0.22, 0, -0.03]);
-document.getElementById("cBack").onclick  = () => fly([-1.15, 0.25, -1.70], [0, 0, -0.04]);
+document.getElementById("cFront").onclick = () => fly([1.18, 0.28, 1.72], [0, 0, -0.035]);
+document.getElementById("cSide").onclick  = () => fly([1.55, 0.08, 0.25], [0.22, 0, -0.04]);
+document.getElementById("cBack").onclick  = () => fly([-1.18, 0.25, -1.72], [0, 0, -0.045]);
 
 window.addEventListener("resize", () => {
   camera.aspect = container.clientWidth / container.clientHeight;
@@ -375,8 +555,15 @@ window.addEventListener("resize", () => {
   renderer.setSize(container.clientWidth, container.clientHeight);
 });
 
+let clock = 0;
 function loop() {
   requestAnimationFrame(loop);
+  clock += 0.04;
+  if (pulseMode === "think") {
+    const p = 1.5 + 1.1 * Math.sin(clock * 2.2);
+    ledMat.emissiveIntensity = p;
+    haloLight.intensity = 0.8 + 0.9 * Math.sin(clock * 2.2);
+  }
   if (anim) {
     anim.k = Math.min(1, anim.k + 0.06);
     const e = 1 - Math.pow(1 - anim.k, 3);
