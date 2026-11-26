@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manual visual pas a pas (estil IKEA) — Mirall Màgic Rev 5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --bg: #f4f5f7;
+    --paper: #ffffff;
+    --ink: #111827;
+    --ink-2: #334155;
+    --muted: #64748b;
+    --line: #cbd5e1;
+    --blue: #1d4ed8;
+    --blue-soft: #eff6ff;
+    --green: #15803d;
+    --green-soft: #dcfce7;
+    --red: #dc2626;
+    --red-soft: #fee2e2;
+    --amber: #b45309;
+    --amber-soft: #fef3c7;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 15px/1.55 var(--sans);
+  }
+  .mono { font-family: var(--mono); }
+
+  /* Sticky nav */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--ink);
+  }
+  .topbar-inner {
+    max-width: 1020px;
+    margin: 0 auto;
+    padding: 10px 18px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .brand {
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .brand-tag {
+    background: var(--ink);
+    color: #fff;
+    font: 700 11px/1 var(--mono);
+    padding: 4px 7px;
+    border-radius: 4px;
+  }
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+  }
+  .nav-links a, .nav-btn {
+    text-decoration: none;
+    font: 600 12.5px/1 var(--sans);
+    color: var(--ink-2);
+    background: #fff;
+    border: 1.5px solid var(--line);
+    padding: 7px 11px;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+  .nav-links a:hover, .nav-btn:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+  .nav-btn-primary {
+    background: var(--ink);
+    color: #fff;
+    border-color: var(--ink);
+  }
+  .nav-btn-primary:hover {
+    background: #334155;
+    color: #fff;
+  }
+
+  main {
+    max-width: 1020px;
+    margin: 0 auto;
+    padding: 24px 18px 72px;
+    display: grid;
+    gap: 24px;
+  }
+
+  .sheet {
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 10px;
+    padding: 22px 24px;
+    box-shadow: 0 3px 0 rgba(17, 24, 39, 0.08);
+  }
+  .cover {
+    display: grid;
+    gap: 14px;
+  }
+  .cover-top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 14px;
+  }
+  .cover h1 {
+    margin: 0;
+    font-size: clamp(24px, 3vw, 32px);
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+  }
+  .cover-sub {
+    margin: 6px 0 0;
+    color: var(--ink-2);
+    font-size: 14.5px;
+  }
+  .cover-badge {
+    font: 700 13px/1.3 var(--mono);
+    background: var(--amber-soft);
+    border: 1.5px solid var(--amber);
+    color: #78350f;
+    padding: 8px 12px;
+    border-radius: 8px;
+    text-align: right;
+  }
+  .rules-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .rule-box {
+    border: 1.5px solid var(--line);
+    border-radius: 8px;
+    padding: 11px 13px;
+    background: #f8fafc;
+    font-size: 13px;
+  }
+  .rule-box strong { display: block; margin-bottom: 3px; font-size: 13.5px; }
+
+  .sec-label {
+    font: 700 11.5px/1 var(--mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 6px;
+  }
+  .sheet h2 {
+    margin: 0 0 12px;
+    font-size: 20px;
+    letter-spacing: -0.015em;
+  }
+
+  /* Pieces table */
+  .tbl-wrap { overflow-x: auto; }
+  table.inv {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.2px;
+    margin-bottom: 16px;
+  }
+  table.inv th, table.inv td {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid #e2e8f0;
+    vertical-align: top;
+  }
+  table.inv th {
+    font: 700 10.5px/1.2 var(--mono);
+    text-transform: uppercase;
+    color: var(--muted);
+    background: #f8fafc;
+  }
+  table.inv .muted { color: var(--ink-2); }
+  .code-pill {
+    display: inline-block;
+    min-width: 32px;
+    text-align: center;
+    background: var(--ink);
+    color: #fff;
+    font: 700 11.5px/1 var(--mono);
+    padding: 4px 7px;
+    border-radius: 99px;
+  }
+
+  /* IKEA Step Cards */
+  .phase-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .phase-divider span {
+    font: 800 13px/1 var(--mono);
+    letter-spacing: 0.06em;
+    padding: 7px 14px;
+    border-radius: 99px;
+    color: #fff;
+  }
+  .phase-divider.shop span { background: #b45309; }
+  .phase-divider.home span { background: #15803d; }
+  .phase-divider hr {
+    flex: 1;
+    border: 0;
+    border-top: 2px dashed var(--line);
+  }
+
+  .ikea-card {
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 0 rgba(17, 24, 39, 0.08);
+    transition: opacity 0.2s;
+  }
+  .ikea-card.done {
+    border-color: var(--green);
+    opacity: 0.78;
+  }
+  .ikea-card-head {
+    display: grid;
+    grid-template-columns: 58px minmax(0, 1fr);
+    gap: 14px;
+    align-items: center;
+    padding: 14px 18px;
+    background: #f8fafc;
+    border-bottom: 1.5px solid var(--line);
+  }
+  .ikea-num-wrap {
+    cursor: pointer;
+    position: relative;
+    display: block;
+  }
+  .ikea-chk { position: absolute; opacity: 0; pointer-events: none; }
+  .ikea-num {
+    width: 54px;
+    height: 54px;
+    border-radius: 10px;
+    background: var(--ink);
+    color: #fff;
+    font: 800 24px/1 var(--mono);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.15s;
+  }
+  .ikea-num .n-ok { display: none; }
+  .ikea-card.done .ikea-num { background: var(--green); }
+  .ikea-card.done .ikea-num .n-txt { display: none; }
+  .ikea-card.done .ikea-num .n-ok { display: inline; }
+
+  .ikea-title-block h2 {
+    margin: 6px 0 0;
+    font-size: 17px;
+    line-height: 1.25;
+  }
+  .ikea-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .pill {
+    font: 700 11px/1.2 var(--mono);
+    padding: 3px 8px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+  }
+  .phase-shop { background: var(--amber-soft); color: #78350f; border-color: var(--amber); }
+  .phase-home { background: var(--green-soft); color: #14532d; border-color: var(--green); }
+  .pill-pieces { background: #f1f5f9; color: #1e293b; border-color: #cbd5e1; }
+  .pill-screws { background: var(--blue-soft); color: #1e3a8a; border-color: #93c5fd; }
+  .glue-yes { background: var(--green-soft); color: #14532d; border-color: #86efac; }
+  .glue-no { background: var(--red-soft); color: #991b1b; border-color: #fca5a5; }
+
+  .ikea-svg-box {
+    padding: 12px 16px 6px;
+    background: #ffffff;
+  }
+  .ikea-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+  }
+  .ikea-bullets {
+    margin: 0;
+    padding: 10px 22px 16px 38px;
+    display: grid;
+    gap: 5px;
+    font-size: 13.8px;
+    color: var(--ink-2);
+  }
+  .ikea-bullets li::marker { font-weight: 700; color: var(--ink); }
+
+  .prog-bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    background: #fff;
+    border: 1.5px solid var(--line);
+    border-radius: 8px;
+  }
+  .prog-track {
+    flex: 1;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .prog-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--green);
+    transition: width 0.2s;
+  }
+
+  @media (max-width: 720px) {
+    .rules-grid { grid-template-columns: 1fr; }
+    .ikea-card-head { grid-template-columns: 44px minmax(0, 1fr); padding: 12px; }
+    .ikea-num { width: 42px; height: 42px; font-size: 18px; }
+    .sheet { padding: 14px; }
+  }
+  @media print {
+    body { background: #fff; font-size: 12px; }
+    .topbar, .prog-bar-wrap { display: none !important; }
+    main { padding: 0; gap: 14px; max-width: 100%; }
+    .sheet, .ikea-card {
+      box-shadow: none;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    .ikea-card { margin-bottom: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="build_plan.html">
+      <span class="brand-tag">MANUAL IKEA</span>
+      <span>Mirall Màgic · Rev 5</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#inventari">Peces i cargols</a>
+      <a href="#pes">Aguanta el pes?</a>
+      <a href="#pas-01">Taller (01–07)</a>
+      <a href="#pas-08">Casa (08–10)</a>
+      <a href="build_plan.html">← Pla complet i compra</a>
+      <button class="nav-btn nav-btn-primary" type="button" onclick="window.print()">Imprimeix llibret / PDF</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- COVER -->
+  <section class="sheet cover">
+    <div class="cover-top">
+      <div>
+        <h1>Manual visual pas a pas — Mirall Màgic</h1>
+        <p class="cover-sub">Cada peça amb el seu codi (<code>M, L, T, C, J, B, P1, P2, P3, K</code>), direcció exacta de cada cargol (<code>S1–S5</code>) i mapa real del pes.</p>
+      </div>
+      <div class="cover-badge">
+        1242 × 942 × 69 mm<br>
+        Pes total ≈ 30.3 kg
+      </div>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-box">
+        <strong>1. Què és cada «tac / llistó»?</strong>
+        <code>C</code> (4 llistons) va al DARRERE de <code>T</code>; <code>J</code> (3 junquillos) va al DAVANT de <code>T</code>; <code>K</code> (2 tacs) recolza a la paret a baix; <code>G</code> són les gomes del vidre; <code>W</code> són els tacs de pladur.
+      </div>
+      <div class="rule-box">
+        <strong>2. Ordre sagrat al tauler T</strong>
+        PRIMER encolar/cargolar <code>C</code> des del DAVANT (<code>S2</code>) → SEGON cargolar <code>J</code> des del DARRERE (<code>S3</code>) → TERCER <code>P1+P2+K</code> → QUART pintar negre.
+      </div>
+      <div class="rule-box">
+        <strong>3. Què porta COLA i què NO</strong>
+        <strong>AMB COLA:</strong> <code>M+L</code>, <code>T+C+P1+P2+K</code>.<br>
+        <strong>SENSE COLA:</strong> <code>S4</code> (tancar tauler al marc), <code>S5</code> (llistó inferior <code>B</code>) i <code>J</code> (junquillos).
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 1: PIECE & SCREW INVENTORY -->
+  <section class="sheet" id="inventari">
+    <div class="sec-label">Pàgina 01 · Inventari sense confusions</div>
+    <h2>Totes les peces, tacs i cargols amb el seu codi</h2>
+    <div class="tbl-wrap">
+      <table class="inv">
+        <thead>
+          <tr>
+            <th>Codi</th>
+            <th>Peça</th>
+            <th>Material</th>
+            <th>Mida de tall</th>
+            <th>Per a què serveix i on va</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><span class='code-pill'>M1 / M2</span></td><td><strong>Marc exterior</strong></td><td class='muted'>Avet 18×69 mm</td><td class='mono'>2× 1242 + 2× 942 mm (a 45°)</td><td>Caixa exterior del mirall (el que es veu de costat)</td></tr><tr><td><span class='code-pill'>L</span></td><td><strong>Llavi frontal</strong></td><td class='muted'>Avet 17×17 mm</td><td class='mono'>2× 2400 mm (encolat abans del tall a 45°)</td><td>Subjecta el vidre per DAVANT (fa un marc de 35 mm)</td></tr><tr><td><span class='code-pill'>T</span></td><td><strong>Tauler posterior</strong></td><td class='muted'>Contraxapat pi fenòlic 9 mm</td><td class='mono'>1204×904 (fin. 644×378 + 4× cant. 50×50)</td><td>Columna vertebral: aguanta monitor, electrònica i penjador</td></tr><tr><td><span class='code-pill'>C</span></td><td><strong>Llistons interiors</strong></td><td class='muted'>Avet 17×17 mm</td><td class='mono'>2× 1120 + 2× 820 mm</td><td>Cara DARRERE de T: són els «tacs» per cargolar T al marc de costat</td></tr><tr><td><span class='code-pill'>J</span></td><td><strong>Junquillos del vidre</strong></td><td class='muted'>Avet 17×17 mm</td><td class='mono'>1× 1120 (dalt) + 2× 780 mm (costats)</td><td>Cara DAVANT de T: aguanten el vidre per DARRERE contra el llavi L</td></tr><tr><td><span class='code-pill'>B</span></td><td><strong>Llistó inferior / biga</strong></td><td class='muted'>Contraxapat cru 15 mm</td><td class='mono'>1200×83 mm (rebaix 101×6)</td><td>Dret darrere el vidre a baix: fa de biga pel pes del vidre (16.2 kg)</td></tr><tr><td><span class='code-pill'>P1</span></td><td><strong>Separador de penjar</strong></td><td class='muted'>Avet 18×69 mm (0.9 m)</td><td class='mono'>900×69×18 mm (sense tall)</td><td>Darrere T a dalt: dona 16 mm d&#x27;espai lliure per a l&#x27;halo LED i cables</td></tr><tr><td><span class='code-pill'>P2 / P3</span></td><td><strong>Llistó de penjar 45°</strong></td><td class='muted'>Contraxapat cru 15 mm</td><td class='mono'>900×145 tallat a 45° → 2 meitats</td><td>P2 encolat sobre P1 (mirall) · P3 ancorat a la paret de pladur</td></tr><tr><td><span class='code-pill'>K</span></td><td><strong>Tacs separadors (baix)</strong></td><td class='muted'>Avet 18 + ply 15 encolats</td><td class='mono'>2× 69×70×33 mm</td><td>Darrere T a baix: toquen la paret perquè el mirall quedi vertical</td></tr><tr><td><span class='code-pill'>G</span></td><td><strong>Calços de goma vidre</strong></td><td class='muted'>Goma dura 80–90 Shore A</td><td class='mono'>2× 100×8×3 (baix) + 4× 3 mm (laterals)</td><td>Separen el vidre de la fusta i suporten els 16.2 kg als punts a ¼</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <svg viewBox="0 0 860 225" class="ikea-svg" role="img" aria-label="Comparativa visual a escala de tots els cargols i tacs" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="#ffffff" rx="8"/>
+  <text x="20" y="25" fill="#111827" font-size="12.5" font-weight="700" font-family="var(--mono)">MAPA DE CARGOLS I TACS (dibuixats en proporció real · codi + mida + quantitat + on van)</text>
+
+  <!-- S1: 3.5x16 -->
+  <g transform="translate(22,42)">
+    <rect x="0" y="0" width="194" height="78" rx="7" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <g class="ibadge"><circle cx="22" cy="22" r="14" fill="#1d4ed8" stroke="#ffffff" stroke-width="2"/><text x="22" y="26.5" fill="#ffffff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">S1</text></g>
+    <text x="42" y="20" fill="#111827" font-size="12" font-weight="700" font-family="var(--mono)">3.5 × 16 mm</text>
+    <text x="42" y="34" fill="#475569" font-size="10.2">Cap rodó · ×17 u.</text>
+    <!-- Screw silhouette (16 mm -> 32 px) -->
+    <path d="M26 52 A5 6 0 0 0 26 62 L26 62 Z" fill="#1d4ed8"/>
+    <rect x="26" y="54.5" width="26" height="5" fill="#1d4ed8"/>
+    <polygon points="52,54.5 58,57 52,59.5" fill="#1d4ed8"/>
+    <text x="68" y="61" fill="#1e293b" font-size="10.5" font-weight="600">Escaires E (4×4) + segur</text>
+  </g>
+
+  <!-- S2: 3.5x20 -->
+  <g transform="translate(228,42)">
+    <rect x="0" y="0" width="194" height="78" rx="7" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <g class="ibadge"><circle cx="22" cy="22" r="14" fill="#1d4ed8" stroke="#ffffff" stroke-width="2"/><text x="22" y="26.5" fill="#ffffff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">S2</text></g>
+    <text x="42" y="20" fill="#111827" font-size="12" font-weight="700" font-family="var(--mono)">3.5 × 20 mm</text>
+    <text x="42" y="34" fill="#475569" font-size="10.2">Avellanat · ×30 u.</text>
+    <polygon points="22,52 28,54.5 28,59.5 22,62" fill="#1d4ed8"/>
+    <rect x="28" y="54.5" width="32" height="5" fill="#1d4ed8"/>
+    <polygon points="60,54.5 66,57 60,59.5" fill="#1d4ed8"/>
+    <text x="74" y="57" fill="#1e293b" font-size="10.2" font-weight="600">T → C (×22) i T → P1 (×8)</text>
+    <text x="74" y="69" fill="#1d4ed8" font-size="9.5" font-weight="700">sempre des del DAVANT!</text>
+  </g>
+
+  <!-- S4: 3.5x30 -->
+  <g transform="translate(434,42)">
+    <rect x="0" y="0" width="194" height="78" rx="7" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <g class="ibadge"><circle cx="22" cy="22" r="14" fill="#0f766e" stroke="#ffffff" stroke-width="2"/><text x="22" y="26.5" fill="#ffffff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">S4</text></g>
+    <text x="42" y="20" fill="#111827" font-size="12" font-weight="700" font-family="var(--mono)">3.5 × 30 mm</text>
+    <text x="42" y="34" fill="#475569" font-size="10.2">Avellanat · ×30 u.</text>
+    <polygon points="14,52 20,54.5 20,59.5 14,62" fill="#0f766e"/>
+    <rect x="20" y="54.5" width="42" height="5" fill="#0f766e"/>
+    <polygon points="62,54.5 68,57 62,59.5" fill="#0f766e"/>
+    <text x="74" y="57" fill="#1e293b" font-size="9.8" font-weight="600">C → Marc M (×22)</text>
+    <text x="74" y="69" fill="#0f766e" font-size="9.0" font-weight="700">DE COSTAT · SENSE COLA</text>
+  </g>
+
+  <!-- S3: 3.5x35 -->
+  <g transform="translate(640,42)">
+    <rect x="0" y="0" width="198" height="78" rx="7" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.4"/>
+    <g class="ibadge"><circle cx="22" cy="22" r="14" fill="#dc2626" stroke="#ffffff" stroke-width="2"/><text x="22" y="26.5" fill="#ffffff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">S3</text></g>
+    <text x="42" y="20" fill="#991b1b" font-size="12" font-weight="700" font-family="var(--mono)">3.5 × 35 MÀX</text>
+    <text x="42" y="34" fill="#7f1d1d" font-size="10.2">Avellanat · ×10 u.</text>
+    <polygon points="14,52 20,54.5 20,59.5 14,62" fill="#dc2626"/>
+    <rect x="20" y="54.5" width="50" height="5" fill="#dc2626"/>
+    <polygon points="70,54.5 76,57 70,59.5" fill="#dc2626"/>
+    <text x="82" y="57" fill="#7f1d1d" font-size="9.8" font-weight="700">C + T → Junquillos J</text>
+    <text x="82" y="69" fill="#dc2626" font-size="9.0" font-weight="700">⚠ MÀX 35 (vidre a 44)</text>
+  </g>
+
+  <!-- S5: 4x40 -->
+  <g transform="translate(22,132)">
+    <rect x="0" y="0" width="260" height="78" rx="7" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <g class="ibadge"><circle cx="22" cy="22" r="14" fill="#b45309" stroke="#ffffff" stroke-width="2"/><text x="22" y="26.5" fill="#ffffff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">S5</text></g>
+    <text x="42" y="20" fill="#111827" font-size="12" font-weight="700" font-family="var(--mono)">4 × 40 mm</text>
+    <text x="42" y="34" fill="#475569" font-size="10.2">Avellanat · ×6 (+6–8 opc. al penjador)</text>
+    <polygon points="14,51 21,54 21,60 14,63" fill="#b45309"/>
+    <rect x="21" y="54" width="60" height="6" fill="#b45309"/>
+    <polygon points="81,54 88,57 81,60" fill="#b45309"/>
+    <text x="95" y="56" fill="#1e293b" font-size="9.8" font-weight="600">Sota el marc → Llistó inf. B</text>
+    <text x="95" y="69" fill="#b45309" font-size="9.0" font-weight="700">+ sobrants per a P2+P1+T!</text>
+  </g>
+
+  <!-- V: M4 VESA -->
+  <g transform="translate(294,132)">
+    <rect x="0" y="0" width="264" height="78" rx="7" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <g class="ibadge"><circle cx="22" cy="22" r="14" fill="#6d28d9" stroke="#ffffff" stroke-width="2"/><text x="22" y="26.5" fill="#ffffff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">V</text></g>
+    <text x="42" y="20" fill="#111827" font-size="12" font-weight="700" font-family="var(--mono)">M4×10 + M4×20 + vol.</text>
+    <text x="42" y="34" fill="#475569" font-size="10.2">Platines VESA alumini (2× 320 mm)</text>
+    <rect x="20" y="52" width="6" height="10" rx="1" fill="#6d28d9"/>
+    <rect x="26" y="54.5" width="32" height="5" fill="#6d28d9"/>
+    <rect x="52" y="51" width="6" height="12" rx="1" fill="#a78bfa" stroke="#6d28d9" stroke-width="1"/>
+    <text x="68" y="56" fill="#1e293b" font-size="10.2" font-weight="600">4× M4×10 al monitor · 4× a T</text>
+    <text x="68" y="69" fill="#6d28d9" font-size="9.5" font-weight="700">Vegeu truc anti-gir al Pas 09!</text>
+  </g>
+
+  <!-- W: Wall anchors -->
+  <g transform="translate(570,132)">
+    <rect x="0" y="0" width="268" height="78" rx="7" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.3"/>
+    <g class="ibadge"><circle cx="22" cy="22" r="14" fill="#15803d" stroke="#ffffff" stroke-width="2"/><text x="22" y="26.5" fill="#ffffff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">W</text></g>
+    <text x="42" y="20" fill="#14532d" font-size="12" font-weight="700" font-family="var(--mono)">4× DuoTec 10 + ≥2× 4.8×45</text>
+    <text x="42" y="34" fill="#166534" font-size="10.2">NOMÉS per a la paret de pladur (P3)</text>
+    <rect x="18" y="55" width="44" height="4" fill="#15803d"/>
+    <rect x="56" y="47" width="8" height="20" rx="2" fill="#15803d"/>
+    <text x="74" y="56" fill="#14532d" font-size="10.2" font-weight="600">≥2 muntants + 4 tacs basculants</text>
+    <text x="74" y="69" fill="#15803d" font-size="9.5" font-weight="700">Afegiu 4–6 cargols 5×60 als DuoTec!</text>
+  </g>
+</svg>
+  </section>
+
+  <!-- PAGE 2: STRUCTURAL LOAD PATH -->
+  <section class="sheet" id="pes">
+    <div class="sec-label">Pàgina 02 · Resposta estructural</div>
+    <h2>Aguantarà el contraxapat de 9 mm els ≈ 30.3 kg? — Sí, amb marge &gt;200× (el punt crític és la paret!)</h2>
+    <svg viewBox="0 0 860 355" class="ikea-svg" role="img" aria-label="Diagrama de càrregues: com s'aguanten els 30.3 kg al tauler posterior de 9 mm" xmlns="http://www.w3.org/2000/svg">
+  
+  <defs>
+    <marker id="lp_arrB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#1d4ed8"/>
+    </marker>
+    <marker id="lp_arrR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#dc2626"/>
+    </marker>
+    <marker id="lp_arrK" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 1 2 L 9 5 L 1 8 z" fill="#1e293b"/>
+    </marker>
+    <marker id="lp_arrG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#15803d"/>
+    </marker>
+    <pattern id="lp_wallHatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#cbd5e1" stroke-width="2"/>
+    </pattern>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#ffffff" rx="8"/>
+  <text x="20" y="26" fill="#111827" font-size="12.5" font-weight="700" font-family="var(--mono)">COM S'AGUANTEN ELS ≈ 30.3 kg? — CAMÍ REAL DEL PES (I PER QUÈ EL CONTRAXAPAT DE 9 mm VA SOBRADÍSSIM)</text>
+
+  <!-- LEFT: Front-to-wall load flow chain (4 clear steps) -->
+  <!-- Box 1: Glass + Frame -->
+  <rect x="20" y="48" width="182" height="122" rx="8" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.6"/>
+  <text x="111" y="69" fill="#1e3a8a" font-size="11.5" font-weight="700" text-anchor="middle">1. VIDRE + MARC</text>
+  <text x="111" y="88" fill="#1d4ed8" font-size="18" font-weight="700" text-anchor="middle" font-family="var(--mono)">≈ 21 kg</text>
+  <text x="111" y="108" fill="#1e293b" font-size="10.2" text-anchor="middle">Vidre (16.2 kg) descansa</text>
+  <text x="111" y="122" fill="#1e293b" font-size="10.2" text-anchor="middle">al marc inferior M1 +</text>
+  <text x="111" y="136" fill="#1e293b" font-size="10.2" text-anchor="middle">biga vertical B (15×83 mm)</text>
+  <text x="111" y="156" fill="#1d4ed8" font-size="9.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">22× S4 (3.5×30) → C</text>
+
+  <!-- Arrow 1->2 -->
+  <line x1="202" y1="109" x2="232" y2="109" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#lp_arrB)"/>
+
+  <!-- Box 2: Backplate T (9 mm) -->
+  <rect x="236" y="48" width="204" height="122" rx="8" fill="#f0fdf4" stroke="#15803d" stroke-width="2"/>
+  <text x="338" y="69" fill="#14532d" font-size="11.5" font-weight="700" text-anchor="middle">2. TAULER T (9 mm)</text>
+  <text x="338" y="88" fill="#15803d" font-size="16" font-weight="700" text-anchor="middle" font-family="var(--mono)">FACTOR &gt; 200×</text>
+  <text x="338" y="108" fill="#1e293b" font-size="10.2" text-anchor="middle">Treballa DE PLA (penjat),</text>
+  <text x="338" y="122" fill="#1e293b" font-size="10.2" text-anchor="middle">NO tombat com un prestatge!</text>
+  <text x="338" y="138" fill="#14532d" font-size="10" font-weight="700" text-anchor="middle" font-family="var(--mono)">5,040 mm² de pi fenòlic</text>
+  <text x="338" y="156" fill="#15803d" font-size="9.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">660 cm² cola + 22× S2</text>
+
+  <!-- Arrow 2->3 -->
+  <line x1="440" y1="109" x2="470" y2="109" stroke="#15803d" stroke-width="2.5" marker-end="url(#lp_arrG)"/>
+
+  <!-- Box 3: Hanging stack P1+P2 -->
+  <rect x="474" y="48" width="174" height="122" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.6"/>
+  <text x="561" y="69" fill="#92400e" font-size="11.5" font-weight="700" text-anchor="middle">3. PENJADOR P1+P2</text>
+  <text x="561" y="88" fill="#b45309" font-size="16" font-weight="700" text-anchor="middle" font-family="var(--mono)">≈ 30 kg</text>
+  <text x="561" y="108" fill="#1e293b" font-size="10.2" text-anchor="middle">621 cm² de cola</text>
+  <text x="561" y="122" fill="#1e293b" font-size="10.2" text-anchor="middle">+ 8× S2 des del davant</text>
+  <text x="561" y="136" fill="#1e293b" font-size="10.2" text-anchor="middle">+ 8× S4 (o 4×40 passant!)</text>
+  <text x="561" y="156" fill="#b45309" font-size="9.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">45° contraxapat 15 mm</text>
+
+  <!-- Arrow 3->4 -->
+  <line x1="648" y1="109" x2="678" y2="109" stroke="#dc2626" stroke-width="2.5" marker-end="url(#lp_arrR)"/>
+
+  <!-- Box 4: Wall P3 (REAL CRITICAL POINT!) -->
+  <rect x="682" y="48" width="158" height="122" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+  <text x="761" y="69" fill="#991b1b" font-size="11.5" font-weight="700" text-anchor="middle">4. PARET (PLADUR)</text>
+  <text x="761" y="88" fill="#dc2626" font-size="13.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">⚠ PUNT CRÍTIC</text>
+  <text x="761" y="108" fill="#1e293b" font-size="10.2" text-anchor="middle">Llistó P3 (900 mm)</text>
+  <text x="761" y="122" fill="#991b1b" font-size="10.2" font-weight="700" text-anchor="middle">≥2 muntants metàl·lics</text>
+  <text x="761" y="136" fill="#1e293b" font-size="10.2" text-anchor="middle">+ 4× tacs DuoTec 10</text>
+  <text x="761" y="156" fill="#dc2626" font-size="9.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">(≥100 kg reals)</text>
+
+  <!-- BOTTOM: Side view of forces (showing why it doesn't bend or peel off the wall!) -->
+  <rect x="20" y="190" width="440" height="146" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="36" y="211" fill="#111827" font-size="11.2" font-weight="700" font-family="var(--mono)">VISTA LATERAL DE FORCES (per què el tauler de 9 mm NO flecteix)</text>
+  <!-- Wall -->
+  <rect x="330" y="222" width="22" height="102" fill="url(#lp_wallHatch)" stroke="#64748b" stroke-width="1.2"/>
+  <text x="372" y="275" fill="#475569" font-size="10" font-weight="600">Paret</text>
+  <!-- Mirror box schematic -->
+  <rect x="195" y="226" width="84" height="94" fill="#f3dfc1" stroke="#78350f" stroke-width="1.5"/>
+  <rect x="208" y="232" width="12" height="82" fill="#bae6fd" stroke="#0369a1" stroke-width="1"/>
+  <rect x="258" y="230" width="14" height="86" fill="#cbd5e1" stroke="#334155" stroke-width="1.3"/>
+  <!-- Top cleat -->
+  <rect x="272" y="234" width="24" height="22" fill="#e5c89e" stroke="#78350f" stroke-width="1.2"/>
+  <polygon points="296,234 330,234 330,256 296,246" fill="#3da974" stroke="#14532d" stroke-width="1.2"/>
+  <polygon points="296,250 330,260 330,276 296,276" fill="#15803d" stroke="#14532d" stroke-width="1.2"/>
+  <!-- Bottom standoff K -->
+  <rect x="272" y="302" width="58" height="14" fill="#a5f3fc" stroke="#0891b2" stroke-width="1.2"/>
+  <!-- Force arrows -->
+  <line x1="214" y1="262" x2="214" y2="306" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#lp_arrB)"/>
+  <text x="184" y="278" fill="#1d4ed8" font-size="10.5" font-weight="700" text-anchor="end">Pes ≈30 kg</text>
+  <text x="184" y="292" fill="#475569" font-size="9.5" text-anchor="end">(cap avall)</text>
+  <line x1="330" y1="242" x2="292" y2="242" stroke="#dc2626" stroke-width="2" marker-end="url(#lp_arrR)"/>
+  <text x="364" y="244" fill="#dc2626" font-size="9.8" font-weight="700">Només ~2 kg</text>
+  <text x="364" y="256" fill="#64748b" font-size="9">estirant cap enfora</text>
+  <line x1="295" y1="309" x2="328" y2="309" stroke="#0891b2" stroke-width="2" marker-end="url(#lp_arrK)"/>
+  <text x="364" y="313" fill="#0e7490" font-size="9.5" font-weight="700">Tacs K: ~2 kg</text>
+  <text x="364" y="324" fill="#64748b" font-size="9">recolzats a paret</text>
+
+  <!-- BOTTOM RIGHT: 3 Rules so it NEVER fails -->
+  <rect x="476" y="190" width="364" height="146" rx="8" fill="#fefce8" stroke="#ca8a04" stroke-width="1.4"/>
+  <text x="492" y="212" fill="#854d06" font-size="11.2" font-weight="700" font-family="var(--mono)">3 REGLES D'OR PERQUÈ NO FALLI MAI</text>
+  <text x="492" y="234" fill="#1e293b" font-size="10.5"><tspan font-weight="700" fill="#b45309">1. Fusta crua a l'encolar:</tspan> confirmeu a Leroy Merlin</text>
+  <text x="506" y="248" fill="#475569" font-size="10">que el tauler 9 mm és pi fenòlic CRU (NO carrocero</text>
+  <text x="506" y="261" fill="#475569" font-size="10">negre plastificat) i encoleu ABANS de pintar.</text>
+  <text x="492" y="281" fill="#1e293b" font-size="10.5"><tspan font-weight="700" fill="#b45309">2. Truc extra (0 €):</tspan> passeu 6–8 cargols sobrants</text>
+  <text x="506" y="295" fill="#475569" font-size="10"><tspan font-weight="700">4×40 (S5)</tspan> des de P2 travessant P1 fins a T (42 mm!).</text>
+  <text x="492" y="315" fill="#1e293b" font-size="10.5"><tspan font-weight="700" fill="#dc2626">3. Paret:</tspan> el llistó P3 HA d'agafar ≥2 muntants reals.</text>
+</svg>
+  </section>
+
+  <!-- PROGRESS BAR -->
+  <div class="prog-bar-wrap">
+    <span class="mono" style="font-size:12.5px;font-weight:700;" id="ikeaStat">0 / 10 passos fets</span>
+    <div class="prog-track"><div class="prog-fill" id="ikeaBar"></div></div>
+    <span style="font-size:12px;color:var(--muted);">Cliqueu el número de cada pas per marcar-lo</span>
+  </div>
+
+  <!-- PHASE 1 DIVIDER -->
+  <div class="phase-divider shop">
+    <span>FASE 1 · TALLER (DOSRIUS, DIVENDRES) — PASSOS 01 A 07</span>
+    <hr>
+  </div>
+
+  
+    <article class="ikea-card" id="pas-01" data-step="ikea_01">
+      <header class="ikea-card-head">
+        <label class="ikea-num-wrap" title="Marca el pas 01 com a fet">
+          <input type="checkbox" class="ikea-chk" data-id="ikea_01">
+          <span class="ikea-num"><span class="n-txt">01</span><span class="n-ok">✓</span></span>
+        </label>
+        <div class="ikea-title-block">
+          <div class="ikea-meta-row">
+            <span class="pill phase-shop">TALLER</span>
+            <span class="pill pill-pieces">Peces: M (2× 2.4 m) · L (2× 2.4 m)</span>
+            <span class="pill pill-screws">Cargols: 0 cargols</span>
+            <span class="pill glue-yes">AMB COLA</span>
+          </div>
+          <h2>Encoleu el llavi L sobre els dos llistons del marc M</h2>
+        </div>
+      </header>
+      <div class="ikea-svg-box">
+        <svg viewBox="0 0 860 250" class="ikea-svg" role="img" aria-label="Pas 1: Encolar el llavi de 17x17 al llistó del marc de 18x69" xmlns="http://www.w3.org/2000/svg">
+  
+  <defs>
+    <marker id="s1_arrB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#1d4ed8"/>
+    </marker>
+    <marker id="s1_arrR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#dc2626"/>
+    </marker>
+    <marker id="s1_arrK" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 1 2 L 9 5 L 1 8 z" fill="#1e293b"/>
+    </marker>
+    <marker id="s1_arrG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#15803d"/>
+    </marker>
+    <pattern id="s1_wallHatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#cbd5e1" stroke-width="2"/>
+    </pattern>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#ffffff" rx="8"/>
+  <!-- Left: Cross-section -->
+  <text x="24" y="28" fill="#111827" font-size="12" font-weight="700" font-family="var(--mono)">SECCIÓ DEL PERFIL ENCOLAT (2× llistons de 2.4 m)</text>
+  <g transform="translate(690,12)"><rect x="0" y="0" width="110" height="26" rx="13" fill="#dcfce7" stroke="#15803d" stroke-width="1.5"/><path d="M16 7 C16 7 11 13 11 16.5 A5 5 0 0 0 21 16.5 C21 13 16 7 16 7 Z" fill="#15803d"/><text x="28" y="17" fill="#14532d" font-size="11" font-weight="700" font-family="var(--mono)">AMB COLA</text></g>
+  <g transform="translate(555,12)">
+    <rect x="0" y="0" width="122" height="26" rx="13" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.3"/>
+    <text x="61" y="17" fill="#1e3a8a" font-size="10.8" font-weight="700" text-anchor="middle" font-family="var(--mono)">0 CARGOLS</text>
+  </g>
+
+  <!-- Frame strip 18x69 (scaled ×3: width 207, height 54) -->
+  <rect x="75" y="70" width="207" height="54" fill="#f3dfc1" stroke="#1e293b" stroke-width="2"/>
+  <text x="198" y="102" fill="#1e293b" font-size="12" font-weight="700" text-anchor="middle">Llistó marc 18 × 69 mm</text>
+  <g class="ibadge"><circle cx="98" cy="97" r="14" fill="#111827" stroke="#ffffff" stroke-width="2"/><text x="98" y="101.5" fill="#ffffff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">M</text></g>
+
+  <!-- Glue bead highlight -->
+  <line x1="75" y1="124" x2="126" y2="124" stroke="#15803d" stroke-width="5"/>
+  <text x="136" y="140" fill="#15803d" font-size="10.5" font-weight="700">← Cola blanca (tota la llargada)</text>
+
+  <!-- Square lip 17x17 (scaled ×3: 51x51) -->
+  <rect x="75" y="126" width="51" height="51" fill="#fde68a" stroke="#1e293b" stroke-width="2"/>
+  <g class="ibadge"><circle cx="100" cy="151" r="14" fill="#b45309" stroke="#ffffff" stroke-width="2"/><text x="100" y="155.5" fill="#ffffff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">L</text></g>
+
+  <!-- Front face flush line -->
+  <line x1="75" y1="54" x2="75" y2="196" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="75" y="214" fill="#dc2626" font-size="10.5" font-weight="700" text-anchor="middle">CARA DAVANT (ben arran!)</text>
+
+  <!-- Total front face dimension -->
+  <line x1="48" y1="70" x2="48" y2="177" stroke="#1e293b" stroke-width="1.4" marker-start="url(#s1_arrK)" marker-end="url(#s1_arrK)"/>
+  <text x="36" y="128" fill="#111827" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)" transform="rotate(-90 36 128)">35 mm</text>
+
+  <!-- Depth dimension -->
+  <line x1="75" y1="52" x2="282" y2="52" stroke="#1e293b" stroke-width="1.4" marker-start="url(#s1_arrK)" marker-end="url(#s1_arrK)"/>
+  <text x="178" y="45" fill="#111827" font-size="11" font-weight="700" text-anchor="middle" font-family="var(--mono)">69 mm fondària</text>
+
+  <!-- Right: Full 2.4 m strip with clamps -->
+  <rect x="405" y="64" width="425" height="162" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="422" y="88" fill="#111827" font-size="11.2" font-weight="700" font-family="var(--mono)">2× LLISTONS DE 2.4 m AMB ~8 SERJANTS CADA UN</text>
+  <!-- Long strip -->
+  <rect x="430" y="114" width="375" height="24" fill="#f3dfc1" stroke="#1e293b" stroke-width="1.6"/>
+  <rect x="430" y="138" width="375" height="12" fill="#fde68a" stroke="#1e293b" stroke-width="1.4"/>
+  <!-- 7 clamps drawn -->
+  <rect x="448" y="104" width="8" height="56" rx="2" fill="#334155"/><rect x="444" y="102" width="16" height="6" rx="1" fill="#1d4ed8"/><rect x="444" y="156" width="16" height="6" rx="1" fill="#1d4ed8"/><rect x="502" y="104" width="8" height="56" rx="2" fill="#334155"/><rect x="498" y="102" width="16" height="6" rx="1" fill="#1d4ed8"/><rect x="498" y="156" width="16" height="6" rx="1" fill="#1d4ed8"/><rect x="556" y="104" width="8" height="56" rx="2" fill="#334155"/><rect x="552" y="102" width="16" height="6" rx="1" fill="#1d4ed8"/><rect x="552" y="156" width="16" height="6" rx="1" fill="#1d4ed8"/><rect x="610" y="104" width="8" height="56" rx="2" fill="#334155"/><rect x="606" y="102" width="16" height="6" rx="1" fill="#1d4ed8"/><rect x="606" y="156" width="16" height="6" rx="1" fill="#1d4ed8"/><rect x="664" y="104" width="8" height="56" rx="2" fill="#334155"/><rect x="660" y="102" width="16" height="6" rx="1" fill="#1d4ed8"/><rect x="660" y="156" width="16" height="6" rx="1" fill="#1d4ed8"/><rect x="718" y="104" width="8" height="56" rx="2" fill="#334155"/><rect x="714" y="102" width="16" height="6" rx="1" fill="#1d4ed8"/><rect x="714" y="156" width="16" height="6" rx="1" fill="#1d4ed8"/><rect x="772" y="104" width="8" height="56" rx="2" fill="#334155"/><rect x="768" y="102" width="16" height="6" rx="1" fill="#1d4ed8"/><rect x="768" y="156" width="16" height="6" rx="1" fill="#1d4ed8"/>
+  <!-- Clock badge -->
+  <circle cx="456" cy="196" r="14" fill="#fef3c7" stroke="#d97706" stroke-width="1.8"/>
+  <line x1="456" y1="196" x2="456" y2="188" stroke="#92400e" stroke-width="2" stroke-linecap="round"/>
+  <line x1="456" y1="196" x2="463" y2="199" stroke="#92400e" stroke-width="2" stroke-linecap="round"/>
+  <text x="480" y="193" fill="#92400e" font-size="11.5" font-weight="700">Deixeu assecar 30–45 min ABANS de tallar a 45°!</text>
+  <text x="480" y="209" fill="#475569" font-size="10.2">Mentrestant, passeu directament al Pas 02 (talls de contraxapat).</text>
+</svg>
+      </div>
+      <ul class="ikea-bullets">
+        <li>Trieu els 2 llistons de 18×69 i els 2 de 17×17 més rectes. Poseu-los arran per la cara del DAVANT.</li><li>Encoleu tota la llargada amb ~8 serjants per llistó i netegeu la cola que surti.</li><li>Deixeu-ho assecar 30–45 min. Mentrestant feu el Pas 02 — NO talleu a 45° fins que la cola agafi!</li>
+      </ul>
+    </article>
+    <article class="ikea-card" id="pas-02" data-step="ikea_02">
+      <header class="ikea-card-head">
+        <label class="ikea-num-wrap" title="Marca el pas 02 com a fet">
+          <input type="checkbox" class="ikea-chk" data-id="ikea_02">
+          <span class="ikea-num"><span class="n-txt">02</span><span class="n-ok">✓</span></span>
+        </label>
+        <div class="ikea-title-block">
+          <div class="ikea-meta-row">
+            <span class="pill phase-shop">TALLER</span>
+            <span class="pill pill-pieces">Peces: T (9 mm) · B, P2/P3 (15 mm) · C, J, K, V</span>
+            <span class="pill pill-screws">Cargols: 0 cargols</span>
+            <span class="pill glue-yes">TACS K: COLA</span>
+          </div>
+          <h2>Talleu el contraxapat (T, B, P2/P3), els llistons C, junquillos J, tacs K i platines V</h2>
+        </div>
+      </header>
+      <div class="ikea-svg-box">
+        <svg viewBox="0 0 860 320" class="ikea-svg" role="img" aria-label="Pas 2: Talls del tauler posterior de 9 mm, del llistó inferior i del llistó a 45 graus" xmlns="http://www.w3.org/2000/svg">
+  
+  <defs>
+    <marker id="s2_arrB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#1d4ed8"/>
+    </marker>
+    <marker id="s2_arrR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#dc2626"/>
+    </marker>
+    <marker id="s2_arrK" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 1 2 L 9 5 L 1 8 z" fill="#1e293b"/>
+    </marker>
+    <marker id="s2_arrG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#15803d"/>
+    </marker>
+    <pattern id="s2_wallHatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#cbd5e1" stroke-width="2"/>
+    </pattern>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#ffffff" rx="8"/>
+  <text x="20" y="26" fill="#111827" font-size="12" font-weight="700" font-family="var(--mono)">MAPA DE TALLS DEL CONTRAXAPAT (mentre s'assequen els llavis del Pas 01)</text>
+
+  <!-- LEFT: Backplate T (1204 x 904 -> scale 0.25 => 301 x 226) -->
+  <!-- Offset: x=54, y=58; corner chamfer 50 -> 12.5 px -->
+  <polygon points="66.5,58 342.5,58 355,70.5 355,271.5 342.5,284 66.5,284 54,271.5 54,70.5"
+           fill="#e2e8f0" stroke="#1e293b" stroke-width="2"/>
+  <!-- Corner clip highlights (dashed red triangles) -->
+  <polygon points="54,58 66.5,58 54,70.5" fill="#fee2e2" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <polygon points="342.5,58 355,58 355,70.5" fill="#fee2e2" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <polygon points="54,271.5 66.5,284 54,284" fill="#fee2e2" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <polygon points="342.5,284 355,271.5 355,284" fill="#fee2e2" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="3 2"/>
+
+  <!-- Monitor window: left=280 (70px), bot=82 (20.5px), w=644 (161px), h=378 (94.5px) -->
+  <!-- Window top y = 284 - 20.5 - 94.5 = 169 -->
+  <rect x="124" y="169" width="161" height="94.5" fill="#ffffff" stroke="#1e293b" stroke-width="1.8" stroke-dasharray="5 3"/>
+  <text x="204.5" y="211" fill="#1e293b" font-size="11" font-weight="700" text-anchor="middle">FINESTRA MONITOR</text>
+  <text x="204.5" y="227" fill="#1d4ed8" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">644 × 378 mm</text>
+  <text x="204.5" y="243" fill="#64748b" font-size="9.5" text-anchor="middle">(serra de vogir)</text>
+  <g class="ibadge"><circle cx="204" cy="114" r="14" fill="#111827" stroke="#ffffff" stroke-width="2"/><text x="204" y="118.5" fill="#ffffff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">T</text></g>
+  <text x="204" y="142" fill="#1e293b" font-size="10.8" font-weight="700" text-anchor="middle">Contraxapat 9 mm (1204 × 904)</text>
+
+  <!-- Dimensions on T -->
+  <line x1="54" y1="45" x2="355" y2="45" stroke="#1e293b" stroke-width="1.2" marker-start="url(#s2_arrK)" marker-end="url(#s2_arrK)"/>
+  <text x="204" y="40" fill="#111827" font-size="10.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">1204 mm</text>
+  <line x1="36" y1="58" x2="36" y2="284" stroke="#1e293b" stroke-width="1.2" marker-start="url(#s2_arrK)" marker-end="url(#s2_arrK)"/>
+  <text x="26" y="171" fill="#111827" font-size="10.5" font-weight="700" text-anchor="middle" font-family="var(--mono)" transform="rotate(-90 26 171)">904 mm</text>
+  <!-- Left & bottom window margins -->
+  <line x1="54" y1="216" x2="124" y2="216" stroke="#1d4ed8" stroke-width="1.2" marker-start="url(#s2_arrB)" marker-end="url(#s2_arrB)"/>
+  <text x="89" y="210" fill="#1d4ed8" font-size="10" font-weight="700" text-anchor="middle" font-family="var(--mono)">280</text>
+  <line x1="285" y1="216" x2="355" y2="216" stroke="#1d4ed8" stroke-width="1.2" marker-start="url(#s2_arrB)" marker-end="url(#s2_arrB)"/>
+  <text x="320" y="210" fill="#1d4ed8" font-size="10" font-weight="700" text-anchor="middle" font-family="var(--mono)">280</text>
+  <line x1="204" y1="263.5" x2="204" y2="284" stroke="#1d4ed8" stroke-width="1.2"/>
+  <text x="242" y="278" fill="#1d4ed8" font-size="10" font-weight="700" font-family="var(--mono)">↑ 82 mm</text>
+  <!-- Chamfer callout -->
+  <line x1="352" y1="62" x2="380" y2="48" stroke="#dc2626" stroke-width="1.4"/>
+  <text x="384" y="51" fill="#dc2626" font-size="10.2" font-weight="700">4× cantonades matades</text>
+  <text x="384" y="64" fill="#dc2626" font-size="10.2" font-weight="700" font-family="var(--mono)">50 × 50 mm a 45°!</text>
+
+  <!-- RIGHT TOP: Bottom shelf B (1200 x 83, 15 mm ply) -->
+  <rect x="415" y="84" width="420" height="96" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="430" y="104" fill="#111827" font-size="11" font-weight="700" font-family="var(--mono)">LLISTÓ INFERIOR B (contraxapat 15 mm)</text>
+  <!-- Shelf polygon with button notch on top edge -->
+  <polygon points="435,126 645,126 645,134 680,134 680,126 815,126 815,160 435,160"
+           fill="#cbd5e1" stroke="#1e293b" stroke-width="1.8"/>
+  <g class="ibadge"><circle cx="460" cy="143" r="14" fill="#334155" stroke="#ffffff" stroke-width="2"/><text x="460" y="147.5" fill="#ffffff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">B</text></g>
+  <text x="540" y="148" fill="#1e293b" font-size="10.8" font-weight="700" font-family="var(--mono)">1200 × 83 mm</text>
+  <line x1="662" y1="134" x2="662" y2="112" stroke="#d97706" stroke-width="1.4"/>
+  <text x="666" y="119" fill="#b45309" font-size="9.6" font-weight="700">Rebaix botons 101×6 mm</text>
+  <text x="684" y="173" fill="#475569" font-size="9.5" font-family="var(--mono)">a 405–506 mm de la dreta</text>
+
+  <!-- RIGHT BOTTOM: 45 deg French cleat P2 + P3 + wood offcuts K -->
+  <rect x="415" y="192" width="420" height="110" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="430" y="212" fill="#111827" font-size="11" font-weight="700" font-family="var(--mono)">LLISTÓ A 45° P2/P3 (15 mm) + TACS K</text>
+  <!-- 45 deg split cross-section -->
+  <polygon points="438,236 530,236 552,262 438,262" fill="#bbf7d0" stroke="#15803d" stroke-width="1.8"/>
+  <polygon points="540,236 654,236 654,262 562,262" fill="#86efac" stroke="#15803d" stroke-width="1.8"/>
+  <line x1="535" y1="226" x2="557" y2="272" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="4 3"/>
+  <text x="482" y="253" fill="#14532d" font-size="10.5" font-weight="700" text-anchor="middle">P2 mirall</text>
+  <text x="606" y="253" fill="#14532d" font-size="10.5" font-weight="700" text-anchor="middle">P3 paret</text>
+  <text x="546" y="286" fill="#dc2626" font-size="9.8" font-weight="700" text-anchor="middle">1 tall a 45° pel mig (900×145)</text>
+  <!-- Standoff block K -->
+  <g transform="translate(690,226)">
+    <rect x="0" y="0" width="52" height="22" fill="#f3dfc1" stroke="#1e293b" stroke-width="1.5"/>
+    <rect x="0" y="22" width="52" height="18" fill="#cbd5e1" stroke="#1e293b" stroke-width="1.5"/>
+    <line x1="0" y1="22" x2="52" y2="22" stroke="#15803d" stroke-width="3"/>
+    <g class="ibadge"><circle cx="26" cy="20" r="12" fill="#0891b2" stroke="#ffffff" stroke-width="2"/><text x="26" y="24.5" fill="#fff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">K</text></g>
+    <text x="62" y="16" fill="#1e293b" font-size="10" font-weight="700">2× Tacs K</text>
+    <text x="62" y="30" fill="#475569" font-size="9.5" font-family="var(--mono)">69×70×33</text>
+    <text x="62" y="42" fill="#15803d" font-size="9">18 avet + 15 ply</text>
+  </g>
+</svg>
+      </div>
+      <ul class="ikea-bullets">
+        <li>Tauler posterior T (1204×904): serra de vogir per a la finestra de 644×378 (280 dels costats, 82 de baix) i mateu les 4 cantonades 50×50 mm a 45°.</li><li>Contraxapat 15 mm: talleu B (1200×83 + rebaix botons 101×6), la tira de 900×145 partida pel mig a 45° (→ P2 + P3) i 2 retalls de 69×70 per als tacs K.</li><li>Ingletadora: 4× C (2×1120 + 2×820), 3× J (1×1120 + 2×780), 2× avet de 69×70 del llistó de recanvi (encoleu-los als 2 retalls de 15 mm → 2× tacs K de 33 mm), i 2× platines VESA V de 320 mm.</li>
+      </ul>
+    </article>
+    <article class="ikea-card" id="pas-03" data-step="ikea_03">
+      <header class="ikea-card-head">
+        <label class="ikea-num-wrap" title="Marca el pas 03 com a fet">
+          <input type="checkbox" class="ikea-chk" data-id="ikea_03">
+          <span class="ikea-num"><span class="n-txt">03</span><span class="n-ok">✓</span></span>
+        </label>
+        <div class="ikea-title-block">
+          <div class="ikea-meta-row">
+            <span class="pill phase-shop">TALLER</span>
+            <span class="pill pill-pieces">Peces: M1, M2 (+L) · 4× E (40×40×15) · 4× guies PLA</span>
+            <span class="pill pill-screws">Cargols: 16× S1 (3.5×16 cap rodó)</span>
+            <span class="pill glue-yes">45°: COLA</span>
+          </div>
+          <h2>Talleu el marc a 45°, encoleu les cantonades i poseu els 4 escaires E</h2>
+        </div>
+      </header>
+      <div class="ikea-svg-box">
+        <svg viewBox="0 0 860 300" class="ikea-svg" role="img" aria-label="Pas 3: Encolar el marc a 45 graus i cargolar els 4 escaires d'acer" xmlns="http://www.w3.org/2000/svg">
+  
+  <defs>
+    <marker id="s3_arrB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#1d4ed8"/>
+    </marker>
+    <marker id="s3_arrR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#dc2626"/>
+    </marker>
+    <marker id="s3_arrK" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 1 2 L 9 5 L 1 8 z" fill="#1e293b"/>
+    </marker>
+    <marker id="s3_arrG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#15803d"/>
+    </marker>
+    <pattern id="s3_wallHatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#cbd5e1" stroke-width="2"/>
+    </pattern>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#ffffff" rx="8"/>
+  <text x="20" y="26" fill="#111827" font-size="12" font-weight="700" font-family="var(--mono)">MARC A 45° (1242 × 942 mm) + 4× ESCAIRES D'ACER E PER DINS</text>
+  <g transform="translate(724,10)"><rect x="0" y="0" width="110" height="26" rx="13" fill="#dcfce7" stroke="#15803d" stroke-width="1.5"/><path d="M16 7 C16 7 11 13 11 16.5 A5 5 0 0 0 21 16.5 C21 13 16 7 16 7 Z" fill="#15803d"/><text x="28" y="17" fill="#14532d" font-size="11" font-weight="700" font-family="var(--mono)">AMB COLA</text></g>
+
+  <!-- LEFT: Whole frame with strap + diagonals -->
+  <g transform="translate(36,48)">
+    <!-- Outer strap loop -->
+    <rect x="0" y="0" width="330" height="226" rx="14" fill="none" stroke="#ea580c" stroke-width="4" stroke-dasharray="10 5"/>
+    <!-- Wood pad + buckle on bottom -->
+    <rect x="130" y="218" width="70" height="12" rx="2" fill="#f3dfc1" stroke="#78350f" stroke-width="1.2"/>
+    <rect x="148" y="220" width="34" height="8" rx="1" fill="#334155"/>
+    <text x="165" y="244" fill="#ea580c" font-size="9.8" font-weight="700" text-anchor="middle">Cinxa ≥5 m (millor 2!) + fusta sota sivella</text>
+
+    <!-- Frame outer + inner -->
+    <rect x="18" y="16" width="294" height="194" fill="#f3dfc1" stroke="#1e293b" stroke-width="2"/>
+    <rect x="38" y="36" width="254" height="154" fill="#ffffff" stroke="#1e293b" stroke-width="1.6"/>
+    <!-- 45 deg miter lines -->
+    <line x1="18" y1="16" x2="38" y2="36" stroke="#15803d" stroke-width="2.2"/>
+    <line x1="312" y1="16" x2="292" y2="36" stroke="#15803d" stroke-width="2.2"/>
+    <line x1="18" y1="210" x2="38" y2="190" stroke="#15803d" stroke-width="2.2"/>
+    <line x1="312" y1="210" x2="292" y2="190" stroke="#15803d" stroke-width="2.2"/>
+    <!-- PLA jigs on 4 corners -->
+    <path d="M12,42 L12,10 L44,10" fill="none" stroke="#1d4ed8" stroke-width="5" stroke-linejoin="miter"/>
+    <path d="M286,10 L318,10 L318,42" fill="none" stroke="#1d4ed8" stroke-width="5" stroke-linejoin="miter"/>
+    <path d="M12,184 L12,216 L44,216" fill="none" stroke="#1d4ed8" stroke-width="5" stroke-linejoin="miter"/>
+    <path d="M286,216 L318,216 L318,184" fill="none" stroke="#1d4ed8" stroke-width="5" stroke-linejoin="miter"/>
+    <!-- Diagonals -->
+    <line x1="22" y1="20" x2="308" y2="206" stroke="#64748b" stroke-width="1.2" stroke-dasharray="4 4"/>
+    <line x1="308" y1="20" x2="22" y2="206" stroke="#64748b" stroke-width="1.2" stroke-dasharray="4 4"/>
+    <rect x="92" y="96" width="146" height="34" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="165" y="111" fill="#111827" font-size="10.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">Diagonals iguals!</text>
+    <text x="165" y="124" fill="#1d4ed8" font-size="10" font-weight="700" text-anchor="middle" font-family="var(--mono)">Ext 1559 · Int 1508 mm</text>
+    <!-- 4 corner brackets E -->
+    <path d="M39,58 L39,37 L60,37" fill="none" stroke="#475569" stroke-width="4"/>
+    <path d="M270,37 L291,37 L291,58" fill="none" stroke="#475569" stroke-width="4"/>
+    <path d="M39,168 L39,189 L60,189" fill="none" stroke="#475569" stroke-width="4"/>
+    <path d="M270,189 L291,189 L291,168" fill="none" stroke="#475569" stroke-width="4"/>
+    <text x="165" y="54" fill="#475569" font-size="9.5" font-weight="700" text-anchor="middle">4× guies PLA (STL 01) folrades amb cinta</text>
+  </g>
+
+  <!-- RIGHT: Zoom of ONE rear inside corner showing bracket E + 4x S1 -->
+  <rect x="410" y="48" width="428" height="232" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.3"/>
+  <text x="428" y="70" fill="#111827" font-size="11.2" font-weight="700" font-family="var(--mono)">ZOOM CANTONADA INTERIOR (VISTA PEL DARRERE)</text>
+
+  <!-- Corner frame walls -->
+  <polygon points="445,92 670,92 670,124 477,124" fill="#f3dfc1" stroke="#1e293b" stroke-width="1.8"/>
+  <polygon points="445,92 477,124 477,255 445,255" fill="#ebd2ac" stroke="#1e293b" stroke-width="1.8"/>
+  <line x1="445" y1="92" x2="477" y2="124" stroke="#15803d" stroke-width="2.5"/>
+  <g class="ibadge"><circle cx="635" cy="108" r="14" fill="#111827" stroke="#ffffff" stroke-width="2"/><text x="635" y="112.5" fill="#ffffff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">M</text></g>
+
+  <!-- Steel bracket E (40x40) seated tight inside corner -->
+  <polygon points="478,125 590,125 590,136 489,136 489,235 478,235" fill="#94a3b8" stroke="#1e293b" stroke-width="1.8"/>
+  <g class="ibadge"><circle cx="514" cy="166" r="14" fill="#475569" stroke="#ffffff" stroke-width="2"/><text x="514" y="170.5" fill="#ffffff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">E</text></g>
+  <text x="536" y="164" fill="#334155" font-size="10.4" font-weight="700">Escaire</text>
+  <text x="536" y="177" fill="#334155" font-size="10.4" font-weight="700" font-family="var(--mono)">40×40×15</text>
+
+  <!-- 4x S1 screw arrows -->
+  <line x1="518" y1="146" x2="518" y2="112" stroke="#1d4ed8" stroke-width="2.4" marker-end="url(#s3_arrB)"/>
+  <line x1="566" y1="146" x2="566" y2="112" stroke="#1d4ed8" stroke-width="2.4" marker-end="url(#s3_arrB)"/>
+  <line x1="499" y1="176" x2="465" y2="176" stroke="#1d4ed8" stroke-width="2.4" marker-end="url(#s3_arrB)"/>
+  <line x1="499" y1="216" x2="465" y2="216" stroke="#1d4ed8" stroke-width="2.4" marker-end="url(#s3_arrB)"/>
+
+  <!-- Callout box on right -->
+  <rect x="612" y="142" width="210" height="122" rx="7" fill="#ffffff" stroke="#1d4ed8" stroke-width="1.4"/>
+  <g class="ibadge"><circle cx="636" cy="166" r="14" fill="#1d4ed8" stroke="#ffffff" stroke-width="2"/><text x="636" y="170.5" fill="#ffffff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">S1</text></g>
+  <text x="656" y="164" fill="#1e3a8a" font-size="11.5" font-weight="700" font-family="var(--mono)">3.5 × 16 mm</text>
+  <text x="656" y="178" fill="#475569" font-size="10">4/cantonada = 16 u.</text>
+  <text x="624" y="200" fill="#1e293b" font-size="10">• Poseu l'escaire ben al fons</text>
+  <text x="624" y="214" fill="#1e293b" font-size="10">  (arran de la cara darrere,</text>
+  <text x="624" y="228" fill="#1d4ed8" font-size="10" font-weight="700">  y ≈ 53–68 mm)</text>
+  <text x="624" y="244" fill="#dc2626" font-size="9.8" font-weight="700">• Netegeu la cola del racó</text>
+  <text x="624" y="256" fill="#475569" font-size="9.5">  perquè no surti més de 40 mm!</text>
+</svg>
+      </div>
+      <ul class="ikea-bullets">
+        <li>Talleu cada llistó encolat (M+L) en 1 travesser de 1242 mm i 1 muntant de 942 mm exteriors a 45°.</li><li>Treballeu de pla: folreu les 4 guies PLA amb cinta, poseu un retall de fusta sota la sivella de la cinxa (millor 2 cinxes: davant i darrere), encoleu i comproveu diagonals iguals (1559 ext / 1508 int).</li><li>Netegeu la cola dels racons interiors i cargoleu els 4 escaires E a la part del DARRERE (y ≈ 53–68 mm) amb 4× S1 (3.5×16) per cantonada. Manteniu-ho premsat ≥60–90 min.</li>
+      </ul>
+    </article>
+    <article class="ikea-card" id="pas-04" data-step="ikea_04">
+      <header class="ikea-card-head">
+        <label class="ikea-num-wrap" title="Marca el pas 04 com a fet">
+          <input type="checkbox" class="ikea-chk" data-id="ikea_04">
+          <span class="ikea-num"><span class="n-txt">04</span><span class="n-ok">✓</span></span>
+        </label>
+        <div class="ikea-title-block">
+          <div class="ikea-meta-row">
+            <span class="pill phase-shop">TALLER</span>
+            <span class="pill pill-pieces">Peces: T (9 mm) · 4× C (17×17)</span>
+            <span class="pill pill-screws">Cargols: 22× S2 (3.5×20)</span>
+            <span class="pill glue-yes">AMB COLA</span>
+          </div>
+          <h2>Tauler posterior T (1/3): PRIMER els 4 llistons interiors C — cargolats des del DAVANT!</h2>
+        </div>
+      </header>
+      <div class="ikea-svg-box">
+        <svg viewBox="0 0 860 320" class="ikea-svg" role="img" aria-label="Pas 4: Encolar els 4 llistons interiors C al darrere del tauler T i cargolar des del davant" xmlns="http://www.w3.org/2000/svg">
+  
+  <defs>
+    <marker id="s4_arrB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#1d4ed8"/>
+    </marker>
+    <marker id="s4_arrR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#dc2626"/>
+    </marker>
+    <marker id="s4_arrK" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 1 2 L 9 5 L 1 8 z" fill="#1e293b"/>
+    </marker>
+    <marker id="s4_arrG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#15803d"/>
+    </marker>
+    <pattern id="s4_wallHatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#cbd5e1" stroke-width="2"/>
+    </pattern>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#ffffff" rx="8"/>
+  <text x="20" y="26" fill="#111827" font-size="12" font-weight="700" font-family="var(--mono)">PAS CLAU 1/3 AL TAULER T: PRIMER ELS 4 LLISTONS INTERIORS C (CARA DARRERE)</text>
+  <g transform="translate(724,10)"><rect x="0" y="0" width="110" height="26" rx="13" fill="#dcfce7" stroke="#15803d" stroke-width="1.5"/><path d="M16 7 C16 7 11 13 11 16.5 A5 5 0 0 0 21 16.5 C21 13 16 7 16 7 Z" fill="#15803d"/><text x="28" y="17" fill="#14532d" font-size="11" font-weight="700" font-family="var(--mono)">AMB COLA</text></g>
+
+  <!-- LEFT: Rear view of T showing the 4 cleats C with 42 mm corner setback -->
+  <text x="200" y="52" fill="#475569" font-size="10.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">VISTA PEL DARRERE DE T</text>
+  <polygon points="62,62 338,62 350,74 350,276 338,288 62,288 50,276 50,74"
+           fill="#e2e8f0" stroke="#1e293b" stroke-width="1.8"/>
+  <!-- Window -->
+  <rect x="120" y="173" width="160" height="94" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="200" y="224" fill="#94a3b8" font-size="10" text-anchor="middle">finestra monitor</text>
+  <g class="ibadge"><circle cx="200" cy="128" r="14" fill="#111827" stroke="#ffffff" stroke-width="2"/><text x="200" y="132.5" fill="#ffffff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">T</text></g>
+
+  <!-- 4 Inner cleats C (flush with T edges, inset 42 mm -> ~12px past chamfer) -->
+  <!-- Top C: 1120 -->
+  <rect x="74" y="62" width="252" height="12" fill="#f59e0b" fill-opacity="0.72" stroke="#92400e" stroke-width="1.6"/>
+  <!-- Bottom C: 1120 -->
+  <rect x="74" y="276" width="252" height="12" fill="#f59e0b" fill-opacity="0.72" stroke="#92400e" stroke-width="1.6"/>
+  <!-- Left C: 820 -->
+  <rect x="50" y="86" width="12" height="178" fill="#f59e0b" fill-opacity="0.72" stroke="#92400e" stroke-width="1.6"/>
+  <!-- Right C: 820 -->
+  <rect x="338" y="86" width="12" height="178" fill="#f59e0b" fill-opacity="0.72" stroke="#92400e" stroke-width="1.6"/>
+  <g class="ibadge"><circle cx="200" cy="68" r="12" fill="#b45309" stroke="#ffffff" stroke-width="2"/><text x="200" y="72.5" fill="#fff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">C</text></g>
+  <text x="200" y="96" fill="#92400e" font-size="10" font-weight="700" text-anchor="middle" font-family="var(--mono)">2× 1120 mm (dalt i baix) · 2× 820 mm (costats)</text>
+
+  <!-- 42 mm setback callout -->
+  <line x1="50" y1="54" x2="74" y2="54" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="24" y="57" fill="#dc2626" font-size="9.8" font-weight="700" font-family="var(--mono)">42 mm</text>
+  <text x="200" y="308" fill="#475569" font-size="10" text-anchor="middle">Deixeu 42 mm lliures a cada cantonada de T (per als escaires E)</text>
+
+  <!-- RIGHT: Cross-section showing SCREW DIRECTION (FROM FRONT!) + Red X (NOT from rear!) -->
+  <rect x="396" y="48" width="444" height="252" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.3"/>
+  <text x="414" y="70" fill="#111827" font-size="11.2" font-weight="700" font-family="var(--mono)">SECCIÓ: DES D'ON ENTREN ELS 22 CARGOLS S2?</text>
+
+  <!-- Correct diagram (TOP) -->
+  <rect x="414" y="84" width="408" height="106" rx="7" fill="#f0fdf4" stroke="#15803d" stroke-width="1.6"/>
+  <text x="428" y="103" fill="#15803d" font-size="11" font-weight="700">✓ CORRECTE — Cargoleu des de la CARA DAVANT de T</text>
+  <!-- Front label / Back label -->
+  <text x="462" y="128" fill="#1d4ed8" font-size="9.8" font-weight="700" text-anchor="middle">CARA DAVANT</text>
+  <text x="462" y="140" fill="#64748b" font-size="9" text-anchor="middle">(cap al vidre)</text>
+  <!-- T (9 mm -> 36 px) -->
+  <rect x="520" y="114" width="36" height="64" fill="#cbd5e1" stroke="#1e293b" stroke-width="1.8"/>
+  <text x="538" y="172" fill="#1e293b" font-size="9.5" font-weight="700" text-anchor="middle">T (9)</text>
+  <!-- Glue line -->
+  <line x1="556" y1="114" x2="556" y2="178" stroke="#15803d" stroke-width="4"/>
+  <!-- C (17 mm -> 68 px) -->
+  <rect x="558" y="114" width="68" height="64" fill="#fde68a" stroke="#92400e" stroke-width="1.8"/>
+  <text x="592" y="172" fill="#92400e" font-size="9.5" font-weight="700" text-anchor="middle">C (17)</text>
+  <!-- Screw S2 (20 mm -> 80 px, starts flush at x=520, ends at x=600 -> 26px/6mm safe!) -->
+  <line x1="490" y1="142" x2="516" y2="142" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#s4_arrB)"/>
+  <polygon points="520,136 527,139.5 527,144.5 520,148" fill="#1d4ed8"/>
+  <rect x="527" y="139.5" width="66" height="5" fill="#1d4ed8"/>
+  <polygon points="593,139.5 601,142 593,144.5" fill="#1d4ed8"/>
+  <!-- Text notes -->
+  <g class="ibadge"><circle cx="654" cy="134" r="14" fill="#1d4ed8" stroke="#ffffff" stroke-width="2"/><text x="654" y="138.5" fill="#ffffff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">S2</text></g>
+  <text x="676" y="131" fill="#1e3a8a" font-size="11" font-weight="700" font-family="var(--mono)">22× 3.5×20 mm</text>
+  <text x="676" y="145" fill="#1e293b" font-size="9.8">9 mm (T) + 11 mm dins C</text>
+  <text x="676" y="159" fill="#15803d" font-size="9.6" font-weight="700">Guia Ø 2 mm · caps arran!</text>
+  <text x="676" y="173" fill="#475569" font-size="9.4">6/llarg · 5/curt (cada ~18 cm)</text>
+
+  <!-- Wrong diagram (BOTTOM) -->
+  <rect x="414" y="202" width="408" height="84" rx="7" fill="#fef2f2" stroke="#dc2626" stroke-width="1.4"/>
+  <text x="428" y="222" fill="#dc2626" font-size="11" font-weight="700">✕ NO HO FEU DES DEL DARRERE DE C!</text>
+  <rect x="520" y="232" width="36" height="44" fill="#cbd5e1" stroke="#64748b" stroke-width="1.4"/>
+  <rect x="556" y="232" width="68" height="44" fill="#fde68a" stroke="#92400e" stroke-width="1.4"/>
+  <!-- Screw poking through! -->
+  <line x1="654" y1="254" x2="628" y2="254" stroke="#dc2626" stroke-width="2.2" marker-end="url(#s4_arrR)"/>
+  <rect x="512" y="252" width="112" height="4" fill="#dc2626"/>
+  <text x="668" y="248" fill="#991b1b" font-size="10" font-weight="700">Poca rosca al contraxapat</text>
+  <text x="668" y="263" fill="#7f1d1d" font-size="9.6">i la punta trenca la cara del davant.</text>
+</svg>
+      </div>
+      <ul class="ikea-bullets">
+        <li>Gireu el tauler T i col·loqueu els 4 llistons C a la cara DARRERE, arran dels cantells i deixant 42 mm lliures des de cada cantonada de T (espai per als escaires E).</li><li>Poseu cola blanca, premeu-los i cargoleu els 22× S2 (3.5×20) DES DE LA CARA DAVANT de T cap dins de C (forat guia Ø 2 mm, caps avellanats ben arran, cada ~18 cm).</li><li>MAI des del darrere de C: el contraxapat només té 9 mm i el cargol sortiria per l&#x27;altra banda!</li>
+      </ul>
+    </article>
+    <article class="ikea-card" id="pas-05" data-step="ikea_05">
+      <header class="ikea-card-head">
+        <label class="ikea-num-wrap" title="Marca el pas 05 com a fet">
+          <input type="checkbox" class="ikea-chk" data-id="ikea_05">
+          <span class="ikea-num"><span class="n-txt">05</span><span class="n-ok">✓</span></span>
+        </label>
+        <div class="ikea-title-block">
+          <div class="ikea-meta-row">
+            <span class="pill phase-shop">TALLER</span>
+            <span class="pill pill-pieces">Peces: T + C · 3× J (17×17)</span>
+            <span class="pill pill-screws">Cargols: 10× S3 (3.5×35 MÀX!)</span>
+            <span class="pill glue-no">SENSE COLA</span>
+          </div>
+          <h2>Tauler posterior T (2/3): SEGON els 3 junquillos J — cargolats des del DARRERE de C!</h2>
+        </div>
+      </header>
+      <div class="ikea-svg-box">
+        <svg viewBox="0 0 860 320" class="ikea-svg" role="img" aria-label="Pas 5: Col·locar els 3 junquillos del vidre J a la cara davant de T i cargolar des del darrere amb màxim 3.5x35" xmlns="http://www.w3.org/2000/svg">
+  
+  <defs>
+    <marker id="s5_arrB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#1d4ed8"/>
+    </marker>
+    <marker id="s5_arrR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#dc2626"/>
+    </marker>
+    <marker id="s5_arrK" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 1 2 L 9 5 L 1 8 z" fill="#1e293b"/>
+    </marker>
+    <marker id="s5_arrG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#15803d"/>
+    </marker>
+    <pattern id="s5_wallHatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#cbd5e1" stroke-width="2"/>
+    </pattern>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#ffffff" rx="8"/>
+  <text x="20" y="26" fill="#111827" font-size="12" font-weight="700" font-family="var(--mono)">PAS CLAU 2/3 AL TAULER T: SEGON ELS 3 JUNQUILLOS J (CARA DAVANT)</text>
+  <g transform="translate(706,10)"><rect x="0" y="0" width="128" height="26" rx="13" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/><path d="M16 7 C16 7 11 13 11 16.5 A5 5 0 0 0 21 16.5 C21 13 16 7 16 7 Z" fill="#fca5a5" stroke="#dc2626" stroke-width="1"/><line x1="10" y1="20" x2="22" y2="6" stroke="#dc2626" stroke-width="2.2"/><text x="28" y="17" fill="#991b1b" font-size="11" font-weight="700" font-family="var(--mono)">SENSE COLA</text></g>
+
+  <!-- LEFT: Front view of T showing 3 stops J (bottom OPEN!) -->
+  <text x="200" y="52" fill="#475569" font-size="10.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">VISTA PEL DAVANT DE T (cap al vidre)</text>
+  <polygon points="62,62 338,62 350,74 350,276 338,288 62,288 50,276 50,74"
+           fill="#e2e8f0" stroke="#1e293b" stroke-width="1.8"/>
+  <rect x="120" y="173" width="160" height="94" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <g class="ibadge"><circle cx="200" cy="128" r="14" fill="#111827" stroke="#ffffff" stroke-width="2"/><text x="200" y="132.5" fill="#ffffff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">T</text></g>
+
+  <!-- Top stop J (1120) -->
+  <rect x="74" y="62" width="252" height="12" fill="#0ea5e9" fill-opacity="0.65" stroke="#0369a1" stroke-width="1.6"/>
+  <!-- Side stops J (780, starting at window bottom z=mz0 -> y=267 up to y=86) -->
+  <rect x="50" y="86" width="12" height="181" fill="#0ea5e9" fill-opacity="0.65" stroke="#0369a1" stroke-width="1.6"/>
+  <rect x="338" y="86" width="12" height="181" fill="#0ea5e9" fill-opacity="0.65" stroke="#0369a1" stroke-width="1.6"/>
+  <g class="ibadge"><circle cx="200" cy="68" r="12" fill="#0369a1" stroke="#ffffff" stroke-width="2"/><text x="200" y="72.5" fill="#fff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">J</text></g>
+
+  <!-- Dashed line at bottom of stops = top of bottom shelf B -->
+  <line x1="42" y1="267" x2="358" y2="267" stroke="#b45309" stroke-width="1.3" stroke-dasharray="4 3"/>
+  <text x="200" y="282" fill="#dc2626" font-size="10.0" font-weight="700" text-anchor="middle">BAIX OBERT (sense junquillo! Aquí va el llistó inferior B)</text>
+  <text x="200" y="92" fill="#0369a1" font-size="9.6" font-weight="700" text-anchor="middle" font-family="var(--mono)">1× 1120 (dalt)</text>
+  <text x="200" y="105" fill="#0369a1" font-size="9.6" font-weight="700" text-anchor="middle" font-family="var(--mono)">2× 780 (costats, des de +82)</text>
+  <text x="200" y="308" fill="#475569" font-size="10" text-anchor="middle">Els junquillos J tapen els caps dels cargols S2 del Pas 04!</text>
+
+  <!-- RIGHT: 3-Layer Sandwich Cross-Section (J + T + C) with 3.5x35 MAX screw -->
+  <rect x="396" y="48" width="444" height="252" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.3"/>
+  <text x="414" y="70" fill="#111827" font-size="11.2" font-weight="700" font-family="var(--mono)">SANDVITX DE 3 CAPES: S3 TRAVESSA C + T FINS A J</text>
+
+  <!-- Glass position (dashed blue, to show safety margin!) -->
+  <rect x="424" y="92" width="18" height="150" fill="#bae6fd" fill-opacity="0.55" stroke="#0284c7" stroke-width="1.4" stroke-dasharray="4 3"/>
+  <text x="433" y="168" fill="#0369a1" font-size="9.5" font-weight="700" text-anchor="middle" transform="rotate(-90 433 168)">Vidre (a Casa)</text>
+  <!-- Felt 1 mm -->
+  <rect x="444" y="96" width="5" height="142" fill="#1e293b"/>
+
+  <!-- J (17 mm -> 68 px: x=450..518) -->
+  <rect x="450" y="96" width="68" height="142" fill="#bae6fd" stroke="#0369a1" stroke-width="1.8"/>
+  <text x="484" y="116" fill="#0369a1" font-size="11" font-weight="700" text-anchor="middle">J (17)</text>
+  <!-- T (9 mm -> 36 px: x=518..554) -->
+  <rect x="518" y="96" width="36" height="142" fill="#cbd5e1" stroke="#1e293b" stroke-width="1.8"/>
+  <text x="536" y="116" fill="#1e293b" font-size="10.5" font-weight="700" text-anchor="middle">T (9)</text>
+  <!-- C (17 mm -> 68 px: x=554..622) -->
+  <rect x="554" y="96" width="68" height="142" fill="#fde68a" stroke="#92400e" stroke-width="1.8"/>
+  <text x="588" y="116" fill="#92400e" font-size="11" font-weight="700" text-anchor="middle">C (17)</text>
+
+  <!-- Existing S2 screw (faded, staggered above) -->
+  <rect x="518" y="133" width="76" height="4" fill="#93c5fd" stroke="#1d4ed8" stroke-width="0.6"/>
+  <text x="632" y="138" fill="#64748b" font-size="9.2">← S2 ja posat (escaloneu-los!)</text>
+
+  <!-- NEW S3 screw (35 mm -> 140 px, enters from rear of C at x=622, reaches x=482 -> 36px/9mm inside J!) -->
+  <line x1="664" y1="176" x2="628" y2="176" stroke="#dc2626" stroke-width="2.6" marker-end="url(#s5_arrR)"/>
+  <polygon points="622,169 614,173 614,179 622,183" fill="#dc2626"/>
+  <rect x="490" y="173" width="124" height="6" fill="#dc2626"/>
+  <polygon points="490,173 482,176 490,179" fill="#dc2626"/>
+
+  <!-- Safe margin bracket (x=450 to 482 = 8 mm!) -->
+  <line x1="450" y1="205" x2="482" y2="205" stroke="#15803d" stroke-width="2"/>
+  <text x="466" y="222" fill="#15803d" font-size="9.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">8 mm</text>
+  <text x="466" y="233" fill="#15803d" font-size="8.8" text-anchor="middle">lliures!</text>
+
+  <!-- Info box -->
+  <rect x="642" y="152" width="186" height="132" rx="7" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <g class="ibadge"><circle cx="666" cy="176" r="14" fill="#dc2626" stroke="#ffffff" stroke-width="2"/><text x="666" y="180.5" fill="#ffffff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">S3</text></g>
+  <text x="686" y="174" fill="#991b1b" font-size="11.5" font-weight="700" font-family="var(--mono)">3.5×35 MÀX</text>
+  <text x="686" y="188" fill="#7f1d1d" font-size="10">10 u. (4 dalt · 3/costat)</text>
+  <text x="652" y="210" fill="#1e293b" font-size="10">• 17 (C) + 9 (T) + <tspan font-weight="700">9 dins J</tspan></text>
+  <text x="652" y="225" fill="#1e293b" font-size="10">• Forat guia Ø 2 mm</text>
+  <text x="652" y="240" fill="#1e293b" font-size="10">• Entre els cargols S2</text>
+  <text x="652" y="256" fill="#dc2626" font-size="9.8" font-weight="700">⚠ MAI més llarg de 35 mm!</text>
+  <text x="652" y="270" fill="#7f1d1d" font-size="9.3">Només hi ha 44 mm al vidre.</text>
+</svg>
+      </div>
+      <ul class="ikea-bullets">
+        <li>Poseu el junquillo de dalt (1120) i els 2 laterals (780, començant a 82 mm de baix de T) a la cara DAVANT de T, arran dels cantells. A baix queda obert per a B!</li><li>SENSE cola (així els junquillos sempre es poden substituir). Tapen els caps dels cargols S2 del Pas 04.</li><li>Cargoleu 10× S3 (3.5×35 MÀX: 4 dalt, 3/costat) des del DARRERE de C travessant C + T fins a J (guia Ø 2 mm, escalonats entre els S2). Queden 8 mm de fusta segurs abans del vidre!</li>
+      </ul>
+    </article>
+    <article class="ikea-card" id="pas-06" data-step="ikea_06">
+      <header class="ikea-card-head">
+        <label class="ikea-num-wrap" title="Marca el pas 06 com a fet">
+          <input type="checkbox" class="ikea-chk" data-id="ikea_06">
+          <span class="ikea-num"><span class="n-txt">06</span><span class="n-ok">✓</span></span>
+        </label>
+        <div class="ikea-title-block">
+          <div class="ikea-meta-row">
+            <span class="pill phase-shop">TALLER</span>
+            <span class="pill pill-pieces">Peces: T · P1 (0.9 m) · P2 (45°) · 2× K</span>
+            <span class="pill pill-screws">Cargols: 8× S2 + 8× S4 (o 4×40)</span>
+            <span class="pill glue-yes">AMB COLA</span>
+          </div>
+          <h2>Tauler posterior T (3/3): Separador P1, llistó a 45° P2 i 2× tacs separadors K</h2>
+        </div>
+      </header>
+      <div class="ikea-svg-box">
+        <svg viewBox="0 0 860 325" class="ikea-svg" role="img" aria-label="Pas 6: Encolar i cargolar el separador P1, el llistó a 45 graus P2 i els dos tacs separadors K al darrere de T" xmlns="http://www.w3.org/2000/svg">
+  
+  <defs>
+    <marker id="s6_arrB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#1d4ed8"/>
+    </marker>
+    <marker id="s6_arrR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#dc2626"/>
+    </marker>
+    <marker id="s6_arrK" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 1 2 L 9 5 L 1 8 z" fill="#1e293b"/>
+    </marker>
+    <marker id="s6_arrG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#15803d"/>
+    </marker>
+    <pattern id="s6_wallHatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#cbd5e1" stroke-width="2"/>
+    </pattern>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#ffffff" rx="8"/>
+  <text x="20" y="26" fill="#111827" font-size="12" font-weight="700" font-family="var(--mono)">PAS CLAU 3/3 AL TAULER T: PENJADOR P1 + P2 I TACS DE BAIX K (ABANS DEL VIDRE!)</text>
+  <g transform="translate(724,10)"><rect x="0" y="0" width="110" height="26" rx="13" fill="#dcfce7" stroke="#15803d" stroke-width="1.5"/><path d="M16 7 C16 7 11 13 11 16.5 A5 5 0 0 0 21 16.5 C21 13 16 7 16 7 Z" fill="#15803d"/><text x="28" y="17" fill="#14532d" font-size="11" font-weight="700" font-family="var(--mono)">AMB COLA</text></g>
+
+  <!-- LEFT: Rear view of T showing P1, P2 and 2x K -->
+  <text x="50" y="51" fill="#475569" font-size="10.2" font-weight="700" font-family="var(--mono)">CARA DARRERE DE T</text>
+  <polygon points="62,62 338,62 350,74 350,276 338,288 62,288 50,276 50,74"
+           fill="#e2e8f0" stroke="#1e293b" stroke-width="1.8"/>
+  <!-- Existing cleats C -->
+  <rect x="74" y="62" width="252" height="10" fill="#fde68a" stroke="#b45309" stroke-width="1"/>
+  <rect x="74" y="278" width="252" height="10" fill="#fde68a" stroke="#b45309" stroke-width="1"/>
+  <rect x="50" y="84" width="10" height="182" fill="#fde68a" stroke="#b45309" stroke-width="1"/>
+  <rect x="340" y="84" width="10" height="182" fill="#fde68a" stroke="#b45309" stroke-width="1"/>
+  <!-- Window -->
+  <rect x="120" y="173" width="160" height="94" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="4 3"/>
+
+  <!-- Hanging spacer P1 (900x69 centered, 54 mm down from T top -> y=78..96) -->
+  <rect x="88" y="80" width="224" height="22" fill="#f3dfc1" stroke="#78350f" stroke-width="1.6"/>
+  <!-- Mirror cleat P2 over P1 -->
+  <rect x="88" y="80" width="224" height="16" fill="#86efac" fill-opacity="0.78" stroke="#15803d" stroke-width="1.6"/>
+  <line x1="88" y1="96" x2="312" y2="96" stroke="#15803d" stroke-width="2" stroke-dasharray="4 2"/>
+  <g class="ibadge"><circle cx="128" cy="90" r="11" fill="#78350f" stroke="#ffffff" stroke-width="2"/><text x="128" y="94.5" fill="#fff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">P1</text></g>
+  <g class="ibadge"><circle cx="272" cy="90" r="11" fill="#15803d" stroke="#ffffff" stroke-width="2"/><text x="272" y="94.5" fill="#fff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">P2</text></g>
+  <!-- 54 mm drop callout (clean above top edge with leader) -->
+  <line x1="200" y1="62" x2="200" y2="80" stroke="#dc2626" stroke-width="1.8"/>
+  <line x1="200" y1="62" x2="226" y2="47" stroke="#dc2626" stroke-width="1.2"/>
+  <rect x="224" y="36" width="132" height="17" rx="4" fill="#fef2f2" stroke="#fca5a5"/>
+  <text x="290" y="48" fill="#dc2626" font-size="9.4" font-weight="700" text-anchor="middle" font-family="var(--mono)">↓ 54 mm de dalt de T</text>
+  <text x="200" y="116" fill="#15803d" font-size="9.8" font-weight="700" text-anchor="middle">Centrat (900 mm) · Bisell a BAIX</text>
+
+  <!-- 2x Bottom standoff blocks K -->
+  <rect x="68" y="246" width="24" height="24" fill="#a5f3fc" stroke="#0e7490" stroke-width="1.8"/>
+  <rect x="308" y="246" width="24" height="24" fill="#a5f3fc" stroke="#0e7490" stroke-width="1.8"/>
+  <g class="ibadge"><circle cx="80" cy="258" r="11" fill="#0891b2" stroke="#ffffff" stroke-width="2"/><text x="80" y="262.5" fill="#fff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">K</text></g>
+  <g class="ibadge"><circle cx="320" cy="258" r="11" fill="#0891b2" stroke="#ffffff" stroke-width="2"/><text x="320" y="262.5" fill="#fff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">K</text></g>
+  <text x="200" y="308" fill="#0e7490" font-size="10" font-weight="700" text-anchor="middle">Tacs K (69×70×33 mm): dins dels llistons C, lliures dels escaires</text>
+
+  <!-- RIGHT: Side cross-section of P1 + P2 + T showing EXACT bevel direction & screws -->
+  <rect x="396" y="48" width="444" height="258" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.3"/>
+  <text x="414" y="70" fill="#111827" font-size="11.2" font-weight="700" font-family="var(--mono)">SECCIÓ DEL PENJADOR: ORIENTACIÓ DEL BISELL I CARGOLS</text>
+
+  <!-- T (9 mm -> 27 px: x=475..502) -->
+  <rect x="475" y="90" width="27" height="190" fill="#cbd5e1" stroke="#1e293b" stroke-width="1.8"/>
+  <text x="488" y="272" fill="#1e293b" font-size="9.5" font-weight="700" text-anchor="middle">T (9)</text>
+
+  <!-- Glue line T-P1 -->
+  <line x1="502" y1="98" x2="502" y2="210" stroke="#15803d" stroke-width="4"/>
+
+  <!-- P1 (18 mm -> 54 px: x=504..558, h=69 -> 112px: y=98..210) -->
+  <rect x="504" y="98" width="54" height="112" fill="#f3dfc1" stroke="#78350f" stroke-width="1.8"/>
+  <text x="531" y="156" fill="#78350f" font-size="11" font-weight="700" text-anchor="middle">P1 (18)</text>
+
+  <!-- Glue line P1-P2 -->
+  <line x1="558" y1="98" x2="558" y2="196" stroke="#15803d" stroke-width="4"/>
+
+  <!-- P2 (15 mm -> 45 px: x=560..605, flat face y=98..196, bevel goes DOWN toward wall to y=224!) -->
+  <polygon points="560,98 605,98 605,224 560,196" fill="#86efac" stroke="#15803d" stroke-width="2"/>
+  <text x="582" y="154" fill="#14532d" font-size="11" font-weight="700" text-anchor="middle">P2 (15)</text>
+
+  <!-- Wall indicator -->
+  <line x1="612" y1="86" x2="612" y2="278" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="622" y="102" fill="#64748b" font-size="9.5" font-weight="700">PARET →</text>
+
+  <!-- Screw S2 (8x 3.5x20) from FRONT of T into P1 -->
+  <line x1="436" y1="126" x2="470" y2="126" stroke="#1d4ed8" stroke-width="2.4" marker-end="url(#s6_arrB)"/>
+  <rect x="475" y="123.5" width="60" height="5" fill="#1d4ed8"/>
+  <text x="412" y="114" fill="#1d4ed8" font-size="10" font-weight="700" font-family="var(--mono)">8× S2</text>
+  <text x="412" y="142" fill="#1e3a8a" font-size="9.2">(3.5×20)</text>
+
+  <!-- Screw S4 (8x 3.5x30) OR S5 (6-8x 4x40 through ALL 3 layers!) from REAR of P2 -->
+  <line x1="646" y1="172" x2="610" y2="172" stroke="#b45309" stroke-width="2.4" marker-end="url(#s6_arrK)"/>
+  <rect x="484" y="169.5" width="121" height="5" fill="#b45309"/>
+  <rect x="646" y="122" width="182" height="106" rx="7" fill="#ffffff" stroke="#b45309" stroke-width="1.4"/>
+  <text x="656" y="142" fill="#92400e" font-size="10.5" font-weight="700" font-family="var(--mono)">8× S4 (3.5×30)</text>
+  <text x="656" y="156" fill="#475569" font-size="9.6">de P2 cap a P1,</text>
+  <text x="656" y="172" fill="#b45309" font-size="10" font-weight="700">O MILLOR: 6–8× S5 (4×40)</text>
+  <text x="656" y="186" fill="#1e293b" font-size="9.5">sobrants: travessen</text>
+  <text x="656" y="199" fill="#1e293b" font-size="9.5" font-weight="700">P2 + P1 + 7 mm dins T!</text>
+  <text x="656" y="216" fill="#15803d" font-size="9.3" font-weight="700">(42 mm totals → zero perill)</text>
+
+  <!-- Bevel warning callout -->
+  <rect x="524" y="236" width="304" height="56" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1.4"/>
+  <text x="536" y="254" fill="#991b1b" font-size="10.5" font-weight="700">⚠ BISELL A BAIX, baixant cap a la PARET</text>
+  <text x="536" y="270" fill="#7f1d1d" font-size="9.6">La punta llarga de P2 ha de quedar tocant la paret</text>
+  <text x="536" y="283" fill="#7f1d1d" font-size="9.6">per encaixar dins la «V» del llistó de paret P3.</text>
+</svg>
+      </div>
+      <ul class="ikea-bullets">
+        <li>A la cara DARRERE de T, centreu el separador P1 (900×69×18) a 54 mm del cantell de dalt de T. Encoleu-lo i colleu 8× S2 (3.5×20) des del DAVANT de T.</li><li>Encoleu P2 (la meitat del mirall) sobre P1 amb el BISELL A BAIX, baixant cap a la paret. Colleu 8× S4 (3.5×30) — o encara millor, 6–8 dels S5 (4×40) sobrants travessant P2 + P1 + 7 mm dins T!</li><li>Encoleu els 2 tacs separadors K a les cantonades inferiors del darrere de T (per dins dels llistons C, lliures dels escaires). Netegeu qualsevol gota de cola sota el bisell de P2!</li>
+      </ul>
+    </article>
+    <article class="ikea-card" id="pas-07" data-step="ikea_07">
+      <header class="ikea-card-head">
+        <label class="ikea-num-wrap" title="Marca el pas 07 com a fet">
+          <input type="checkbox" class="ikea-chk" data-id="ikea_07">
+          <span class="ikea-num"><span class="n-txt">07</span><span class="n-ok">✓</span></span>
+        </label>
+        <div class="ikea-title-block">
+          <div class="ikea-meta-row">
+            <span class="pill phase-shop">TALLER</span>
+            <span class="pill pill-pieces">Peces: Marc M+L · Tauler T · Llistó B</span>
+            <span class="pill pill-screws">Cargols: 22× S4 + 6× S5</span>
+            <span class="pill glue-no">SENSE COLA</span>
+          </div>
+          <h2>Prova en sec, forats previs desmuntables (S4 de costat i S5 de baix) i pintura negra</h2>
+        </div>
+      </header>
+      <div class="ikea-svg-box">
+        <svg viewBox="0 0 860 310" class="ikea-svg" role="img" aria-label="Pas 7: Forats previs de costat S4 sense cola i forats de baix S5 sense cola" xmlns="http://www.w3.org/2000/svg">
+  
+  <defs>
+    <marker id="s7_arrB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#1d4ed8"/>
+    </marker>
+    <marker id="s7_arrR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#dc2626"/>
+    </marker>
+    <marker id="s7_arrK" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 1 2 L 9 5 L 1 8 z" fill="#1e293b"/>
+    </marker>
+    <marker id="s7_arrG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#15803d"/>
+    </marker>
+    <pattern id="s7_wallHatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#cbd5e1" stroke-width="2"/>
+    </pattern>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#ffffff" rx="8"/>
+  <text x="20" y="26" fill="#111827" font-size="12" font-weight="700" font-family="var(--mono)">ELS DOS FORATS PREVIS DESMUNTABLES DEL TALLER (TOTS DOS SENSE COLA!)</text>
+  <g transform="translate(706,10)"><rect x="0" y="0" width="128" height="26" rx="13" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/><path d="M16 7 C16 7 11 13 11 16.5 A5 5 0 0 0 21 16.5 C21 13 16 7 16 7 Z" fill="#fca5a5" stroke="#dc2626" stroke-width="1"/><line x1="10" y1="20" x2="22" y2="6" stroke="#dc2626" stroke-width="2.2"/><text x="28" y="17" fill="#991b1b" font-size="11" font-weight="700" font-family="var(--mono)">SENSE COLA</text></g>
+
+  <!-- LEFT PANEL: Sideways S4 (3.5x30) from C into Frame Wall M -->
+  <rect x="20" y="48" width="404" height="244" rx="8" fill="#f8fafc" stroke="#0f766e" stroke-width="1.6"/>
+  <text x="36" y="70" fill="#0f766e" font-size="11.2" font-weight="700" font-family="var(--mono)">A) UNIÓ PRINCIPAL: 22× S4 DE COSTAT (C → M)</text>
+
+  <!-- Frame top wall M (18x69 -> y=94..148, x=56..332) -->
+  <rect x="56" y="94" width="276" height="54" fill="#f3dfc1" stroke="#1e293b" stroke-width="2"/>
+  <text x="194" y="126" fill="#1e293b" font-size="11" font-weight="700" text-anchor="middle">Paret del marc M (18 × 69 mm)</text>
+  <!-- Lip L (0..17 -> x=56..124) -->
+  <rect x="56" y="148" width="68" height="54" fill="#fde68a" stroke="#1e293b" stroke-width="1.6"/>
+  <text x="90" y="179" fill="#92400e" font-size="10.5" font-weight="700" text-anchor="middle">L (17)</text>
+  <!-- Template (glass+EPDM+felt = 9 mm -> x=124..160) -->
+  <rect x="124" y="150" width="36" height="90" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.3" stroke-dasharray="4 3"/>
+  <text x="142" y="198" fill="#0369a1" font-size="9" font-weight="700" text-anchor="middle" transform="rotate(-90 142 198)">Plantilla 9 mm</text>
+  <!-- Stop J (26..43 -> x=160..228) -->
+  <rect x="160" y="148" width="68" height="54" fill="#bae6fd" stroke="#0369a1" stroke-width="1.6"/>
+  <text x="194" y="179" fill="#0369a1" font-size="10.5" font-weight="700" text-anchor="middle">J (17)</text>
+  <!-- Backplate T (43..52 -> x=228..264) -->
+  <rect x="228" y="148" width="36" height="92" fill="#cbd5e1" stroke="#1e293b" stroke-width="1.8"/>
+  <text x="246" y="210" fill="#1e293b" font-size="9.8" font-weight="700" text-anchor="middle">T (9)</text>
+  <!-- Inner cleat C (52..69 -> x=264..332) -->
+  <rect x="264" y="148" width="68" height="54" fill="#fcd34d" stroke="#92400e" stroke-width="1.8"/>
+  <text x="308" y="182" fill="#92400e" font-size="10.5" font-weight="700" text-anchor="middle">C</text>
+
+  <!-- VERTICAL SIDEWAYS SCREW S4 going UP from C into M! -->
+  <line x1="292" y1="234" x2="292" y2="206" stroke="#0f766e" stroke-width="2.6" marker-end="url(#s7_arrG)"/>
+  <polygon points="285,202 289,195 295,195 299,202" fill="#0f766e"/>
+  <rect x="289" y="114" width="6" height="81" fill="#0f766e"/>
+  <polygon points="289,114 292,107 295,114" fill="#0f766e"/>
+
+  <!-- Safe margin to outer visible face (5 mm!) -->
+  <text x="342" y="114" fill="#15803d" font-size="9.5" font-weight="700">5 mm segurs</text>
+  <text x="342" y="126" fill="#64748b" font-size="8.8">(no traspassa!)</text>
+  <g class="ibadge"><circle cx="354" cy="178" r="14" fill="#0f766e" stroke="#ffffff" stroke-width="2"/><text x="354" y="182.5" fill="#ffffff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">S4</text></g>
+  <text x="342" y="210" fill="#0f766e" font-size="10" font-weight="700" font-family="var(--mono)">3.5×30 mm</text>
+  <text x="36" y="264" fill="#1e293b" font-size="10">• <tspan font-weight="700">Ø 4 mm</tspan> passant a C · <tspan font-weight="700" fill="#dc2626">Ø 2 mm</tspan> guia al marc M (NO 2.5!)</text>
+  <text x="36" y="279" fill="#0f766e" font-size="10" font-weight="700">• 6 dalt, 6 baix, 5/costat = 22 cargols · SENSE COLA!</text>
+
+  <!-- RIGHT PANEL: Bottom Shelf S5 (4x40) from underneath M1 into B -->
+  <rect x="438" y="48" width="402" height="244" rx="8" fill="#f8fafc" stroke="#b45309" stroke-width="1.6"/>
+  <text x="454" y="70" fill="#b45309" font-size="11.2" font-weight="700" font-family="var(--mono)">B) LLISTÓ INFERIOR: 6× S5 DES DE SOTA (M1 → B)</text>
+
+  <!-- Bottom frame rail M1 (y=198..244, x=474..750) -->
+  <rect x="474" y="198" width="276" height="46" fill="#f3dfc1" stroke="#1e293b" stroke-width="2"/>
+  <text x="684" y="218" fill="#1e293b" font-size="10.2" font-weight="700" text-anchor="middle">Travesser inferior M1</text>
+  <text x="684" y="232" fill="#475569" font-size="9.5" font-weight="600" text-anchor="middle" font-family="var(--mono)">(18 × 69 mm)</text>
+  <!-- Bottom Lip L -->
+  <rect x="474" y="150" width="68" height="48" fill="#fde68a" stroke="#1e293b" stroke-width="1.6"/>
+  <text x="508" y="178" fill="#92400e" font-size="10.5" font-weight="700" text-anchor="middle">L</text>
+  <!-- Template -->
+  <rect x="542" y="102" width="34" height="96" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.3" stroke-dasharray="4 3"/>
+  <!-- Bottom shelf B (15 mm -> 60px: x=576..636, upright!) -->
+  <rect x="576" y="102" width="60" height="96" fill="#cbd5e1" stroke="#1e293b" stroke-width="2"/>
+  <g class="ibadge"><circle cx="606" cy="126" r="14" fill="#334155" stroke="#ffffff" stroke-width="2"/><text x="606" y="130.5" fill="#ffffff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">B</text></g>
+  <text x="606" y="154" fill="#1e293b" font-size="9.5" font-weight="700" text-anchor="middle">15×83 mm</text>
+  <!-- 2 mm felt pad between B and T -->
+  <rect x="636" y="128" width="8" height="70" fill="#1e293b"/>
+  <line x1="640" y1="128" x2="640" y2="94" stroke="#475569" stroke-width="1.2"/>
+  <text x="646" y="92" fill="#475569" font-size="9.2" font-weight="600">2 mm feltre (a Casa)</text>
+  <!-- Backplate T behind -->
+  <rect x="644" y="102" width="32" height="96" fill="#e2e8f0" stroke="#64748b" stroke-width="1.4" stroke-dasharray="4 2"/>
+  <text x="660" y="154" fill="#475569" font-size="9.5" font-weight="700" text-anchor="middle">T</text>
+
+  <!-- Vertical screw S5 (4x40) going UP from underneath M1 into center of B -->
+  <line x1="606" y1="274" x2="606" y2="248" stroke="#b45309" stroke-width="2.6" marker-end="url(#s7_arrK)"/>
+  <polygon points="598,244 603,237 609,237 614,244" fill="#b45309"/>
+  <rect x="603" y="164" width="6" height="73" fill="#b45309"/>
+  <polygon points="603,164 606,156 609,164" fill="#b45309"/>
+
+  <g class="ibadge"><circle cx="718" cy="174" r="14" fill="#b45309" stroke="#ffffff" stroke-width="2"/><text x="718" y="178.5" fill="#ffffff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">S5</text></g>
+  <text x="740" y="172" fill="#92400e" font-size="11" font-weight="700" font-family="var(--mono)">6× 4×40 mm</text>
+  <text x="740" y="186" fill="#475569" font-size="9.5">guia Ø 2.5 mm a B</text>
+
+  <text x="454" y="268" fill="#1e293b" font-size="10">• Avellaneu els caps per sota del marc · <tspan font-weight="700" fill="#dc2626">SENSE COLA</tspan></text>
+  <text x="454" y="282" fill="#475569" font-size="9.6">• També ara: forats VESA (Ø 4.5), Pi 5 (Ø 2) i esprai negre interior!</text>
+</svg>
+      </div>
+      <ul class="ikea-bullets">
+        <li>Poseu una plantilla de 9 mm dins del marc (o el retall de contraxapat 9 mm), col·loqueu B darrere i feu els 6 forats previs de S5 (4×40) des de SOTA del travesser inferior cap al cantell de B (guia Ø 2.5 mm a B, caps avellanats, SENSE COLA).</li><li>Baixeu el bloc del tauler T al seu lloc i feu els 22 forats DE COSTAT per a S4 (3.5×30) des de C cap a M: forat passant Ø 4 mm a C + forat guia Ø 2 mm a M (NO 2.5!). SENSE COLA — aquesta unió permet obrir el mirall sempre!</li><li>Feu els 4 forats VESA (Ø 4.5 mm), els 4 forats de la Pi 5 (Ø 2 mm) i el del segur sota el marc. Pinteu d&#x27;esprai negre mat l&#x27;interior del marc, B, J i la cara davant de T. Porteu el marc a casa de pla amb 6–8 cargols S4 posats.</li>
+      </ul>
+    </article>
+    
+  <div class="phase-divider home">
+    <span>FASE 2 · CASA (MUNTATGE FINAL I PENJAR) — PASSOS 08 A 10</span>
+    <hr>
+  </div>
+
+    <article class="ikea-card" id="pas-08" data-step="ikea_08">
+      <header class="ikea-card-head">
+        <label class="ikea-num-wrap" title="Marca el pas 08 com a fet">
+          <input type="checkbox" class="ikea-chk" data-id="ikea_08">
+          <span class="ikea-num"><span class="n-txt">08</span><span class="n-ok">✓</span></span>
+        </label>
+        <div class="ikea-title-block">
+          <div class="ikea-meta-row">
+            <span class="pill phase-home">CASA</span>
+            <span class="pill pill-pieces">Peces: Marc · Vidre · G · B · Màscara</span>
+            <span class="pill pill-screws">Cargols: 6× S5 (4×40)</span>
+            <span class="pill glue-no">SENSE COLA</span>
+          </div>
+          <h2>Marc cap per avall: EPDM → Vidre (2 persones!) + Calços G → Llistó B → Màscara</h2>
+        </div>
+      </header>
+      <div class="ikea-svg-box">
+        <svg viewBox="0 0 860 325" class="ikea-svg" role="img" aria-label="Pas 8 a casa: ordre de capes amb el marc cap per avall sobre una manta" xmlns="http://www.w3.org/2000/svg">
+  
+  <defs>
+    <marker id="s8_arrB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#1d4ed8"/>
+    </marker>
+    <marker id="s8_arrR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#dc2626"/>
+    </marker>
+    <marker id="s8_arrK" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 1 2 L 9 5 L 1 8 z" fill="#1e293b"/>
+    </marker>
+    <marker id="s8_arrG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#15803d"/>
+    </marker>
+    <pattern id="s8_wallHatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#cbd5e1" stroke-width="2"/>
+    </pattern>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#ffffff" rx="8"/>
+  <text x="20" y="26" fill="#111827" font-size="12" font-weight="700" font-family="var(--mono)">A CASA: MARC DE CARA AVALL SOBRE UNA MANTA — ORDRE DE CAPES (DE BAIX A DALT)</text>
+
+  <!-- Table + blanket at bottom -->
+  <rect x="26" y="276" width="520" height="16" rx="4" fill="#cbd5e1" stroke="#64748b" stroke-width="1.3"/>
+  <rect x="26" y="266" width="520" height="10" rx="3" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="286" y="288" fill="#334155" font-size="10" font-weight="700" text-anchor="middle" font-family="var(--mono)">TAULA PLANA + MANTA NETA (el front visible toca la manta)</text>
+
+  <!-- Frame cross-section lying FACE DOWN (bottom wall left, top wall right!) -->
+  <!-- Left wall (Bottom rail M1!) -->
+  <rect x="44" y="138" width="38" height="128" fill="#f3dfc1" stroke="#1e293b" stroke-width="2"/>
+  <rect x="82" y="226" width="38" height="40" fill="#fde68a" stroke="#1e293b" stroke-width="1.8"/>
+  <text x="63" y="200" fill="#1e293b" font-size="9.5" font-weight="700" text-anchor="middle" transform="rotate(-90 63 200)">Travesser baix M1</text>
+  <!-- Right wall (Top rail M1) -->
+  <rect x="490" y="138" width="38" height="128" fill="#f3dfc1" stroke="#1e293b" stroke-width="2"/>
+  <rect x="452" y="226" width="38" height="40" fill="#fde68a" stroke="#1e293b" stroke-width="1.8"/>
+  <text x="509" y="200" fill="#1e293b" font-size="9.5" font-weight="700" text-anchor="middle" transform="rotate(-90 509 200)">Travesser dalt M1</text>
+
+  <!-- LAYER 1: EPDM Tape on Lip L -->
+  <rect x="84" y="218" width="34" height="8" fill="#ea580c"/>
+  <rect x="454" y="218" width="34" height="8" fill="#ea580c"/>
+
+  <!-- LAYER 2: Glass (6 mm) + Rubber Setting Block G (3 mm gap!) -->
+  <rect x="92" y="198" width="388" height="19" fill="#bae6fd" stroke="#0369a1" stroke-width="1.8"/>
+  <text x="286" y="211" fill="#0c4a6e" font-size="10.5" font-weight="700" text-anchor="middle">2. VIDRE 1200×900×6 mm (16.2 kg) — CARA ESPIA CAP AVALL ↓</text>
+  <!-- Setting block G wedged between bottom rail M1 (x=82) and glass edge (x=92) -->
+  <rect x="82" y="195" width="10" height="24" fill="#dc2626" stroke="#7f1d1d" stroke-width="1.2"/>
+  <g class="ibadge"><circle cx="87" cy="178" r="11" fill="#dc2626" stroke="#ffffff" stroke-width="2"/><text x="87" y="182.5" fill="#fff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">G</text></g>
+  <!-- Lateral shim icon on top/sides -->
+  <rect x="480" y="198" width="10" height="19" fill="#f97316" fill-opacity="0.5" stroke="#c2410c" stroke-width="1" stroke-dasharray="2 2"/>
+
+  <!-- LAYER 3: Bottom shelf B (standing behind glass at bottom rail, x=82..164, y=156..196) -->
+  <rect x="84" y="160" width="84" height="34" fill="#cbd5e1" stroke="#1e293b" stroke-width="1.8"/>
+  <rect x="84" y="194" width="84" height="4" fill="#1e293b"/>
+  <rect x="84" y="155" width="84" height="5" fill="#475569"/>
+  <g class="ibadge"><circle cx="126" cy="177" r="12" fill="#334155" stroke="#ffffff" stroke-width="2"/><text x="126" y="181.5" fill="#fff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">B</text></g>
+  <!-- Screw S5 coming from outside left into B! -->
+  <line x1="16" y1="177" x2="42" y2="177" stroke="#b45309" stroke-width="2.5" marker-end="url(#s8_arrK)"/>
+  <rect x="44" y="174.5" width="70" height="5" fill="#b45309"/>
+
+  <!-- LAYER 4: Black Card + 5 mm Foam Mask -->
+  <rect x="172" y="182" width="286" height="14" fill="#1e293b" stroke="#0f172a" stroke-width="1.5"/>
+  <text x="315" y="193" fill="#f8fafc" font-size="9.5" font-weight="700" text-anchor="middle">4. Cartolina negra + Màscara 1170×805</text>
+
+  <!-- RIGHT CHECKLIST CALLOUTS -->
+  <rect x="564" y="48" width="276" height="248" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.3"/>
+  <text x="580" y="70" fill="#111827" font-size="11.2" font-weight="700" font-family="var(--mono)">ORDRE EXACTE (1 → 4)</text>
+
+  <circle cx="586" cy="96" r="10" fill="#ea580c"/><text x="586" y="100" fill="#fff" font-size="10.5" font-weight="700" text-anchor="middle">1</text>
+  <text x="604" y="94" fill="#1e293b" font-size="10.5" font-weight="700">Cinta EPDM 10×2 mm</text>
+  <text x="604" y="108" fill="#475569" font-size="9.5">Contínua damunt del llavi L.</text>
+
+  <circle cx="586" cy="138" r="10" fill="#0284c7"/><text x="586" y="142" fill="#fff" font-size="10.5" font-weight="700" text-anchor="middle">2</text>
+  <text x="604" y="136" fill="#1e293b" font-size="10.5" font-weight="700">Vidre + Calços goma G</text>
+  <text x="604" y="150" fill="#dc2626" font-size="9.5" font-weight="700">Prova bolígraf: reflex tocant → AVALL!</text>
+  <text x="604" y="163" fill="#475569" font-size="9.4">2× calços a 30 i 90 cm (baix) + 4× laterals.</text>
+
+  <circle cx="586" cy="196" r="10" fill="#b45309"/><text x="586" y="200" fill="#fff" font-size="10.5" font-weight="700" text-anchor="middle">3</text>
+  <text x="604" y="194" fill="#1e293b" font-size="10.5" font-weight="700">Llistó B + 6× S5 (4×40)</text>
+  <text x="604" y="208" fill="#475569" font-size="9.4">1 mm feltre davant · 2 mm darrere.</text>
+  <text x="604" y="221" fill="#b45309" font-size="9.4" font-weight="700">Colleu pels forats previs · SENSE COLA!</text>
+
+  <circle cx="586" cy="252" r="10" fill="#1e293b"/><text x="586" y="256" fill="#fff" font-size="10.5" font-weight="700" text-anchor="middle">4</text>
+  <text x="604" y="250" fill="#1e293b" font-size="10.5" font-weight="700">Cartolina + Màscara 5 mm</text>
+  <text x="604" y="264" fill="#475569" font-size="9.4">Finestra pantalla 598×336 mm</text>
+  <text x="604" y="277" fill="#475569" font-size="9.4">+ forat càmera Ø 20 mm, 89 mm sobre la pantalla.</text>
+</svg>
+      </div>
+      <ul class="ikea-bullets">
+        <li>Traieu el tauler T i poseu el marc de cara avall sobre una manta neta. Enganxeu la cinta EPDM 10×2 mm a tot el voltant del llavi L.</li><li>Feu la prova del bolígraf (cara amb recobriment cap AVALL!). Entre 2 persones amb ventoses i guants, baixeu el vidre de 16.2 kg i fiqueu els 2 calços G a 30 i 90 cm (baix) + els 4 calços laterals de 3 mm.</li><li>Poseu 1 mm de feltre a la cara davant de B i 2 mm (dues capes) a la cara darrere; col·loqueu B i colleu els 6× S5 (4×40) des de sota (SENSE COLA). Després poseu la cartolina negra i la màscara de 1170×805 mm.</li>
+      </ul>
+    </article>
+    <article class="ikea-card" id="pas-09" data-step="ikea_09">
+      <header class="ikea-card-head">
+        <label class="ikea-num-wrap" title="Marca el pas 09 com a fet">
+          <input type="checkbox" class="ikea-chk" data-id="ikea_09">
+          <span class="ikea-num"><span class="n-txt">09</span><span class="n-ok">✓</span></span>
+        </label>
+        <div class="ikea-title-block">
+          <div class="ikea-meta-row">
+            <span class="pill phase-home">CASA</span>
+            <span class="pill pill-pieces">Peces: Bloc T+C+J · Monitor · 2× V · Pi5/ESP</span>
+            <span class="pill pill-screws">Cargols: 22× S4 + VESA</span>
+            <span class="pill glue-no">SENSE COLA</span>
+          </div>
+          <h2>Tanqueu el tauler T (22× S4 de costat), tapeu cantonades i munteu el monitor + electrònica</h2>
+        </div>
+      </header>
+      <div class="ikea-svg-box">
+        <svg viewBox="0 0 860 325" class="ikea-svg" role="img" aria-label="Pas 9: Encaixar el tauler posterior passant pels escaires, cargolar de costat i muntar el monitor VESA" xmlns="http://www.w3.org/2000/svg">
+  
+  <defs>
+    <marker id="s9_arrB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#1d4ed8"/>
+    </marker>
+    <marker id="s9_arrR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#dc2626"/>
+    </marker>
+    <marker id="s9_arrK" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 1 2 L 9 5 L 1 8 z" fill="#1e293b"/>
+    </marker>
+    <marker id="s9_arrG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#15803d"/>
+    </marker>
+    <pattern id="s9_wallHatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#cbd5e1" stroke-width="2"/>
+    </pattern>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#ffffff" rx="8"/>
+  <text x="20" y="26" fill="#111827" font-size="12" font-weight="700" font-family="var(--mono)">A CASA: TANCAR EL TAULER T (PASSANT PELS ESCAIRES E) + MONITOR VESA</text>
+  <g transform="translate(706,10)"><rect x="0" y="0" width="128" height="26" rx="13" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/><path d="M16 7 C16 7 11 13 11 16.5 A5 5 0 0 0 21 16.5 C21 13 16 7 16 7 Z" fill="#fca5a5" stroke="#dc2626" stroke-width="1"/><line x1="10" y1="20" x2="22" y2="6" stroke="#dc2626" stroke-width="2.2"/><text x="28" y="17" fill="#991b1b" font-size="11" font-weight="700" font-family="var(--mono)">SENSE COLA</text></g>
+
+  <!-- LEFT: Corner zoom showing how chamfered T + short C/J drop right past steel bracket E! -->
+  <rect x="20" y="48" width="404" height="260" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.3"/>
+  <text x="36" y="70" fill="#111827" font-size="11" font-weight="700" font-family="var(--mono)">A) PER QUÈ PASSA PELS ESCAIRES E + 22× S4</text>
+
+  <!-- Frame corner walls -->
+  <polygon points="48,88 380,88 380,114 74,114" fill="#f3dfc1" stroke="#1e293b" stroke-width="1.8"/>
+  <polygon points="48,88 74,114 74,284 48,284" fill="#ebd2ac" stroke="#1e293b" stroke-width="1.8"/>
+
+  <!-- Steel bracket E staying in corner (40x40 -> 80x80 px) -->
+  <polygon points="75,115 155,115 155,124 84,124 84,195 75,195" fill="#64748b" stroke="#0f172a" stroke-width="1.6"/>
+  <g class="ibadge"><circle cx="98" cy="138" r="11" fill="#475569" stroke="#ffffff" stroke-width="2"/><text x="98" y="142.5" fill="#fff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">E</text></g>
+
+  <!-- Chamfered backplate T dropping in (50x50 -> 100px chamfer!) -->
+  <polygon points="178,117 376,117 376,280 77,280 77,218" fill="#e2e8f0" stroke="#1e293b" stroke-width="1.8"/>
+  <!-- Inner cleats C (start at 43 mm -> 86px from inner corner: x=161, y=201!) -->
+  <rect x="166" y="117" width="210" height="32" fill="#fcd34d" stroke="#92400e" stroke-width="1.6"/>
+  <rect x="77" y="206" width="32" height="74" fill="#fcd34d" stroke="#92400e" stroke-width="1.6"/>
+  <g class="ibadge"><circle cx="262" cy="133" r="11" fill="#b45309" stroke="#ffffff" stroke-width="2"/><text x="262" y="137.5" fill="#fff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">C</text></g>
+
+  <!-- Sideways screws S4 into frame walls -->
+  <line x1="210" y1="142" x2="210" y2="98" stroke="#0f766e" stroke-width="2.5" marker-end="url(#s9_arrG)"/>
+  <line x1="322" y1="142" x2="322" y2="98" stroke="#0f766e" stroke-width="2.5" marker-end="url(#s9_arrG)"/>
+  <line x1="102" y1="246" x2="58" y2="246" stroke="#0f766e" stroke-width="2.5" marker-end="url(#s9_arrG)"/>
+  <text x="332" y="106" fill="#0f766e" font-size="10" font-weight="700" font-family="var(--mono)">22× S4</text>
+
+  <!-- Gaffer tape patch over the top-corner light-leak triangle! -->
+  <polygon points="88,128 162,128 88,202" fill="#111827" fill-opacity="0.22" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <line x1="132" y1="164" x2="188" y2="196" stroke="#dc2626" stroke-width="1.4"/>
+  <rect x="184" y="180" width="184" height="54" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1.3"/>
+  <text x="194" y="198" fill="#991b1b" font-size="10" font-weight="700">Tapeu les 2 cantonades de dalt</text>
+  <text x="194" y="212" fill="#7f1d1d" font-size="9.4">amb cinta americana negra</text>
+  <text x="194" y="225" fill="#7f1d1d" font-size="9.4">perquè no entri llum dels LED!</text>
+  <text x="184" y="254" fill="#475569" font-size="9.4">Abans de baixar T: feltre 1 mm a J</text>
+  <text x="184" y="268" fill="#475569" font-size="9.4">+ escuma 15 mm a cara davant de T.</text>
+
+  <!-- RIGHT: Monitor + VESA straps + Anti-spin fixing at T -->
+  <rect x="438" y="48" width="402" height="260" rx="8" fill="#f8fafc" stroke="#6d28d9" stroke-width="1.5"/>
+  <text x="454" y="70" fill="#5b21b6" font-size="11" font-weight="700" font-family="var(--mono)">B) MONITOR PHILIPS + PLATINES VESA (320 mm)</text>
+
+  <!-- Side cutaway: Glass -> Monitor -> VESA Strap -> Backplate T -->
+  <rect x="460" y="92" width="12" height="170" fill="#bae6fd" stroke="#0369a1" stroke-width="1.4"/>
+  <text x="466" y="180" fill="#0369a1" font-size="8.5" font-weight="700" text-anchor="middle" transform="rotate(-90 466 180)">Vidre</text>
+  <!-- Backplate T above window (y=92..148) -->
+  <rect x="524" y="92" width="22" height="58" fill="#cbd5e1" stroke="#1e293b" stroke-width="1.8"/>
+  <text x="535" y="122" fill="#1e293b" font-size="9.5" font-weight="700" text-anchor="middle">T</text>
+  <!-- Monitor body (below window top y=156..256) -->
+  <rect x="476" y="156" width="76" height="100" rx="3" fill="#1e293b" stroke="#0f172a" stroke-width="1.5"/>
+  <text x="514" y="206" fill="#f8fafc" font-size="10" font-weight="700" text-anchor="middle">Philips</text>
+  <text x="514" y="220" fill="#cbd5e1" font-size="9" text-anchor="middle">27″</text>
+  <!-- Stand box bulge at bottom -->
+  <rect x="552" y="224" width="12" height="32" fill="#334155" stroke="#0f172a"/>
+  <!-- Bottom shelf B with 1 mm gap! -->
+  <rect x="476" y="261" width="44" height="18" fill="#94a3b8" stroke="#1e293b" stroke-width="1.4"/>
+  <text x="526" y="269" fill="#b45309" font-size="9.2" font-weight="700">← 1 mm lliure</text>
+  <text x="536" y="280" fill="#b45309" font-size="9.2" font-weight="700">sobre B!</text>
+
+  <!-- 2 mm washers between T (x=546) and VESA strap (x=554) -->
+  <rect x="546" y="106" width="8" height="16" fill="#a78bfa" stroke="#5b21b6" stroke-width="1"/>
+  <rect x="546" y="128" width="8" height="16" fill="#a78bfa" stroke="#5b21b6" stroke-width="1"/>
+  <!-- VESA aluminium strap (320 mm -> stops 3 mm ABOVE stand box!) -->
+  <rect x="554" y="98" width="9" height="122" fill="#cbd5e1" stroke="#334155" stroke-width="1.6"/>
+  <g class="ibadge"><circle cx="576" cy="158" r="11" fill="#6d28d9" stroke="#ffffff" stroke-width="2"/><text x="576" y="162.5" fill="#fff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">V</text></g>
+
+  <!-- Top bolts (T <-> VESA) & Monitor bolts (M4x10) -->
+  <line x1="598" y1="114" x2="567" y2="114" stroke="#6d28d9" stroke-width="2.2" marker-end="url(#s9_arrK)"/>
+  <line x1="598" y1="190" x2="567" y2="190" stroke="#6d28d9" stroke-width="2.2" marker-end="url(#s9_arrK)"/>
+  <line x1="598" y1="212" x2="567" y2="212" stroke="#6d28d9" stroke-width="2.2" marker-end="url(#s9_arrK)"/>
+
+  <!-- Explanation cards on right -->
+  <rect x="606" y="90" width="220" height="96" rx="7" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.4"/>
+  <text x="616" y="108" fill="#5b21b6" font-size="10.2" font-weight="700">Fixació a T (+2 mm volanderes):</text>
+  <text x="616" y="124" fill="#dc2626" font-size="9.5" font-weight="700">⚠ Compte que M4×20 no giri sol!</text>
+  <text x="616" y="138" fill="#1e293b" font-size="9.3">• Opció A: femelles de pues M4</text>
+  <text x="624" y="150" fill="#475569" font-size="9.1">  clavades al davant de T (no giren).</text>
+  <text x="616" y="164" fill="#1e293b" font-size="9.3">• Opció B: 4× cargols fusta 4×16</text>
+  <text x="624" y="176" fill="#475569" font-size="9.1">  des del darrere (més fàcil!).</text>
+
+  <rect x="606" y="196" width="220" height="96" rx="7" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="616" y="214" fill="#1e293b" font-size="10.2" font-weight="700">Monitor: 4× M4×10 + volanderes</text>
+  <text x="616" y="229" fill="#475569" font-size="9.4">• La platina (320 mm) queda 3 mm</text>
+  <text x="624" y="242" fill="#475569" font-size="9.4">  per sobre de la caixa de connectors.</text>
+  <text x="616" y="258" fill="#1e293b" font-size="9.4">• Després: Pi 5 (llautó M2.5),</text>
+  <text x="624" y="271" fill="#475569" font-size="9.4">  ESP32, radar, micro i feltre a K.</text>
+</svg>
+      </div>
+      <ul class="ikea-bullets">
+        <li>Poseu 1 mm de feltre als junquillos J i l&#x27;escuma adhesiva de 15 mm a la cara davant de T. Baixeu T al seu lloc (passa net pels escaires E!) i colleu tots els 22× S4 (3.5×30) de costat (SENSE COLA, ajustats sense forçar el vidre).</li><li>Tapeu amb cinta americana negra les 2 petites obertures triangulars que queden a les cantonades de dalt del darrere (on T està matat a 50×50) perquè l&#x27;halo LED no es coli darrere el vidre!</li><li>Monitor Philips (feltre 1 mm a la vora) dins la finestra amb 1 mm lliure sobre B + 2× platines VESA (320 mm): 4× M4×10 al monitor i 2 mm de volanderes a T. Per fixar a T sense que girin els cargols: femelles de pues M4 al davant abans de tancar, o 4× cargols de fusta 4×16 des del darrere! Munteu Pi 5, ESP32, sensors i feltre als tacs K.</li>
+      </ul>
+    </article>
+    <article class="ikea-card" id="pas-10" data-step="ikea_10">
+      <header class="ikea-card-head">
+        <label class="ikea-num-wrap" title="Marca el pas 10 com a fet">
+          <input type="checkbox" class="ikea-chk" data-id="ikea_10">
+          <span class="ikea-num"><span class="n-txt">10</span><span class="n-ok">✓</span></span>
+        </label>
+        <div class="ikea-title-block">
+          <div class="ikea-meta-row">
+            <span class="pill phase-home">CASA</span>
+            <span class="pill pill-pieces">Peces: P3 (45°) · 5è escaire E</span>
+            <span class="pill pill-screws">Cargols: ≥2× 4.8×45 + 4× DuoTec + 1× S1</span>
+            <span class="pill glue-no">SENSE COLA</span>
+          </div>
+          <h2>Ancoreu el llistó de paret P3 al pladur, pengeu el mirall i poseu el segur E</h2>
+        </div>
+      </header>
+      <div class="ikea-svg-box">
+        <svg viewBox="0 0 860 325" class="ikea-svg" role="img" aria-label="Pas 10: Fixar el llistó de paret al pladur, penjar el mirall i posar el segur antiaixecament" xmlns="http://www.w3.org/2000/svg">
+  
+  <defs>
+    <marker id="s10_arrB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#1d4ed8"/>
+    </marker>
+    <marker id="s10_arrR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#dc2626"/>
+    </marker>
+    <marker id="s10_arrK" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 1 2 L 9 5 L 1 8 z" fill="#1e293b"/>
+    </marker>
+    <marker id="s10_arrG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 1 1.5 L 9 5 L 1 8.5 z" fill="#15803d"/>
+    </marker>
+    <pattern id="s10_wallHatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#cbd5e1" stroke-width="2"/>
+    </pattern>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#ffffff" rx="8"/>
+  <text x="20" y="26" fill="#111827" font-size="12" font-weight="700" font-family="var(--mono)">PAS FINAL A CASA: ANCORAR P3 AL PLADUR (≥2 MUNTANTS + 4 DUOTEC) I PENJAR</text>
+
+  <!-- LEFT: Wall Elevation above Piano -->
+  <rect x="20" y="46" width="440" height="264" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.3"/>
+  <text x="36" y="66" fill="#111827" font-size="10.8" font-weight="700" font-family="var(--mono)">A) ALÇADES A LA PARET (SOBRE EL PIANO DE 102.5 cm)</text>
+
+  <!-- Vertical metal studs (dashed grey bands) -->
+  <rect x="116" y="76" width="22" height="190" fill="#e2e8f0" stroke="#94a3b8" stroke-dasharray="4 3"/>
+  <rect x="236" y="76" width="22" height="190" fill="#e2e8f0" stroke="#94a3b8" stroke-dasharray="4 3"/>
+  <rect x="356" y="76" width="22" height="190" fill="#e2e8f0" stroke="#94a3b8" stroke-dasharray="4 3"/>
+  <text x="127" y="90" fill="#64748b" font-size="8.8" font-weight="700" text-anchor="middle">Muntant</text>
+  <text x="247" y="90" fill="#64748b" font-size="8.8" font-weight="700" text-anchor="middle">Muntant</text>
+  <text x="367" y="90" fill="#64748b" font-size="8.8" font-weight="700" text-anchor="middle">Muntant</text>
+
+  <!-- Mirror outline (dashed) -->
+  <rect x="78" y="98" width="276" height="150" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="216" y="176" fill="#475569" font-size="10.2" font-weight="600" text-anchor="middle">Mirall (122.5–216.7 cm)</text>
+
+  <!-- Wall cleat P3 (900 mm) -->
+  <rect x="106" y="122" width="220" height="24" fill="#86efac" stroke="#15803d" stroke-width="2"/>
+  <g class="ibadge"><circle cx="216" cy="134" r="11" fill="#15803d" stroke="#ffffff" stroke-width="2"/><text x="216" y="138.5" fill="#fff" font-size="11.5" font-weight="700" text-anchor="middle" font-family="var(--mono)">P3</text></g>
+  <!-- Stud screws (red X) + DuoTec toggles (blue circles) -->
+  <circle cx="127" cy="134" r="4.5" fill="#dc2626"/>
+  <circle cx="247" cy="134" r="4.5" fill="#dc2626"/>
+  <circle cx="164" cy="134" r="4.5" fill="#1d4ed8"/>
+  <circle cx="192" cy="134" r="4.5" fill="#1d4ed8"/>
+  <circle cx="280" cy="134" r="4.5" fill="#1d4ed8"/>
+  <circle cx="308" cy="134" r="4.5" fill="#1d4ed8"/>
+
+  <!-- Height ticks on right -->
+  <line x1="330" y1="122" x2="394" y2="122" stroke="#15803d" stroke-width="1.3"/>
+  <text x="398" y="126" fill="#15803d" font-size="9.5" font-weight="700" font-family="var(--mono)">203.1 cm</text>
+  <line x1="330" y1="146" x2="394" y2="146" stroke="#475569" stroke-width="1.1"/>
+  <text x="398" y="150" fill="#475569" font-size="9.2" font-weight="700" font-family="var(--mono)">195.3 cm</text>
+
+  <!-- Anti-lift keeper bracket E at bottom center -->
+  <rect x="208" y="248" width="16" height="14" fill="#475569" stroke="#0f172a"/>
+  <text x="230" y="260" fill="#334155" font-size="9.5" font-weight="700">← 5è escaire E (segur)</text>
+
+  <!-- Piano top -->
+  <rect x="44" y="274" width="352" height="24" rx="3" fill="#1e293b"/>
+  <text x="220" y="290" fill="#f8fafc" font-size="10.2" font-weight="700" text-anchor="middle">PIANO (102.5 cm) · +20 cm lliures fins al marc</text>
+
+  <!-- Legend for dots (clean pill inside lower mirror area) -->
+  <rect x="88" y="192" width="206" height="44" rx="6" fill="#ffffff" fill-opacity="0.92" stroke="#cbd5e1"/>
+  <circle cx="102" cy="206" r="4.5" fill="#dc2626"/><text x="112" y="210" fill="#991b1b" font-size="9.4" font-weight="700">≥2× cargols muntant 4.8×45</text>
+  <circle cx="102" cy="224" r="4.5" fill="#1d4ed8"/><text x="112" y="228" fill="#1e3a8a" font-size="9.4" font-weight="700">4× DuoTec 10 (+ cargols 5×60)</text>
+
+  <!-- RIGHT: Side Hook-On Diagram (V-pocket bevel + bottom keeper) -->
+  <rect x="476" y="46" width="364" height="264" rx="8" fill="#ecfdf5" stroke="#15803d" stroke-width="1.5"/>
+  <text x="492" y="66" fill="#14532d" font-size="10.8" font-weight="700" font-family="var(--mono)">B) ENCAIX DEL LLISTÓ A 45° + SEGUR</text>
+
+  <!-- Wall + Stud -->
+  <rect x="692" y="80" width="26" height="202" fill="url(#s10_wallHatch)" stroke="#64748b" stroke-width="1.4"/>
+  <rect x="718" y="80" width="24" height="202" fill="#cbd5e1" stroke="#64748b" stroke-dasharray="4 3"/>
+  <text x="752" y="130" fill="#475569" font-size="9.5" font-weight="700">Pladur +</text>
+  <text x="752" y="143" fill="#475569" font-size="9.5" font-weight="700">muntant</text>
+
+  <!-- Wall cleat P3 (bevel UP, sloping DOWN toward wall = V-pocket!) -->
+  <polygon points="658,144 692,168 692,216 658,216" fill="#15803d" stroke="#052e16" stroke-width="1.8"/>
+  <text x="675" y="201" fill="#ffffff" font-size="10" font-weight="700" text-anchor="middle">P3</text>
+  <!-- Anchor screw W through P3 into wall/stud -->
+  <line x1="640" y1="188" x2="736" y2="188" stroke="#dc2626" stroke-width="2.4" marker-end="url(#s10_arrR)"/>
+  <rect x="726" y="177" width="7" height="22" rx="2" fill="#dc2626"/>
+
+  <!-- Mirror half P2 + P1 + T descending into V-pocket! -->
+  <rect x="574" y="84" width="18" height="156" fill="#cbd5e1" stroke="#1e293b" stroke-width="1.6"/>
+  <rect x="592" y="90" width="38" height="68" fill="#f3dfc1" stroke="#78350f" stroke-width="1.6"/>
+  <polygon points="630,90 664,90 664,152 630,128" fill="#86efac" stroke="#15803d" stroke-width="1.8"/>
+  <text x="647" y="118" fill="#14532d" font-size="10" font-weight="700" text-anchor="middle">P2</text>
+  <text x="611" y="130" fill="#78350f" font-size="9.5" font-weight="700" text-anchor="middle">P1</text>
+
+  <!-- Big downward drop-in arrow -->
+  <path d="M542 100 L542 148" stroke="#15803d" stroke-width="3.2" marker-end="url(#s10_arrG)"/>
+  <text x="532" y="120" fill="#14532d" font-size="10" font-weight="700" text-anchor="end">Baixeu-lo</text>
+  <text x="532" y="133" fill="#14532d" font-size="10" font-weight="700" text-anchor="end">entre 2</text>
+  <text x="532" y="146" fill="#14532d" font-size="10" font-weight="700" text-anchor="end">persones!</text>
+
+  <!-- Bottom standoff K + Anti-lift keeper E -->
+  <rect x="592" y="222" width="100" height="16" fill="#a5f3fc" stroke="#0891b2" stroke-width="1.4"/>
+  <text x="642" y="234" fill="#0e7490" font-size="9" font-weight="700" text-anchor="middle">Tac K (33 mm)</text>
+  <!-- Bottom frame rail & keeper E -->
+  <rect x="504" y="242" width="140" height="20" fill="#f3dfc1" stroke="#1e293b" stroke-width="1.6"/>
+  <path d="M686,282 L686,264 L628,264" fill="none" stroke="#334155" stroke-width="5"/>
+  <line x1="636" y1="281" x2="636" y2="253" stroke="#1d4ed8" stroke-width="2" marker-end="url(#s10_arrB)"/>
+  <rect x="492" y="286" width="332" height="18" rx="4" fill="#ffffff" stroke="#93c5fd"/>
+  <text x="658" y="298" fill="#1e3a8a" font-size="9.3" font-weight="700" text-anchor="middle">Segur E: 1× S1 (3.5×16) cap amunt + 1× DuoTec sobrant a paret</text>
+</svg>
+      </div>
+      <ul class="ikea-bullets">
+        <li>Primer obriu la tapa i el faristol del piano per verificar els 20 cm lliures. Localitzeu ≥2 muntants metàl·lics amb un imant i anivelleu P3 amb el BISELL A DALT baixant cap a la paret (butxaca en V) a 203.1 cm del terra (punta de dalt).</li><li>Ancoreu P3 a ≥2 muntants (cargols per a muntant 4.8×45 mm) + 4× tacs basculants Fischer DuoTec 10 (amb cargols 5×60 mm!). NO pengeu 30 kg només amb tacs normals de pladur!</li><li>Entre 2 persones, aixequeu el mirall i encaixeu P2 dins P3. Poseu el 5è escaire E sota el travesser inferior (1× S1 3.5×16 amunt + 1 DuoTec sobrant a la paret) perquè ningú el pugui aixecar per accident.</li>
+      </ul>
+    </article>
+</main>
+
+<script>
+  const chks = Array.from(document.querySelectorAll(".ikea-chk"));
+  const stat = document.getElementById("ikeaStat");
+  const bar = document.getElementById("ikeaBar");
+  function sync() {
+    let d = 0;
+    chks.forEach(c => {
+      const card = c.closest(".ikea-card");
+      if (c.checked) d++;
+      card.classList.toggle("done", c.checked);
+    });
+    stat.textContent = `${d} / ${chks.length} passos fets`;
+    bar.style.width = `${Math.round(d / chks.length * 100)}%`;
+  }
+  chks.forEach(c => {
+    const k = "mm_r5_" + c.dataset.id;
+    if (localStorage.getItem(k) === "1") c.checked = true;
+    c.addEventListener("change", () => {
+      localStorage.setItem(k, c.checked ? "1" : "0");
+      sync();
+    });
+  });
+  sync();
+</script>
+</body>
+</html>
